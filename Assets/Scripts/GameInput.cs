@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {
+    public static GameInput Instance;
+
     private PlayerInputActions playerInputActions;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogError("There is more than 1 GameInput in the scene");
+        }
+
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
     }
