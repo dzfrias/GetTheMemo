@@ -45,6 +45,12 @@ public class GameInput : MonoBehaviour
         return movementVector;
     }
 
+    public Vector2 GetMouseMovement()
+    {
+        Vector2 mouseVector = playerInputActions.Player.Look.ReadValue<Vector2>();
+        return mouseVector;
+    }
+
     private void PlayerInputActions_OnInteract(InputAction.CallbackContext _)
     {
         OnInteract?.Invoke();
