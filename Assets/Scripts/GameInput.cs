@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
     public static GameInput Instance;
+
+    public event Action OnInteract;
 
     private PlayerInputActions playerInputActions;
 
@@ -23,10 +28,25 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Enable();
     }
 
+    private void OnEnable()
+    {
+        playerInputActions.Player.Interact.performed += PlayerInputActions_OnInteract;
+    }
+
+    private void OnDisable()
+    {
+        playerInputActions.Player.Interact.performed -= PlayerInputActions_OnInteract;
+    }
+
     public Vector2 GetMovementVectorNormalized()
     {
         Vector2 movementVector = playerInputActions.Player.Move.ReadValue<Vector2>();
         movementVector = movementVector.normalized;
         return movementVector;
+    }
+
+    private void PlayerInputActions_OnInteract(InputAction.CallbackContext _)
+    {
+        OnInteract?.Invoke();
     }
 }
