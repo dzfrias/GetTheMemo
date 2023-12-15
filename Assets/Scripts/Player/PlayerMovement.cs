@@ -23,6 +23,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 movementVectorNormalized = GameInput.Instance.GetMovementVectorNormalized();
         Vector3 movement = new Vector3(movementVectorNormalized.x, rb.velocity.y, movementVectorNormalized.y);
-        rb.velocity = movement * movementSpeed;
+        rb.velocity = transform.right * movement.x * movementSpeed + transform.forward * movement.z * movementSpeed;
     }
 }
