@@ -8,6 +8,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Vector3 halfExtents = new Vector3(0.25f, 0.25f, 0.25f);
     [SerializeField] private float maxDistance = 1f;
 
+    private IInteractable interactable;
+
     private void OnEnable()
     {
         GameInput.Instance.OnInteract += GameInput_OnInteract;
@@ -18,23 +20,63 @@ public class PlayerInteraction : MonoBehaviour
         GameInput.Instance.OnInteract -= GameInput_OnInteract;
     }
 
+    private void Update()
+    {
+        InteractDetection();
+    }
+
     private void GameInput_OnInteract()
     {
         Interact();
     }
 
-    private void Interact()
+    private void InteractDetection()
     {
         RaycastHit raycastHit;
         if (Physics.BoxCast(transform.position, halfExtents, transform.forward, out raycastHit, Quaternion.identity, maxDistance))
         {
             if (raycastHit.collider != null)
             {
-                if (raycastHit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+                GameObject detectedObject = raycastHit.collider.gameObject;
+                if (detectedObject.TryGetComponent(out IInteractable interactable))
                 {
-                    interactable.Interact();
+                    if (InteractableChanged(interactable))
+                    {
+                        TryHideInteractableOutline();
+                    }
+
+                    this.interactable = interactable;
+                    interactable.ShowOutline();
                 }
+                return;
             }
+        }
+        TryHideInteractableOutline();
+        interactable = null;
+    }
+
+    private void Interact()
+    {
+        if (interactable != null)
+        {
+            interactable.Interact();
+        }
+    }
+
+    private bool InteractableChanged(IInteractable newInteractable)
+    {
+        if (interactable != newInteractable)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    private void TryHideInteractableOutline()
+    {
+        if (interactable != null)
+        {
+            interactable.HideOutline();
         }
     }
 }
