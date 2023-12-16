@@ -8,6 +8,8 @@ public class PlayerMouseLook : MonoBehaviour
     [Header("Mouse Settings")]
     [SerializeField] private float mouseSensX = 1f;
     [SerializeField] private float mouseSensY = 1f;
+    [SerializeField] private float maxVerticalClamp = 90f;
+    [SerializeField] private float minVerticalClamp = -90f;
 
     private float xRotation;
     private float yRotation;
@@ -30,6 +32,7 @@ public class PlayerMouseLook : MonoBehaviour
         Vector2 mouseInput = GameInput.Instance.GetMouseMovement();
         xRotation -= mouseInput.y * Time.deltaTime * mouseSensX;
         yRotation += mouseInput.x * Time.deltaTime * mouseSensY;
+        xRotation = Mathf.Clamp(xRotation, minVerticalClamp, maxVerticalClamp);
         transform.rotation = Quaternion.Euler(xRotation, yRotation, transform.rotation.z);
     }
 }
