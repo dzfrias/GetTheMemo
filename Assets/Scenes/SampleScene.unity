@@ -616,7 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9dc81c85b824bc6be59f3bbe8e5a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  halfExtents: {x: 0.25, y: 0.25, z: 0.25}
+  cam: {fileID: 330585545}
   maxDistance: 1
 --- !u!114 &1053974353
 MonoBehaviour:

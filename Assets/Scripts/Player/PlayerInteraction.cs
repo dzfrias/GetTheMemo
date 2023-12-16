@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Interact Box Settings")]
-    [SerializeField] private Vector3 halfExtents = new Vector3(0.25f, 0.25f, 0.25f);
+    [Header("Interact Settings")]
+    [SerializeField] private Camera cam;
     [SerializeField] private float maxDistance = 1f;
 
     private IInteractable interactable;
@@ -33,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour
     private void InteractDetection()
     {
         RaycastHit raycastHit;
-        if (Physics.BoxCast(transform.position, halfExtents, transform.forward, out raycastHit, Quaternion.identity, maxDistance))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out raycastHit, maxDistance))
         {
             if (raycastHit.collider != null)
             {
