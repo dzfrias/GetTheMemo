@@ -630,8 +630,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1418e4d44c9ea49899bc2b93e3b4100e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 330585545}
   mouseSensX: 50
   mouseSensY: 50
+  maxVerticalClamp: 90
+  minVerticalClamp: -90
 --- !u!1 &2113122539
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMouseLook : MonoBehaviour
 {
+    [SerializeField] private Camera cam;
+
     [Header("Mouse Settings")]
     [SerializeField] private float mouseSensX = 1f;
     [SerializeField] private float mouseSensY = 1f;
@@ -33,6 +35,7 @@ public class PlayerMouseLook : MonoBehaviour
         xRotation -= mouseInput.y * Time.deltaTime * mouseSensX;
         yRotation += mouseInput.x * Time.deltaTime * mouseSensY;
         xRotation = Mathf.Clamp(xRotation, minVerticalClamp, maxVerticalClamp);
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, transform.rotation.z);
+        transform.rotation = Quaternion.Euler(transform.rotation.x, yRotation, transform.rotation.z);
+        cam.transform.rotation = Quaternion.Euler(xRotation, yRotation, cam.transform.rotation.z);
     }
 }
