@@ -18,11 +18,11 @@ public class TestInteractable : MonoBehaviour, IInteractable
 
     public void ShowOutline()
     {
-        outline.OutlineMode = Outline.Mode.OutlineVisible;
+        outline.enabled = true;
     }
 
     public void HideOutline()
     {
-        outline.OutlineMode = Outline.Mode.OutlineHidden;
+        outline.enabled = false;
     }
 }
