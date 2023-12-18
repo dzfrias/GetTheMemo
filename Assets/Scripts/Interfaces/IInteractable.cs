@@ -5,6 +5,6 @@ using UnityEngine;
 public interface IInteractable
 {
     void Interact();
-    void ShowOutline();
-    void HideOutline();
+    void Hover();
+    void NoHover();
 }

@@ -16,12 +16,12 @@ public class TestInteractable : MonoBehaviour, IInteractable
         Debug.Log("Interacted");
     }
 
-    public void ShowOutline()
+    public void Hover()
     {
         outline.enabled = true;
     }
 
-    public void HideOutline()
+    public void NoHover()
     {
         outline.enabled = false;
     }

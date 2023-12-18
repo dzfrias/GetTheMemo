@@ -20,7 +20,7 @@ public class CinemachinePOVExtension : CinemachineExtension
 
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
     {
-        if (!vcam.Follow || stage != CinemachineCore.Stage.Aim) return;
+        if (!vcam.Follow || stage != CinemachineCore.Stage.Aim || GameInput.Instance == null) return;
 
         Vector2 deltaInput = GameInput.Instance.GetMouseMovement();
         startingRot.x += deltaInput.x * ySpeed * Time.deltaTime;

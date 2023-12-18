@@ -50,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
                 }
 
                 interactable = newInteractable;
-                interactable.ShowOutline();
+                interactable.Hover();
             }
             return;
         }
@@ -64,20 +64,9 @@ public class PlayerInteraction : MonoBehaviour
         interactable.Interact();
     }
 
-    private bool InteractableChanged(IInteractable newInteractable)
-    {
-        if (interactable != newInteractable)
-        {
-            return true;
-        }
-        return false;
-    }
-
     private void TryHideInteractableOutline()
     {
-        if (interactable != null)
-        {
-            interactable.HideOutline();
-        }
+        if (interactable == null) return;
+        interactable.NoHover();
     }
 }
