@@ -1957,6 +1957,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 131023805635078402, guid: 783792e4c7a7d4b96a219598286ea572,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4879248015924518829, guid: 783792e4c7a7d4b96a219598286ea572,
         type: 3}
       propertyPath: m_Name

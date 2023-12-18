@@ -9,6 +9,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private float maxDistance = 1f;
     [SerializeField] private Transform objectHoldLocation;
+    private GameObject heldObject;
 
     private IInteractable interactable;
 
@@ -59,6 +60,11 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Interact()
     {
+        if (heldObject != null)
+        {
+            DropHeldObject();
+        }
+
         if (interactable != null)
         {
             interactable.Interact(this);
@@ -70,6 +76,16 @@ public class PlayerInteraction : MonoBehaviour
         gameObject.transform.position = objectHoldLocation.position;
         gameObject.transform.rotation = objectHoldLocation.rotation;
         gameObject.transform.parent = objectHoldLocation;
+        heldObject = gameObject;
+    }
+
+    private void DropHeldObject()
+    {
+        if (heldObject.TryGetComponent(out IGrabbable grabbable))
+        {
+            grabbable.EnableMovement();
+            heldObject = null;
+        }
     }
 
     private bool InteractableChanged(IInteractable newInteractable)
