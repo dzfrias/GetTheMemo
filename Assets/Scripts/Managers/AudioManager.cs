@@ -16,7 +16,6 @@ public class AudioManager : MonoBehaviour
         public string name;
         public AudioClip audioClip;
         public float volume;
-        public float pitch;
     }
 
     private void Awake()
@@ -39,7 +38,7 @@ public class AudioManager : MonoBehaviour
         {
             if (sound.name == name)
             {
-                AudioSource.PlayClipAtPoint(sound.audioClip, location);
+                AudioSource.PlayClipAtPoint(sound.audioClip, location, sound.volume);
                 foundSound = true;
             }
         }
