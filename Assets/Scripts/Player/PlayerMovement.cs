@@ -8,13 +8,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movementSpeed = 1f;
 
     private Rigidbody rb;
+    private Transform camTransform;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        camTransform = Camera.main.transform;
     }
 
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
         Move();
     }
@@ -22,7 +24,9 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         Vector2 movementVectorNormalized = GameInput.Instance.GetMovementVectorNormalized();
-        Vector3 movement = new Vector3(movementVectorNormalized.x, rb.velocity.y, movementVectorNormalized.y);
-        rb.velocity = transform.right * movement.x * movementSpeed + transform.forward * movement.z * movementSpeed;
+        Vector3 movement = new Vector3(movementVectorNormalized.x, 0f, movementVectorNormalized.y);
+        movement = camTransform.forward * movement.z + camTransform.right * movement.x;
+        movement.y = 0f;
+        rb.velocity = movement * movementSpeed;
     }
 }

@@ -6,10 +6,15 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Interact Settings")]
-    [SerializeField] private Camera cam;
     [SerializeField] private float maxDistance = 1f;
+    private Camera cam;
 
     private IInteractable interactable;
+
+    private void Awake()
+    {
+        cam = Camera.main;
+    }
 
     private void OnEnable()
     {
@@ -34,23 +39,20 @@ public class PlayerInteraction : MonoBehaviour
     private void InteractDetection()
     {
         RaycastHit raycastHit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out raycastHit, maxDistance))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out raycastHit, maxDistance) && raycastHit.collider != null)
         {
-            if (raycastHit.collider != null)
+            GameObject detectedObject = raycastHit.collider.gameObject;
+            if (detectedObject.TryGetComponent(out IInteractable newInteractable))
             {
-                GameObject detectedObject = raycastHit.collider.gameObject;
-                if (detectedObject.TryGetComponent(out IInteractable interactable))
+                if (interactable != newInteractable)
                 {
-                    if (InteractableChanged(interactable))
-                    {
-                        TryHideInteractableOutline();
-                    }
-
-                    this.interactable = interactable;
-                    interactable.ShowOutline();
+                    TryHideInteractableOutline();
                 }
-                return;
+
+                interactable = newInteractable;
+                interactable.ShowOutline();
             }
+            return;
         }
         TryHideInteractableOutline();
         interactable = null;
@@ -58,10 +60,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Interact()
     {
-        if (interactable != null)
-        {
-            interactable.Interact();
-        }
+        if (interactable == null) return;
+        interactable.Interact();
     }
 
     private bool InteractableChanged(IInteractable newInteractable)
@@ -72,7 +72,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         return false;
     }
-    
+
     private void TryHideInteractableOutline()
     {
         if (interactable != null)
