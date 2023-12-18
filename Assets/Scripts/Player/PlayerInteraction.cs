@@ -38,8 +38,10 @@ public class PlayerInteraction : MonoBehaviour
 
     private void InteractDetection()
     {
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+
         RaycastHit raycastHit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out raycastHit, maxDistance) && raycastHit.collider != null)
+        if (Physics.Raycast(ray, out raycastHit, maxDistance) && raycastHit.collider != null)
         {
             GameObject detectedObject = raycastHit.collider.gameObject;
             if (detectedObject.TryGetComponent(out IInteractable newInteractable))

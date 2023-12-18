@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9dc81c85b824bc6be59f3bbe8e5a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 1.5
+  maxDistance: 4
 --- !u!1 &7784764860652417160
 GameObject:
   m_ObjectHideFlags: 0
