@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void Interact();
+    void Interact(PlayerInteraction playerInteraction);
     void ShowOutline();
     void HideOutline();
 }

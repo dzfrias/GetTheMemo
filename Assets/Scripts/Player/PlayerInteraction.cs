@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Interact Settings")]
     [SerializeField] private Camera cam;
     [SerializeField] private float maxDistance = 1f;
+    [SerializeField] private Transform objectHoldLocation;
 
     private IInteractable interactable;
 
@@ -60,8 +61,15 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (interactable != null)
         {
-            interactable.Interact();
+            interactable.Interact(this);
         }
+    }
+
+    public void SetHeldObject(GameObject gameObject)
+    {
+        gameObject.transform.position = objectHoldLocation.position;
+        gameObject.transform.rotation = objectHoldLocation.rotation;
+        gameObject.transform.parent = objectHoldLocation;
     }
 
     private bool InteractableChanged(IInteractable newInteractable)
