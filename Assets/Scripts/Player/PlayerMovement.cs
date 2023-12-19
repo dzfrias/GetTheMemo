@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
+        RotateToCamera();
         ApplyGravity();
     }
 
@@ -29,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
         movement = camTransform.forward * movement.z + camTransform.right * movement.x;
         movement.y = 0f;
         characterController.Move(movement * movementSpeed * Time.deltaTime);
+    }
+
+    private void RotateToCamera()
+    {
+        transform.rotation = Quaternion.Euler(0f, camTransform.rotation.eulerAngles.y, 0f);
     }
 
     private void ApplyGravity()
