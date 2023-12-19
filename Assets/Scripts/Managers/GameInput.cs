@@ -10,6 +10,8 @@ public class GameInput : MonoBehaviour
     public static GameInput Instance;
 
     public event Action OnInteract;
+    public event Action OnPickup;
+    public event Action OnDrop;
 
     private PlayerInputActions playerInputActions;
 
@@ -33,11 +35,15 @@ public class GameInput : MonoBehaviour
     private void OnEnable()
     {
         playerInputActions.Player.Interact.performed += PlayerInputActions_OnInteract;
+        playerInputActions.Player.Pickup.started += PlayerInputActions_OnPickupStarted;
+        playerInputActions.Player.Pickup.canceled += PlayerInputActions_OnPickupStopped;
     }
 
     private void OnDisable()
     {
         playerInputActions.Player.Interact.performed -= PlayerInputActions_OnInteract;
+        playerInputActions.Player.Pickup.started -= PlayerInputActions_OnPickupStarted;
+        playerInputActions.Player.Pickup.canceled -= PlayerInputActions_OnPickupStopped;
     }
 
     public Vector2 GetMovementVectorNormalized()
@@ -56,5 +62,15 @@ public class GameInput : MonoBehaviour
     private void PlayerInputActions_OnInteract(InputAction.CallbackContext _)
     {
         OnInteract?.Invoke();
+    }
+
+    private void PlayerInputActions_OnPickupStarted(InputAction.CallbackContext _)
+    {
+        OnPickup?.Invoke();
+    }
+
+    private void PlayerInputActions_OnPickupStopped(InputAction.CallbackContext _)
+    {
+        OnDrop?.Invoke();
     }
 }
