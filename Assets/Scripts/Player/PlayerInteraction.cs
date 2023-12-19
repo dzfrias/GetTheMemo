@@ -9,7 +9,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float maxDistance = 1f;
     private Camera cam;
 
-    private IInteractable interactable;
+    private IHoverable hoverable;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        InteractDetection();
+        OutlineDetection();
     }
 
     private void GameInput_OnInteract()
@@ -36,7 +36,7 @@ public class PlayerInteraction : MonoBehaviour
         Interact();
     }
 
-    private void InteractDetection()
+    private void OutlineDetection()
     {
         Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
 
@@ -44,31 +44,40 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out raycastHit, maxDistance) && raycastHit.collider != null)
         {
             GameObject detectedObject = raycastHit.collider.gameObject;
-            if (detectedObject.TryGetComponent(out IInteractable newInteractable))
+            if (detectedObject.TryGetComponent(out IHoverable newHoverable))
             {
-                if (interactable != newInteractable)
+                if (hoverable != newHoverable)
                 {
-                    TryHideInteractableOutline();
+                    TryNoHover();
                 }
 
-                interactable = newInteractable;
-                interactable.Hover();
+                hoverable = newHoverable;
+                hoverable.Hover();
                 return;
             }
         }
-        TryHideInteractableOutline();
-        interactable = null;
+        TryNoHover();
+        hoverable = null;
     }
 
     private void Interact()
     {
-        if (interactable == null) return;
-        interactable.Interact();
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+
+        RaycastHit raycastHit;
+        if (Physics.Raycast(ray, out raycastHit, maxDistance) && raycastHit.collider != null)
+        {
+            GameObject detectedObject = raycastHit.collider.gameObject;
+            if (detectedObject.TryGetComponent(out IInteractable interactable))
+            {
+                interactable.Interact();
+            }   
+        }
     }
 
-    private void TryHideInteractableOutline()
+    private void TryNoHover()
     {
-        if (interactable == null) return;
-        interactable.NoHover();
+        if (hoverable == null) return;
+        hoverable.NoHover();
     }
 }

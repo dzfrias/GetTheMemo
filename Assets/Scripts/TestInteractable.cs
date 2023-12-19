@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestInteractable : MonoBehaviour, IInteractable
+public class TestInteractable : MonoBehaviour, IInteractable, IHoverable
 {
     private Outline outline;
 
