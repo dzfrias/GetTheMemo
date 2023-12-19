@@ -53,8 +53,8 @@ public class PlayerInteraction : MonoBehaviour
 
                 interactable = newInteractable;
                 interactable.Hover();
+                return;
             }
-            return;
         }
         TryHideInteractableOutline();
         interactable = null;
