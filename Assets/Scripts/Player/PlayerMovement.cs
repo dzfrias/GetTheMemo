@@ -7,18 +7,19 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 1f;
 
-    private Rigidbody rb;
     private Transform camTransform;
+    private CharacterController characterController;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         camTransform = Camera.main.transform;
+        characterController = GetComponent<CharacterController>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Move();
+        ApplyGravity();
     }
 
     private void Move()
@@ -27,6 +28,13 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(movementVectorNormalized.x, 0f, movementVectorNormalized.y);
         movement = camTransform.forward * movement.z + camTransform.right * movement.x;
         movement.y = 0f;
-        rb.velocity = movement * movementSpeed;
+        characterController.Move(movement * movementSpeed * Time.deltaTime);
+    }
+
+    private void ApplyGravity()
+    {
+        if (characterController.isGrounded) return;
+
+        characterController.Move(Physics.gravity * Time.deltaTime);
     }
 }
