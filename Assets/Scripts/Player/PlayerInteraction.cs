@@ -9,7 +9,11 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float maxDistance = 1f;
     private Camera cam;
 
+    [Header("Pickup Settings")]
+    [SerializeField] private Transform holdTransform;
+    
     private IHoverable hoverable;
+    private IGrabbable heldObject;
 
     private void Awake()
     {
@@ -19,11 +23,15 @@ public class PlayerInteraction : MonoBehaviour
     private void OnEnable()
     {
         GameInput.Instance.OnInteract += GameInput_OnInteract;
+        GameInput.Instance.OnPickup += GameInput_OnPickup;
+        GameInput.Instance.OnDrop += GameInput_OnDrop;
     }
 
     private void OnDisable()
     {
         GameInput.Instance.OnInteract -= GameInput_OnInteract;
+        GameInput.Instance.OnPickup -= GameInput_OnPickup;
+        GameInput.Instance.OnDrop -= GameInput_OnDrop;
     }
 
     private void Update()
@@ -34,6 +42,31 @@ public class PlayerInteraction : MonoBehaviour
     private void GameInput_OnInteract()
     {
         Interact();
+    }
+
+    private void GameInput_OnPickup()
+    {
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+
+        RaycastHit raycastHit;
+        if (Physics.Raycast(ray, out raycastHit, maxDistance) && raycastHit.collider != null)
+        {
+            GameObject detectedObject = raycastHit.collider.gameObject;
+            if (detectedObject.TryGetComponent(out IGrabbable grabbable))
+            {
+                detectedObject.transform.position = holdTransform.position;
+                grabbable.Pickup(holdTransform);
+                heldObject = grabbable;
+            }   
+        }
+    }
+
+    private void GameInput_OnDrop()
+    {
+        if (heldObject != null)
+        {
+            heldObject.Drop();
+        }
     }
 
     private void OutlineDetection()
