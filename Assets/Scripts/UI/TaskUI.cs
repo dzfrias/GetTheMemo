@@ -5,11 +5,16 @@ using UnityEngine;
 public class TaskUI : MonoBehaviour
 {
     [SerializeField] private int taskID;
-    [SerializeField] private GameObject checkmarkImage;
+    [SerializeField] private TaskCheckboxUI taskCheckboxUI;
 
-    public void CompleteTask()
+    public void Show()
     {
-        checkmarkImage.SetActive(true);
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 
     public int GetTaskID()

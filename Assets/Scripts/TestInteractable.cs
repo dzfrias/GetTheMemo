@@ -16,7 +16,7 @@ public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabb
     public void Interact()
     {
         Debug.Log("Interacted");
-        TaskSystemUI.Instance.CompleteTask(0);
+        TaskManagerUI.Instance.StartTask(0);
     }
 
     public void Hover()

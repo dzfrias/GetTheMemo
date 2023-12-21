@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskSystemUI : MonoBehaviour
+public class TaskManagerUI : MonoBehaviour
 {
-    [SerializeField] private List<TaskUI> taskUIList;
+    public static TaskManagerUI Instance;
 
-    public static TaskSystemUI Instance;
+    [SerializeField] private List<TaskUI> taskUIList;
 
     private void Awake()
     {
@@ -16,17 +16,17 @@ public class TaskSystemUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("There is more than 1 task system in the scene!");
+            Debug.LogError("There is more than 1 task manager ui in the scene!");
         }
     }
 
-    public void CompleteTask(int id)
+    public void StartTask(int id)
     {
         foreach (TaskUI taskUI in taskUIList)
         {
             if (taskUI.GetTaskID() == id)
             {
-                taskUI.CompleteTask();
+                taskUI.Show();
             }
         }
     }
