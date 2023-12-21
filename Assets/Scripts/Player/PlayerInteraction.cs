@@ -14,10 +14,12 @@ public class PlayerInteraction : MonoBehaviour
     
     private IHoverable hoverable;
     private IGrabbable heldObject;
+    private PlayerHold playerHold;
 
     private void Awake()
     {
         cam = Camera.main;
+        playerHold = GetComponent<PlayerHold>();
     }
 
     private void OnEnable()
@@ -55,8 +57,9 @@ public class PlayerInteraction : MonoBehaviour
             if (detectedObject.TryGetComponent(out IGrabbable grabbable))
             {
                 detectedObject.transform.position = holdTransform.position;
-                grabbable.Pickup(holdTransform);
+                grabbable.Pickup();
                 heldObject = grabbable;
+                playerHold.CreateAnchorPoint(detectedObject);
             }   
         }
     }
@@ -66,6 +69,7 @@ public class PlayerInteraction : MonoBehaviour
         if (heldObject != null)
         {
             heldObject.Drop();
+            playerHold.DestroyAnchorPoint();
         }
     }
 

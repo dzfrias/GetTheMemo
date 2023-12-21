@@ -5,10 +5,12 @@ using UnityEngine;
 public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabbable
 {
     private Outline outline;
+    private Rigidbody rb;
 
     private void Awake()
     {
         outline = GetComponent<Outline>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void Interact()
@@ -27,15 +29,13 @@ public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabb
         outline.enabled = false;
     }
 
-    public void Pickup(Transform holdTransform)
+    public void Pickup()
     {
-        Debug.Log("Picked up");
-        transform.parent = holdTransform;
+        rb.useGravity = false;
     }
 
     public void Drop()
     {
-        Debug.Log("Dropped");
-        transform.parent = null;
+        rb.useGravity = true;
     }
 }

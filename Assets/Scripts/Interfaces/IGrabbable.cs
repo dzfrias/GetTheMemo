@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IGrabbable
 {
-    void Pickup(Transform holdTransform);
+    void Pickup();
     void Drop();
 }
