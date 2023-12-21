@@ -37,10 +37,10 @@ public class PlayerHold : MonoBehaviour
 
         anchorObject.transform.parent = holdTransform;
         anchorObject.transform.position = holdTransform.position;
-        heldObject.transform.position = anchorObject.transform.position;
 
         ConfigurableJoint configurableJoint = anchorObject.AddComponent<ConfigurableJoint>();
         configurableJoint.connectedBody = heldObject.GetComponent<Rigidbody>();
+        configurableJoint.autoConfigureConnectedAnchor = false;
 
         configurableJoint.xDrive = CreateJointDrive();
         configurableJoint.yDrive = CreateJointDrive();

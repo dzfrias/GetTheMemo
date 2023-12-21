@@ -56,7 +56,6 @@ public class PlayerInteraction : MonoBehaviour
             GameObject detectedObject = raycastHit.collider.gameObject;
             if (detectedObject.TryGetComponent(out IGrabbable grabbable))
             {
-                detectedObject.transform.position = holdTransform.position;
                 grabbable.Pickup();
                 heldObject = grabbable;
                 playerHold.CreateAnchorPoint(detectedObject);
