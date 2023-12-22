@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,12 +6,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PaperShredderUI : TaskUI
-{    
+{   
     [SerializeField] private Button shredBtn;
     [SerializeField] private Button saveBtn;
     [SerializeField] private TMP_Text pointsText;
     [SerializeField] private TMP_Text percentageCompleteText;
     [SerializeField] private List<PaperUI> paperUIList;
+    [SerializeField] private TaskCheckboxUI taskCheckboxUI;
 
     private int points = 0;
     private int currentPaperIndex = 0;
@@ -35,7 +37,15 @@ public class PaperShredderUI : TaskUI
         currentPaperUI.gameObject.SetActive(false);
 
         currentPaperIndex += 1;
-        ShowPaper(currentPaperIndex);
+        if (currentPaperIndex != paperUIList.Count)
+        {
+            PaperUI nextPaper = paperUIList[currentPaperIndex];
+            nextPaper.gameObject.SetActive(true);
+        }
+        else
+        {
+            taskCheckboxUI.CompleteTask();
+        }
 
         AdjustPoints(currentPaperUI, playerKeep);
         UpdatePercentageText();
@@ -45,15 +55,6 @@ public class PaperShredderUI : TaskUI
     {
         float percentageComplete = (float) currentPaperIndex/paperUIList.Count * 100;
         percentageCompleteText.text = $"{percentageComplete:F2}% Complete";
-    }
-
-    private void ShowPaper(int paperIndex)
-    {
-        if (paperIndex != paperUIList.Count)
-        {
-            PaperUI nextPaper = paperUIList[paperIndex];
-            nextPaper.gameObject.SetActive(true);
-        }
     }
 
     private void AdjustPoints(PaperUI paperUI, bool playerKeep)
