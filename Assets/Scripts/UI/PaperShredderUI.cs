@@ -27,36 +27,47 @@ public class PaperShredderUI : TaskUI
         saveBtn.onClick.AddListener(() => CheckPaper(true));
     }
 
-    private void CheckPaper(bool keep)
+    private void CheckPaper(bool playerKeep)
     {
         if (currentPaperIndex == paperUIList.Count) return;
 
         PaperUI currentPaperUI = paperUIList[currentPaperIndex];
-        if (currentPaperUI.KeepPaper())
-        {
-            if (keep) { points += 1; } 
-            else { points -= 1; }
-        }
-        else
-        {
-            if (!keep) { points += 1; } 
-            else { points -= 1; }
-        }
         currentPaperUI.gameObject.SetActive(false);
-        currentPaperIndex += 1;
-        if (currentPaperIndex != paperUIList.Count)
-        {
-            PaperUI nextPaper = paperUIList[currentPaperIndex];
-            nextPaper.gameObject.SetActive(true);
-        }
 
+        currentPaperIndex += 1;
+        ShowPaper(currentPaperIndex);
+
+        AdjustPoints(currentPaperUI, playerKeep);
         UpdatePercentageText();
-        pointsText.text = $"Points: {points}";
     }
 
     private void UpdatePercentageText()
     {
         float percentageComplete = (float) currentPaperIndex/paperUIList.Count * 100;
         percentageCompleteText.text = $"{percentageComplete:F2}% Complete";
+    }
+
+    private void ShowPaper(int paperIndex)
+    {
+        if (paperIndex != paperUIList.Count)
+        {
+            PaperUI nextPaper = paperUIList[paperIndex];
+            nextPaper.gameObject.SetActive(true);
+        }
+    }
+
+    private void AdjustPoints(PaperUI paperUI, bool playerKeep)
+    {
+        if (paperUI.KeepPaper())
+        {
+            if (playerKeep) { points += 1; } 
+            else { points -= 1; }
+        }
+        else
+        {
+            if (!playerKeep) { points += 1; } 
+            else { points -= 1; }
+        }
+        pointsText.text = $"Points: {points}";
     }
 }
