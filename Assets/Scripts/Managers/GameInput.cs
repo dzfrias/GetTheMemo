@@ -12,6 +12,7 @@ public class GameInput : MonoBehaviour
     public event Action OnInteract;
     public event Action OnPickup;
     public event Action OnDrop;
+    public event Action OnCloseUI;
 
     private PlayerInputActions playerInputActions;
 
@@ -37,6 +38,8 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Interact.performed += PlayerInputActions_OnInteract;
         playerInputActions.Player.Pickup.started += PlayerInputActions_OnPickupStarted;
         playerInputActions.Player.Pickup.canceled += PlayerInputActions_OnPickupStopped;
+
+        playerInputActions.UI.Close.performed += PlayerInputActions_OnCloseUI;
     }
 
     private void OnDisable()
@@ -44,6 +47,8 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Interact.performed -= PlayerInputActions_OnInteract;
         playerInputActions.Player.Pickup.started -= PlayerInputActions_OnPickupStarted;
         playerInputActions.Player.Pickup.canceled -= PlayerInputActions_OnPickupStopped;
+
+        playerInputActions.UI.Close.performed -= PlayerInputActions_OnCloseUI;
     }
 
     public Vector2 GetMovementVectorNormalized()
@@ -72,5 +77,28 @@ public class GameInput : MonoBehaviour
     private void PlayerInputActions_OnPickupStopped(InputAction.CallbackContext _)
     {
         OnDrop?.Invoke();
+    }
+
+    private void PlayerInputActions_OnCloseUI(InputAction.CallbackContext _)
+    {
+        OnCloseUI?.Invoke();
+    }
+
+    public void SwitchActionMaps()
+    {
+        if (playerInputActions.Player.enabled)
+        {
+            playerInputActions.Player.Disable();
+            playerInputActions.UI.Enable();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            playerInputActions.Player.Enable();
+            playerInputActions.UI.Disable();
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
