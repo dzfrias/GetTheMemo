@@ -18,11 +18,15 @@ public class PaperShredderTask : ITask
     public void Complete()
     {
         Debug.Log("PaperShredderTask completed!");
-        TaskManager.Instance.CompleteTask(id);
     }
 
     public string Name()
     {
         return "Shred some paper";
+    }
+
+    public int Id()
+    {
+        return id;
     }
 }

@@ -24,7 +24,7 @@ public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabb
         Debug.Log("Interacted");
         if (paperShredderTask != null)
         {
-            stationUI.GetComponent<IStationUI<PaperShredderTask>>().Startup(paperShredderTask);
+            StationUIManager.Instance.Startup(paperShredderTask);
         }
     }
 

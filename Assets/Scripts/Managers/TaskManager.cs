@@ -36,7 +36,7 @@ public class TaskManager : MonoBehaviour
     /// </summary>
     public int AddTask(ITask task)
     {
-        int id = ++nextTaskId;
+        int id = nextTaskId++;
         tasks.Add(id, task);
         task.Start(id);
         OnTaskAdded?.Invoke(id, task);

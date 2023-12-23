@@ -20,7 +20,6 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
     public void Startup(PaperShredderTask task)
     {
         Debug.Log("PaperShredderUI Startup");
-        gameObject.SetActive(true);
         this.task = task;
     }
 
@@ -51,7 +50,7 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
         }
         else
         {
-            task.Complete();
+            TaskManager.Instance.CompleteTask(task.Id());
         }
 
         AdjustPoints(currentPaperUI, playerKeep);
