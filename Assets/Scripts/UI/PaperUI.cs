@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class PaperUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text paperText;
-    [SerializeField] private bool keepPaper;
+    [SerializeField]
+    private TMP_Text paperText;
+
+    [SerializeField]
+    private bool keepPaper;
 
     private void Awake()
     {

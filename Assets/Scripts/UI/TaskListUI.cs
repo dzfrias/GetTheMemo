@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TaskListUI : MonoBehaviour
 {
-    [SerializeField] private GameObject taskListItemPrefab;
+    [SerializeField]
+    private GameObject taskListItemPrefab;
 
     private Dictionary<int, TaskCheckboxUI> taskListItems = new Dictionary<int, TaskCheckboxUI>();
 

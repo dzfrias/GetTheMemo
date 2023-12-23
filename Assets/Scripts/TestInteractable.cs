@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabbable
 {
-    [SerializeField] private GameObject stationUI;
+    [SerializeField]
+    private GameObject stationUI;
 
     private Outline outline;
     private Rigidbody rb;
@@ -45,7 +46,8 @@ public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabb
 
     public void TaskManager_OnTaskCompleted(int id)
     {
-        if (id != paperShredderTaskId) return;
+        if (id != paperShredderTaskId)
+            return;
         paperShredderTask = null;
         paperShredderTaskId = -1;
     }

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class HeadBob : MonoBehaviour
 {
-    [SerializeField] private float bobbingSpeed = 0.18f;
-    [SerializeField] private float bobbingAmount = 0.2f;
+    [SerializeField]
+    private float bobbingSpeed = 0.18f;
+
+    [SerializeField]
+    private float bobbingAmount = 0.2f;
 
     private float startY;
 

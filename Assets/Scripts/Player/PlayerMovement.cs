@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed = 1f;
+    [SerializeField]
+    private float movementSpeed = 1f;
 
     private Transform camTransform;
     private CharacterController characterController;
@@ -39,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (characterController.isGrounded) return;
+        if (characterController.isGrounded)
+            return;
 
         characterController.Move(Physics.gravity * Time.deltaTime);
     }

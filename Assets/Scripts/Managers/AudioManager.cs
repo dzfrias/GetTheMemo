@@ -7,9 +7,12 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    
-    [SerializeField] private List<Sound> music;
-    [SerializeField] private List<Sound> soundEffects;
+
+    [SerializeField]
+    private List<Sound> music;
+
+    [SerializeField]
+    private List<Sound> soundEffects;
 
     private AudioSource audioSource;
 

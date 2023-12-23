@@ -6,12 +6,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
-{   
-    [SerializeField] private Button shredBtn;
-    [SerializeField] private Button saveBtn;
-    [SerializeField] private TMP_Text pointsText;
-    [SerializeField] private TMP_Text percentageCompleteText;
-    [SerializeField] private List<PaperUI> paperUIList;
+{
+    [SerializeField]
+    private Button shredBtn;
+
+    [SerializeField]
+    private Button saveBtn;
+
+    [SerializeField]
+    private TMP_Text pointsText;
+
+    [SerializeField]
+    private TMP_Text percentageCompleteText;
+
+    [SerializeField]
+    private List<PaperUI> paperUIList;
 
     private int points = 0;
     private int currentPaperIndex = 0;
@@ -37,7 +46,8 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
 
     private void CheckPaper(bool playerKeep)
     {
-        if (currentPaperIndex == paperUIList.Count) return;
+        if (currentPaperIndex == paperUIList.Count)
+            return;
 
         PaperUI currentPaperUI = paperUIList[currentPaperIndex];
         currentPaperUI.gameObject.SetActive(false);
@@ -59,7 +69,7 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
 
     private void UpdatePercentageText()
     {
-        float percentageComplete = (float) currentPaperIndex/paperUIList.Count * 100;
+        float percentageComplete = (float)currentPaperIndex / paperUIList.Count * 100;
         percentageCompleteText.text = $"{percentageComplete:F2}% Complete";
     }
 
@@ -67,13 +77,25 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
     {
         if (paperUI.KeepPaper())
         {
-            if (playerKeep) { points += 1; } 
-            else { points -= 1; }
+            if (playerKeep)
+            {
+                points += 1;
+            }
+            else
+            {
+                points -= 1;
+            }
         }
         else
         {
-            if (!playerKeep) { points += 1; } 
-            else { points -= 1; }
+            if (!playerKeep)
+            {
+                points += 1;
+            }
+            else
+            {
+                points -= 1;
+            }
         }
         pointsText.text = $"Points: {points}";
     }

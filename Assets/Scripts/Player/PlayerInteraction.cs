@@ -6,12 +6,14 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Interact Settings")]
-    [SerializeField] private float maxDistance = 1f;
+    [SerializeField]
+    private float maxDistance = 1f;
     private Camera cam;
 
     [Header("Pickup Settings")]
-    [SerializeField] private Transform holdTransform;
-    
+    [SerializeField]
+    private Transform holdTransform;
+
     private IHoverable hoverable;
     private IGrabbable heldObject;
     private PlayerHold playerHold;
@@ -59,7 +61,7 @@ public class PlayerInteraction : MonoBehaviour
                 grabbable.Pickup();
                 heldObject = grabbable;
                 playerHold.CreateAnchorPoint(detectedObject);
-            }   
+            }
         }
     }
 
@@ -107,13 +109,14 @@ public class PlayerInteraction : MonoBehaviour
             if (detectedObject.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
-            }   
+            }
         }
     }
 
     private void TryNoHover()
     {
-        if (hoverable == null) return;
+        if (hoverable == null)
+            return;
         hoverable.NoHover();
     }
 }

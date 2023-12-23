@@ -5,13 +5,21 @@ using UnityEngine;
 public class PlayerHold : MonoBehaviour
 {
     [Header("General Hold Settings")]
-    [SerializeField] private Transform holdTransform;
-    [SerializeField] private float holdDistance = 0.5f;
+    [SerializeField]
+    private Transform holdTransform;
+
+    [SerializeField]
+    private float holdDistance = 0.5f;
 
     [Header("Physics Hold Settings")]
-    [SerializeField] private float positionSpring = 100f;
-    [SerializeField] private float positionDamper = 10f;
-    [SerializeField] private float maximumForce = 3.402823e+38f;
+    [SerializeField]
+    private float positionSpring = 100f;
+
+    [SerializeField]
+    private float positionDamper = 10f;
+
+    [SerializeField]
+    private float maximumForce = 3.402823e+38f;
 
     private Camera mainCam;
     private GameObject anchorObject;

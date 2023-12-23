@@ -1,14 +1,17 @@
-using UnityEngine;
 using Cinemachine;
+using UnityEngine;
 
 public class CinemachinePOVExtension : CinemachineExtension
 {
     [SerializeField]
     private float xSpeed = 10f;
+
     [SerializeField]
     private float ySpeed = 10f;
+
     [SerializeField]
     private float clampAngle = 80f;
+
     [SerializeField]
     private float smoothTime = 0.1f;
 
@@ -22,9 +25,15 @@ public class CinemachinePOVExtension : CinemachineExtension
         camTransform = Camera.main.transform;
     }
 
-    protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
+    protected override void PostPipelineStageCallback(
+        CinemachineVirtualCameraBase vcam,
+        CinemachineCore.Stage stage,
+        ref CameraState state,
+        float deltaTime
+    )
     {
-        if (!vcam.Follow || stage != CinemachineCore.Stage.Aim || GameInput.Instance == null) return;
+        if (!vcam.Follow || stage != CinemachineCore.Stage.Aim || GameInput.Instance == null)
+            return;
 
         Vector2 deltaInput = GameInput.Instance.GetMouseMovement();
         targetRot.x += deltaInput.x * ySpeed * Time.deltaTime;
