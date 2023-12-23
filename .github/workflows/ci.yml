@@ -1,0 +1,16 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  checkfmt:
+    runs-on: ubuntu-latest
+    name: checkfmt
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          dotnet tool restore
+          cd Assets/Scripts
+          dotnet csharpier --check .
