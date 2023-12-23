@@ -4,19 +4,50 @@ using UnityEngine;
 
 public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabbable
 {
+    [SerializeField] private GameObject stationUI;
+
     private Outline outline;
     private Rigidbody rb;
+    private PaperShredderTask paperShredderTask;
+    private int paperShredderTaskId;
 
     private void Awake()
     {
         outline = GetComponent<Outline>();
         rb = GetComponent<Rigidbody>();
+        TaskManager.Instance.OnTaskAdded += TaskManager_OnTaskAdded;
+        TaskManager.Instance.OnTaskCompleted += TaskManager_OnTaskCompleted;
     }
 
     public void Interact()
     {
         Debug.Log("Interacted");
-        TaskManagerUI.Instance.StartTask(0);
+        if (paperShredderTask != null)
+        {
+            stationUI.GetComponent<IStationUI<PaperShredderTask>>().Startup(paperShredderTask);
+        }
+    }
+
+    public void TaskManager_OnTaskAdded(int id, ITask task)
+    {
+        if (paperShredderTask != null)
+        {
+            Debug.LogError("There is already a paper shredder task!");
+            return;
+        }
+
+        if (task is PaperShredderTask)
+        {
+            paperShredderTask = task as PaperShredderTask;
+            paperShredderTaskId = id;
+        }
+    }
+
+    public void TaskManager_OnTaskCompleted(int id)
+    {
+        if (id != paperShredderTaskId) return;
+        paperShredderTask = null;
+        paperShredderTaskId = -1;
     }
 
     public void Hover()
