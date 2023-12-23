@@ -290,7 +290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Interact With Desk Cube
+  m_text: ERROR  - UNSET TASK NAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -498,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkmarkImage: {fileID: 3596800668360757082}
+  taskText: {fileID: 2916749245084494029}
 --- !u!1 &7660493978511241935
 GameObject:
   m_ObjectHideFlags: 0

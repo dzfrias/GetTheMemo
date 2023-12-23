@@ -5,17 +5,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PaperShredderUI : TaskUI
+public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
 {   
     [SerializeField] private Button shredBtn;
     [SerializeField] private Button saveBtn;
     [SerializeField] private TMP_Text pointsText;
     [SerializeField] private TMP_Text percentageCompleteText;
     [SerializeField] private List<PaperUI> paperUIList;
-    [SerializeField] private TaskCheckboxUI taskCheckboxUI;
 
     private int points = 0;
     private int currentPaperIndex = 0;
+    private PaperShredderTask task;
+
+    public void Startup(PaperShredderTask task)
+    {
+        Debug.Log("PaperShredderUI Startup");
+        gameObject.SetActive(true);
+        this.task = task;
+    }
 
     private void Start()
     {
@@ -44,7 +51,7 @@ public class PaperShredderUI : TaskUI
         }
         else
         {
-            taskCheckboxUI.CompleteTask();
+            task.Complete();
         }
 
         AdjustPoints(currentPaperUI, playerKeep);
