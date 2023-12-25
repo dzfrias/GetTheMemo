@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 4.5
+  jumpEnabled: 0
+  jumpPower: 5
 --- !u!114 &8481031941245057449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +140,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdTransform: {fileID: 7905994758175564649}
   holdDistance: 1
+  positionSpring: 100
+  positionDamper: 10
+  maximumForce: 3.402823e+38
 --- !u!143 &6508537860709507327
 CharacterController:
   m_ObjectHideFlags: 0
@@ -175,7 +180,6 @@ GameObject:
   - component: {fileID: 1821859223702164404}
   - component: {fileID: 1726916613617924804}
   - component: {fileID: 8261095495674931078}
-  - component: {fileID: 2701456365456175793}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -248,29 +252,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2701456365456175793
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7784764860652417160}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.95
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.0081294775, z: 0}
 --- !u!1 &8814428641334799595
 GameObject:
   m_ObjectHideFlags: 0

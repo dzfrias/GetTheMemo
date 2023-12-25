@@ -12,6 +12,7 @@ public class GameInput : MonoBehaviour
     public event Action OnInteract;
     public event Action OnPickup;
     public event Action OnDrop;
+    public event Action OnJump;
     public event Action OnCloseUI;
 
     private PlayerInputActions playerInputActions;
@@ -38,6 +39,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Interact.performed += PlayerInputActions_OnInteract;
         playerInputActions.Player.Pickup.started += PlayerInputActions_OnPickupStarted;
         playerInputActions.Player.Pickup.canceled += PlayerInputActions_OnPickupStopped;
+        playerInputActions.Player.Jump.performed += PlayerInputActions_OnJump;
 
         playerInputActions.UI.Close.performed += PlayerInputActions_OnCloseUI;
     }
@@ -47,6 +49,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Interact.performed -= PlayerInputActions_OnInteract;
         playerInputActions.Player.Pickup.started -= PlayerInputActions_OnPickupStarted;
         playerInputActions.Player.Pickup.canceled -= PlayerInputActions_OnPickupStopped;
+        playerInputActions.Player.Jump.performed -= PlayerInputActions_OnJump;
 
         playerInputActions.UI.Close.performed -= PlayerInputActions_OnCloseUI;
     }
@@ -77,6 +80,11 @@ public class GameInput : MonoBehaviour
     private void PlayerInputActions_OnPickupStopped(InputAction.CallbackContext _)
     {
         OnDrop?.Invoke();
+    }
+
+    private void PlayerInputActions_OnJump(InputAction.CallbackContext _)
+    {
+        OnJump?.Invoke();
     }
 
     private void PlayerInputActions_OnCloseUI(InputAction.CallbackContext _)
