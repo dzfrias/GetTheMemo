@@ -29,6 +29,8 @@ public class TaskManager : MonoBehaviour
     {
         PaperShredderTask paperShredderTask = new PaperShredderTask();
         AddTask(paperShredderTask);
+        BookshelfTask bookshelfTask = new BookshelfTask();
+        AddTask(bookshelfTask);
     }
 
     /// <summary>
