@@ -7,9 +7,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField]
     private float movementSpeed = 1f;
-    [SerializeField] 
+
+    [SerializeField]
     private bool jumpEnabled = false;
-    [SerializeField] 
+
+    [SerializeField]
     private float jumpPower = 1f;
     private Vector3 playerVelocity;
     private bool jump = false;
@@ -34,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update()
-    {   
+    {
         ApplyMovement();
         RotateToCamera();
         ApplyGravity();
