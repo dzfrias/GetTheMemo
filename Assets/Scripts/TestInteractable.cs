@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabbable
 {
-    [SerializeField]
-    private GameObject stationUI;
-
     private Outline outline;
     private Rigidbody rb;
     private PaperShredderTask paperShredderTask;
