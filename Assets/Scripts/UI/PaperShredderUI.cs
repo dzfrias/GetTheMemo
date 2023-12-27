@@ -40,14 +40,14 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
 
     private void CheckPaper(bool playerKeep)
     {
-        if (task.PaperCount() == 0)
+        if (task.GetPaperCount() == 0)
             return;
 
         task.PopPaper(playerKeep);
-        TaskManager.Instance.QueueTaskUpdate(task.Id());
-        if (task.PaperCount() == 0)
+        TaskManager.Instance.QueueTaskUpdate(task.GetId());
+        if (task.GetPaperCount() == 0)
         {
-            TaskManager.Instance.CompleteTask(task.Id());
+            TaskManager.Instance.CompleteTask(task.GetId());
         }
 
         UpdatePaperText();
@@ -57,14 +57,14 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
 
     private void UpdatePercentageText()
     {
-        int initial = task.InitialPaperCount();
-        float percentageComplete = (float)(initial - task.PaperCount()) / initial * 100;
+        int initial = task.GetInitialPaperCount();
+        float percentageComplete = (float)(initial - task.GetPaperCount()) / initial * 100;
         percentageCompleteText.text = $"{percentageComplete:F2}% Complete";
     }
 
     private void UpdatePaperText()
     {
-        if (task.PaperCount() == 0)
+        if (task.GetPaperCount() == 0)
         {
             paperText.text = "";
             return;
@@ -76,6 +76,6 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
 
     private void UpdatePointsText()
     {
-        pointsText.text = $"Points: {task.Points()}";
+        pointsText.text = $"Points: {task.GetPoints()}";
     }
 }

@@ -16,7 +16,7 @@ public class BookshelfTask : ITask
         Debug.Log("BookselfTask completed!");
     }
 
-    public string Name()
+    public string GetName()
     {
         return "Sort Books";
     }

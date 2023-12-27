@@ -40,17 +40,17 @@ public class PaperShredderTask : ITask
         return papers[papers.Count - 1];
     }
 
-    public int PaperCount()
+    public int GetPaperCount()
     {
         return papers.Count;
     }
 
-    public int InitialPaperCount()
+    public int GetInitialPaperCount()
     {
         return initial;
     }
 
-    public int Points()
+    public int GetPoints()
     {
         return points;
     }
@@ -74,13 +74,13 @@ public class PaperShredderTask : ITask
         Debug.Log("PaperShredderTask completed!");
     }
 
-    public string Name()
+    public string GetName()
     {
-        int n = PaperCount();
+        int n = GetPaperCount();
         return $"Shred {n} pieces of paper";
     }
 
-    public int Id()
+    public int GetId()
     {
         return id;
     }

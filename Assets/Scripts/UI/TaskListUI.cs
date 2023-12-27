@@ -20,14 +20,14 @@ public class TaskListUI : MonoBehaviour
     {
         GameObject taskListItem = Instantiate(taskListItemPrefab, transform);
         TaskCheckboxUI taskCheckboxUI = taskListItem.GetComponent<TaskCheckboxUI>();
-        taskCheckboxUI.SetTaskText(task.Name());
+        taskCheckboxUI.SetTaskText(task.GetName());
         taskListItems.Add(id, taskCheckboxUI);
     }
 
     void TaskManager_OnTaskUpdated(int id)
     {
         ITask task = TaskManager.Instance.GetTask(id);
-        taskListItems[id].SetTaskText(task.Name());
+        taskListItems[id].SetTaskText(task.GetName());
     }
 
     void TaskManager_OnTaskCompleted(int id)
