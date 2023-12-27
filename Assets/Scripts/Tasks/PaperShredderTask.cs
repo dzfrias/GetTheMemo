@@ -19,12 +19,14 @@ public class Paper
 
 public class PaperShredderTask : ITask
 {
+    private const int DEFAULT_PAPER_AMOUNT = 7;
+
     private int id;
     private List<Paper> papers;
     private int initial;
     private int points;
 
-    public PaperShredderTask(int n = 7)
+    public PaperShredderTask(int n = DEFAULT_PAPER_AMOUNT)
     {
         papers = new List<Paper>();
         for (int i = 0; i < n; i++)
@@ -55,11 +57,23 @@ public class PaperShredderTask : ITask
         return points;
     }
 
-    public void PopPaper(bool keep)
+    public void PopPaper()
+    {
+        papers.RemoveAt(papers.Count - 1);
+    }
+
+    public void AdjustPoints(bool playerKeep)
     {
         Paper paper = GetPaper();
-        papers.RemoveAt(papers.Count - 1);
-        int delta = keep == paper.ShouldKeep() ? 1 : -1;
+        int delta;
+        if (playerKeep == paper.ShouldKeep())
+        {
+            delta = 1;
+        }
+        else
+        {
+            delta = -1;
+        }
         points += delta;
     }
 
