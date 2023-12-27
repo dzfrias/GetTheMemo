@@ -43,8 +43,8 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
         if (task.GetPaperCount() == 0)
             return;
 
-        task.PopPaper();
         task.AdjustPoints(playerKeep);
+        task.PopPaper();
         TaskManager.Instance.QueueTaskUpdate(task.GetId());
         if (task.GetPaperCount() == 0)
         {
