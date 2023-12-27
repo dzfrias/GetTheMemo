@@ -1,12 +1,66 @@
+using System.Collections.Generic;
 using UnityEngine;
+
+public class Paper
+{
+    private bool shouldKeep;
+
+    public Paper()
+    {
+        bool randomBool = Random.value > 0.5f;
+        shouldKeep = randomBool;
+    }
+
+    public bool ShouldKeep()
+    {
+        return shouldKeep;
+    }
+}
 
 public class PaperShredderTask : ITask
 {
     private int id;
+    private List<Paper> papers;
+    private int initial;
+    private int points;
 
-    public PaperShredderTask()
+    public PaperShredderTask(int n = 7)
     {
-        Debug.Log("PaperShredderTask created!");
+        papers = new List<Paper>();
+        for (int i = 0; i < n; i++)
+        {
+            papers.Add(new Paper());
+        }
+        initial = n;
+        Debug.Log("PaperShredderTask started!");
+    }
+
+    public Paper GetPaper()
+    {
+        return papers[papers.Count - 1];
+    }
+
+    public int PaperCount()
+    {
+        return papers.Count;
+    }
+
+    public int InitialPaperCount()
+    {
+        return initial;
+    }
+
+    public int Points()
+    {
+        return points;
+    }
+
+    public void PopPaper(bool keep)
+    {
+        Paper paper = GetPaper();
+        papers.RemoveAt(papers.Count - 1);
+        int delta = keep == paper.ShouldKeep() ? 1 : -1;
+        points += delta;
     }
 
     public void Start(int id)
@@ -22,7 +76,8 @@ public class PaperShredderTask : ITask
 
     public string Name()
     {
-        return "Shred some paper";
+        int n = PaperCount();
+        return $"Shred {n} pieces of paper";
     }
 
     public int Id()

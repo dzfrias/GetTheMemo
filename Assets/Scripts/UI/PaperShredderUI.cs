@@ -20,10 +20,8 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
     private TMP_Text percentageCompleteText;
 
     [SerializeField]
-    private List<PaperUI> paperUIList;
+    private TMP_Text paperText;
 
-    private int points = 0;
-    private int currentPaperIndex = 0;
     private PaperShredderTask task;
 
     public void Startup(PaperShredderTask task)
@@ -34,69 +32,49 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
 
     private void Start()
     {
-        foreach (PaperUI paperUI in paperUIList)
-        {
-            paperUI.gameObject.SetActive(false);
-        }
-        paperUIList[0].gameObject.SetActive(true);
-
         shredBtn.onClick.AddListener(() => CheckPaper(false));
         saveBtn.onClick.AddListener(() => CheckPaper(true));
+        UpdatePaperText();
+        UpdatePercentageText();
     }
 
     private void CheckPaper(bool playerKeep)
     {
-        if (currentPaperIndex == paperUIList.Count)
+        if (task.PaperCount() == 0)
             return;
 
-        PaperUI currentPaperUI = paperUIList[currentPaperIndex];
-        currentPaperUI.gameObject.SetActive(false);
-
-        currentPaperIndex += 1;
-        if (currentPaperIndex != paperUIList.Count)
-        {
-            PaperUI nextPaper = paperUIList[currentPaperIndex];
-            nextPaper.gameObject.SetActive(true);
-        }
-        else
+        task.PopPaper(playerKeep);
+        if (task.PaperCount() == 0)
         {
             TaskManager.Instance.CompleteTask(task.Id());
         }
 
-        AdjustPoints(currentPaperUI, playerKeep);
+        UpdatePaperText();
+        UpdatePointsText();
         UpdatePercentageText();
     }
 
     private void UpdatePercentageText()
     {
-        float percentageComplete = (float)currentPaperIndex / paperUIList.Count * 100;
+        int initial = task.InitialPaperCount();
+        float percentageComplete = (float)(initial - task.PaperCount()) / initial * 100;
         percentageCompleteText.text = $"{percentageComplete:F2}% Complete";
     }
 
-    private void AdjustPoints(PaperUI paperUI, bool playerKeep)
+    private void UpdatePaperText()
     {
-        if (paperUI.KeepPaper())
+        if (task.PaperCount() == 0)
         {
-            if (playerKeep)
-            {
-                points += 1;
-            }
-            else
-            {
-                points -= 1;
-            }
+            paperText.text = "";
+            return;
         }
-        else
-        {
-            if (!playerKeep)
-            {
-                points += 1;
-            }
-            else
-            {
-                points -= 1;
-            }
-        }
-        pointsText.text = $"Points: {points}";
+
+        Paper currentPaper = task.GetPaper();
+        paperText.text = currentPaper.ShouldKeep() ? "Keep" : "Shred";
+    }
+
+    private void UpdatePointsText()
+    {
+        pointsText.text = $"Points: {task.Points()}";
     }
 }
