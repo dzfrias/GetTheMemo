@@ -8,6 +8,7 @@ public class TaskManager : MonoBehaviour
     public static TaskManager Instance;
     public event Action<int, ITask> OnTaskAdded;
     public event Action<int> OnTaskCompleted;
+    public event Action<int> OnTaskUpdated;
 
     private Dictionary<int, ITask> tasks = new Dictionary<int, ITask>();
     private int nextTaskId = 0;
@@ -49,5 +50,15 @@ public class TaskManager : MonoBehaviour
         tasks.Remove(taskId);
         task.Complete();
         OnTaskCompleted?.Invoke(taskId);
+    }
+
+    public ITask GetTask(int taskId)
+    {
+        return tasks[taskId];
+    }
+
+    public void QueueTaskUpdate(int taskId)
+    {
+        OnTaskUpdated?.Invoke(taskId);
     }
 }

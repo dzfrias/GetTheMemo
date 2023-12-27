@@ -13,6 +13,7 @@ public class TaskListUI : MonoBehaviour
     {
         TaskManager.Instance.OnTaskAdded += TaskManager_OnTaskAdded;
         TaskManager.Instance.OnTaskCompleted += TaskManager_OnTaskCompleted;
+        TaskManager.Instance.OnTaskUpdated += TaskManager_OnTaskUpdated;
     }
 
     void TaskManager_OnTaskAdded(int id, ITask task)
@@ -21,6 +22,12 @@ public class TaskListUI : MonoBehaviour
         TaskCheckboxUI taskCheckboxUI = taskListItem.GetComponent<TaskCheckboxUI>();
         taskCheckboxUI.SetTaskText(task.Name());
         taskListItems.Add(id, taskCheckboxUI);
+    }
+
+    void TaskManager_OnTaskUpdated(int id)
+    {
+        ITask task = TaskManager.Instance.GetTask(id);
+        taskListItems[id].SetTaskText(task.Name());
     }
 
     void TaskManager_OnTaskCompleted(int id)
