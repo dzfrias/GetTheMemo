@@ -28,17 +28,16 @@ public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabb
 
     public void TaskManager_OnTaskAdded(int id, ITask task)
     {
+        if (task is not PaperShredderTask) return;
+
         if (paperShredderTask != null)
         {
             Debug.LogError("There is already a paper shredder task!");
             return;
         }
 
-        if (task is PaperShredderTask)
-        {
-            paperShredderTask = task as PaperShredderTask;
-            paperShredderTaskId = id;
-        }
+        paperShredderTask = task as PaperShredderTask;
+        paperShredderTaskId = id;
     }
 
     public void TaskManager_OnTaskCompleted(int id)
