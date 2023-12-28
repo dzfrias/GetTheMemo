@@ -28,7 +28,8 @@ public class TestInteractable : MonoBehaviour, IInteractable, IHoverable, IGrabb
 
     public void TaskManager_OnTaskAdded(int id, ITask task)
     {
-        if (task is not PaperShredderTask) return;
+        if (task is not PaperShredderTask)
+            return;
 
         if (paperShredderTask != null)
         {

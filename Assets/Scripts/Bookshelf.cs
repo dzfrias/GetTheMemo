@@ -26,7 +26,8 @@ public class Bookshelf : MonoBehaviour, IInteractable, IHoverable
 
     public void TaskManager_OnTaskAdded(int id, ITask task)
     {
-        if (task is not BookshelfTask) return;
+        if (task is not BookshelfTask)
+            return;
 
         if (bookshelfTask != null)
         {
