@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BookUI : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    private GameObject bookCopy;    
+    private GameObject bookCopy;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -43,7 +43,7 @@ public class BookUI : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHandl
         Debug.Log("Switch book positions");
         Vector3 book1Position = book1.position;
         Vector3 book2Position = book2.position;
-        
+
         book1.position = book2Position;
         book2.position = book1Position;
     }
@@ -51,12 +51,22 @@ public class BookUI : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHandl
     private void CreateBookCopy()
     {
         Debug.Log("Create Book Copy");
-        bookCopy = Instantiate(gameObject, transform.position, Quaternion.identity, transform.parent.parent);
+        bookCopy = Instantiate(
+            gameObject,
+            transform.position,
+            Quaternion.identity,
+            transform.parent.parent
+        );
         Destroy(bookCopy.GetComponent<BookUI>());
         Image image = bookCopy.GetComponent<Image>();
 
         image.raycastTarget = false;
         float alphaAmount = 0.6f;
-        image.color = image.color = new Color(image.color.r, image.color.g, image.color.b, alphaAmount);
+        image.color = image.color = new Color(
+            image.color.r,
+            image.color.g,
+            image.color.b,
+            alphaAmount
+        );
     }
 }
