@@ -25,15 +25,6 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    // TODO: this should not be here - only here for testing purposes
-    private void Start()
-    {
-        PaperShredderTask paperShredderTask = new PaperShredderTask();
-        AddTask(paperShredderTask);
-        BookshelfTask bookshelfTask = new BookshelfTask();
-        AddTask(bookshelfTask);
-    }
-
     /// <summary>
     /// Adds a task to the active tasks list, returns the id of the task.
     /// </summary>

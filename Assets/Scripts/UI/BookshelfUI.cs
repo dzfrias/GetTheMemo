@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 using UnityEngine;
 
-public class BookshelfUI : MonoBehaviour, IStationUI<BookshelfTask>
+public class BookshelfUI : MonoBehaviour, IStationUI<BookshelfData>
 {
-    private BookshelfTask task;
+    private BookshelfData task;
 
-    public void Startup(BookshelfTask task)
+    public void Startup(BookshelfData task)
     {
         Debug.Log("startup bookshelf ui");
         this.task = task;

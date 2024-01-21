@@ -17,16 +17,15 @@ public class Paper
     }
 }
 
-public class PaperShredderTask : ITask
+public class PaperShredderData
 {
     private const int DEFAULT_PAPER_AMOUNT = 7;
 
-    private int id;
     private List<Paper> papers;
     private int initial;
     private int points;
 
-    public PaperShredderTask(int n = DEFAULT_PAPER_AMOUNT)
+    public PaperShredderData(int n = DEFAULT_PAPER_AMOUNT)
     {
         papers = new List<Paper>();
         for (int i = 0; i < n; i++)
@@ -34,7 +33,6 @@ public class PaperShredderTask : ITask
             papers.Add(new Paper());
         }
         initial = n;
-        Debug.Log("PaperShredderTask started!");
     }
 
     public Paper GetPaper()
@@ -75,27 +73,5 @@ public class PaperShredderTask : ITask
             delta = -1;
         }
         points += delta;
-    }
-
-    public void Start(int id)
-    {
-        Debug.Log($"PaperShredderTask started with id: {id}!");
-        this.id = id;
-    }
-
-    public void Complete()
-    {
-        Debug.Log("PaperShredderTask completed!");
-    }
-
-    public string GetName()
-    {
-        int n = GetPaperCount();
-        return $"Shred {n} pieces of paper";
-    }
-
-    public int GetId()
-    {
-        return id;
     }
 }

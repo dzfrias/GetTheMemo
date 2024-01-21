@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
+public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderData>
 {
     [SerializeField]
     private Button shredBtn;
@@ -22,12 +22,12 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
     [SerializeField]
     private TMP_Text paperText;
 
-    private PaperShredderTask task;
+    private PaperShredderData data;
 
-    public void Startup(PaperShredderTask task)
+    public void Startup(PaperShredderData data)
     {
         Debug.Log("PaperShredderUI Startup");
-        this.task = task;
+        this.data = data;
     }
 
     private void Start()
@@ -40,15 +40,14 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
 
     private void CheckPaper(bool playerKeep)
     {
-        if (task.GetPaperCount() == 0)
+        if (data.GetPaperCount() == 0)
             return;
 
-        task.AdjustPoints(playerKeep);
-        task.PopPaper();
-        TaskManager.Instance.QueueTaskUpdate(task.GetId());
-        if (task.GetPaperCount() == 0)
+        data.AdjustPoints(playerKeep);
+        data.PopPaper();
+        if (data.GetPaperCount() == 0)
         {
-            TaskManager.Instance.CompleteTask(task.GetId());
+            Debug.Log("done with paper!");
         }
 
         UpdatePaperText();
@@ -58,25 +57,25 @@ public class PaperShredderUI : MonoBehaviour, IStationUI<PaperShredderTask>
 
     private void UpdatePercentageText()
     {
-        int initial = task.GetInitialPaperCount();
-        float percentageComplete = (float)(initial - task.GetPaperCount()) / initial * 100;
+        int initial = data.GetInitialPaperCount();
+        float percentageComplete = (float)(initial - data.GetPaperCount()) / initial * 100;
         percentageCompleteText.text = $"{percentageComplete:F2}% Complete";
     }
 
     private void UpdatePaperText()
     {
-        if (task.GetPaperCount() == 0)
+        if (data.GetPaperCount() == 0)
         {
             paperText.text = "";
             return;
         }
 
-        Paper currentPaper = task.GetPaper();
+        Paper currentPaper = data.GetPaper();
         paperText.text = currentPaper.ShouldKeep() ? "Keep" : "Shred";
     }
 
     private void UpdatePointsText()
     {
-        pointsText.text = $"Points: {task.GetPoints()}";
+        pointsText.text = $"Points: {data.GetPoints()}";
     }
 }
