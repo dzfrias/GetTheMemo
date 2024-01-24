@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -149,7 +149,7 @@ PrefabInstance:
     - target: {fileID: 5038729275557168200, guid: 783792e4c7a7d4b96a219598286ea572,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5038729275557168200, guid: 783792e4c7a7d4b96a219598286ea572,
         type: 3}
@@ -290,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 983630016}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.63, z: 3.89}
+  m_LocalPosition: {x: 0, y: 1.81, z: 3.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -400,7 +400,7 @@ PrefabInstance:
     - target: {fileID: 6661637412546509946, guid: 106c5a722ab8e49a0bccb8b7307cd437,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.63
+      value: 1.81
       objectReference: {fileID: 0}
     - target: {fileID: 6661637412546509946, guid: 106c5a722ab8e49a0bccb8b7307cd437,
         type: 3}
@@ -839,6 +839,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PrinterBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 8958716394746463411, guid: 03e432c959db31d44adb92455c3f4f6f,
+        type: 3}
+      propertyPath: paperProjectilePrefab
+      value: 
+      objectReference: {fileID: 8603815669356658899, guid: e22ef5503c82648d59d1b8059f8e716a,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
