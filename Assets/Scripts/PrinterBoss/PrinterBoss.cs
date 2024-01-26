@@ -6,9 +6,11 @@ using UnityEngine.AI;
 public class PrinterBoss : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
+    private Animator animator;
+    private GameObject target;
 
     private State state;
-    private float attackTime = 5f;
+    private float attackTime = 3f;
 
     private enum State
     {
@@ -19,16 +21,21 @@ public class PrinterBoss : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
 
         SwitchState(State.Move);
+    }
+
+    private void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
         if (state == State.Move)
         {
-            Debug.Log("MOVING");
-            SetDestinationToPlayer();
+            SetDestinationToTarget();
             Debug.Log(navMeshAgent.remainingDistance);
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
@@ -45,7 +52,6 @@ public class PrinterBoss : MonoBehaviour
             case State.Move:
                 break;
             case State.Attack:
-                Debug.Log("ATTACK");
                 StartCoroutine(Attack());
                 break;
         }
@@ -53,14 +59,14 @@ public class PrinterBoss : MonoBehaviour
 
     private IEnumerator Attack()
     {
+        animator.SetTrigger("PaperAttack");
+        Debug.Log("Trigger Paper Attack");
         yield return new WaitForSeconds(attackTime);
         SwitchState(State.Move);
     }
 
-    private void SetDestinationToPlayer()
+    private void SetDestinationToTarget()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        navMeshAgent.SetDestination(player.transform.position);
-        Debug.Log("Set Destination to: " + player.transform.position);
+        navMeshAgent.SetDestination(target.transform.position);
     }
 }
