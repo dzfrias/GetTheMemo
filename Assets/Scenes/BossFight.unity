@@ -779,11 +779,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3936039425090051118, guid: 03e432c959db31d44adb92455c3f4f6f,
-        type: 3}
-      propertyPath: m_AutoBraking
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6071839816640825127, guid: 03e432c959db31d44adb92455c3f4f6f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -839,12 +834,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PrinterBoss
       objectReference: {fileID: 0}
-    - target: {fileID: 8958716394746463411, guid: 03e432c959db31d44adb92455c3f4f6f,
-        type: 3}
-      propertyPath: paperProjectilePrefab
-      value: 
-      objectReference: {fileID: 8603815669356658899, guid: e22ef5503c82648d59d1b8059f8e716a,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

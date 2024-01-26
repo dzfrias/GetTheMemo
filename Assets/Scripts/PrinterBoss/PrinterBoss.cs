@@ -5,16 +5,12 @@ using UnityEngine.AI;
 
 public class PrinterBoss : MonoBehaviour
 {
-    [SerializeField] private GameObject paperProjectilePrefab;
-
     private NavMeshAgent navMeshAgent;
+    private Animator animator;
     private GameObject target;
 
     private State state;
     private float attackTime = 3f;
-
-    private float maxXVariance = 1f;
-    private float maxYVariance = 1f;
 
     private enum State
     {
@@ -25,6 +21,7 @@ public class PrinterBoss : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
 
         SwitchState(State.Move);
     }
@@ -62,7 +59,8 @@ public class PrinterBoss : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        PaperAttack();
+        animator.SetTrigger("PaperAttack");
+        Debug.Log("Trigger Paper Attack");
         yield return new WaitForSeconds(attackTime);
         SwitchState(State.Move);
     }
@@ -70,41 +68,5 @@ public class PrinterBoss : MonoBehaviour
     private void SetDestinationToTarget()
     {
         navMeshAgent.SetDestination(target.transform.position);
-    }
-
-    private void PaperAttack()
-    {
-        StartCoroutine(ShootPapers(5, 0.25f));
-    }
-
-    private IEnumerator ShootPapers(int amount, float timeBetweenAttacks)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            ShootPaper();
-            yield return new WaitForSeconds(timeBetweenAttacks);
-        }
-    }
-
-    private void ShootPaper()
-    {
-        GameObject paper = Instantiate(paperProjectilePrefab, transform.position, transform.rotation);
-        PaperProjectile paperProjectile = paper.GetComponent<PaperProjectile>();
-        paperProjectile.SetTargetShootingPosition(GetTargetShootingPosition());
-    }
-
-    private Vector3 GetTargetShootingPosition()
-    {
-        float targetHeight = target.GetComponent<CharacterController>().height;
-        Vector3 targetShootingPosition = target.transform.position + Vector3.up * targetHeight/2 + GetTargetVariance();
-        return targetShootingPosition;
-    }
-
-    private Vector3 GetTargetVariance()
-    {
-        float xVariance = Random.Range(0, maxXVariance);
-        float yVariance = Random.Range(0, maxYVariance);
-        Vector3 varientVector = new Vector3 (xVariance, yVariance, 0f);
-        return varientVector;
     }
 }

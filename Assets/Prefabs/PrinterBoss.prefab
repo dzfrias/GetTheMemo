@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 6071839816640825127}
   - component: {fileID: 3936039425090051118}
   - component: {fileID: 8958716394746463411}
+  - component: {fileID: 2503102532730918605}
   m_Layer: 0
   m_Name: PrinterBoss
   m_TagString: Untagged
@@ -433,7 +434,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 4
   m_BaseOffset: 2
@@ -451,6 +452,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4f6621640ce7c44a7a46b6075fe04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paperProjectilePrefab: {fileID: 8603815669356658899, guid: e22ef5503c82648d59d1b8059f8e716a,
+    type: 3}
+--- !u!95 &2503102532730918605
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6611155187093307262}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 52c025d8069764d33994953fba9a6bbc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7023351438328155025
 GameObject:
   m_ObjectHideFlags: 0
