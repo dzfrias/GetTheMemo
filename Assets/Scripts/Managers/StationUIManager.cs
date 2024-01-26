@@ -30,20 +30,23 @@ public class StationUIManager : MonoBehaviour
 
         foreach (Transform child in transform)
         {
-            if (child.GetComponent<IStationUI<T>>() != null)
-            {
-                child.gameObject.SetActive(true);
-                child.GetComponent<IStationUI<T>>().Startup(data);
-                currentStationUI = child.gameObject;
-                GameInput.Instance.SwitchActionMaps();
-            }
+            if (child.GetComponent<IStationUI<T>>() == null)
+                continue;
+            child.gameObject.SetActive(true);
+            IStationUI<T> station = child.GetComponent<IStationUI<T>>();
+            station.Startup(data);
+            currentStationUI = child.gameObject;
+            GameInput.Instance.SwitchActionMaps(station.PreferredActionMap());
+            return;
         }
+
+        Debug.LogError($"station for {data.GetType()} not found!");
     }
 
-    public void CloseCurrentStationUI()
+    private void CloseCurrentStationUI()
     {
         currentStationUI.SetActive(false);
-        GameInput.Instance.SwitchActionMaps();
+        GameInput.Instance.SwitchActionMaps(ActionMap.Player);
         currentStationUI = null;
     }
 

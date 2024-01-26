@@ -5,15 +5,31 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
+public enum ActionMap
+{
+    Player,
+    UI,
+    Printer,
+}
+
 public class GameInput : MonoBehaviour
 {
     public static GameInput Instance;
 
+    // Player action map
     public event Action OnInteract;
     public event Action OnPickup;
     public event Action OnDrop;
     public event Action OnJump;
+
+    // UI action map
     public event Action OnCloseUI;
+
+    // Printer action map
+    public event Action OnPrinterLeft;
+    public event Action OnPrinterRight;
+    public event Action OnPrinterTop;
+    public event Action OnPrinterBottom;
 
     private PlayerInputActions playerInputActions;
 
@@ -30,8 +46,47 @@ public class GameInput : MonoBehaviour
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        LockCursor();
+    }
+
+    public void SwitchActionMaps(ActionMap actionMap)
+    {
+        playerInputActions.Printer.Disable();
+        playerInputActions.Player.Disable();
+        playerInputActions.UI.Disable();
+        switch (actionMap)
+        {
+            case ActionMap.Player:
+            {
+                playerInputActions.Player.Enable();
+                LockCursor();
+                break;
+            }
+            case ActionMap.UI:
+            {
+                playerInputActions.UI.Enable();
+                UnlockCursor();
+                break;
+            }
+            case ActionMap.Printer:
+            {
+                playerInputActions.Printer.Enable();
+                UnlockCursor();
+                break;
+            }
+        }
+    }
+
+    private void LockCursor()
+    {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void UnlockCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnEnable()
@@ -42,6 +97,11 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Jump.performed += PlayerInputActions_OnJump;
 
         playerInputActions.UI.Close.performed += PlayerInputActions_OnCloseUI;
+
+        playerInputActions.Printer.Left.performed += PlayerInputActions_PrinterLeft;
+        playerInputActions.Printer.Right.performed += PlayerInputActions_PrinterRight;
+        playerInputActions.Printer.Top.performed += PlayerInputActions_PrinterTop;
+        playerInputActions.Printer.Bottom.performed += PlayerInputActions_PrinterBottom;
     }
 
     private void OnDisable()
@@ -52,6 +112,11 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Jump.performed -= PlayerInputActions_OnJump;
 
         playerInputActions.UI.Close.performed -= PlayerInputActions_OnCloseUI;
+
+        playerInputActions.Printer.Left.performed -= PlayerInputActions_PrinterLeft;
+        playerInputActions.Printer.Right.performed -= PlayerInputActions_PrinterRight;
+        playerInputActions.Printer.Top.performed -= PlayerInputActions_PrinterTop;
+        playerInputActions.Printer.Bottom.performed -= PlayerInputActions_PrinterBottom;
     }
 
     public Vector2 GetMovementVectorNormalized()
@@ -92,21 +157,23 @@ public class GameInput : MonoBehaviour
         OnCloseUI?.Invoke();
     }
 
-    public void SwitchActionMaps()
+    public void PlayerInputActions_PrinterBottom(InputAction.CallbackContext _)
     {
-        if (playerInputActions.Player.enabled)
-        {
-            playerInputActions.Player.Disable();
-            playerInputActions.UI.Enable();
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            playerInputActions.Player.Enable();
-            playerInputActions.UI.Disable();
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        OnPrinterBottom?.Invoke();
+    }
+
+    public void PlayerInputActions_PrinterTop(InputAction.CallbackContext _)
+    {
+        OnPrinterTop?.Invoke();
+    }
+
+    public void PlayerInputActions_PrinterRight(InputAction.CallbackContext _)
+    {
+        OnPrinterRight?.Invoke();
+    }
+
+    public void PlayerInputActions_PrinterLeft(InputAction.CallbackContext _)
+    {
+        OnPrinterLeft?.Invoke();
     }
 }

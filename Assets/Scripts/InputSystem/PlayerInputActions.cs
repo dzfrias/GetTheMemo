@@ -798,6 +798,94 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Printer"",
+            ""id"": ""cbc25f5c-38ae-45fa-9d55-8e4f9e36fe67"",
+            ""actions"": [
+                {
+                    ""name"": ""Top"",
+                    ""type"": ""Button"",
+                    ""id"": ""a6fa4d64-b01c-4014-aaf0-44dc75ab6001"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Bottom"",
+                    ""type"": ""Button"",
+                    ""id"": ""631a812d-9e01-474e-a3c7-9a9457606724"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""d097fd90-a1d0-4427-a1fc-96cf7a99a0ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""2741204c-f9e0-4215-840c-fc20f296d904"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d4050c2f-a995-478b-9135-51bcf62c21fa"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Top"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b09b328-b2b0-4d13-b8ce-c24f7e566ff0"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Bottom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de61ee4b-01b4-44f6-a910-96c3d5314bfb"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0664c6b1-c145-4f38-b3ac-57eed68e4d0e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -883,6 +971,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_Close = m_UI.FindAction("Close", throwIfNotFound: true);
+        // Printer
+        m_Printer = asset.FindActionMap("Printer", throwIfNotFound: true);
+        m_Printer_Top = m_Printer.FindAction("Top", throwIfNotFound: true);
+        m_Printer_Bottom = m_Printer.FindAction("Bottom", throwIfNotFound: true);
+        m_Printer_Left = m_Printer.FindAction("Left", throwIfNotFound: true);
+        m_Printer_Right = m_Printer.FindAction("Right", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1144,6 +1238,76 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Printer
+    private readonly InputActionMap m_Printer;
+    private List<IPrinterActions> m_PrinterActionsCallbackInterfaces = new List<IPrinterActions>();
+    private readonly InputAction m_Printer_Top;
+    private readonly InputAction m_Printer_Bottom;
+    private readonly InputAction m_Printer_Left;
+    private readonly InputAction m_Printer_Right;
+    public struct PrinterActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public PrinterActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Top => m_Wrapper.m_Printer_Top;
+        public InputAction @Bottom => m_Wrapper.m_Printer_Bottom;
+        public InputAction @Left => m_Wrapper.m_Printer_Left;
+        public InputAction @Right => m_Wrapper.m_Printer_Right;
+        public InputActionMap Get() { return m_Wrapper.m_Printer; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PrinterActions set) { return set.Get(); }
+        public void AddCallbacks(IPrinterActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PrinterActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PrinterActionsCallbackInterfaces.Add(instance);
+            @Top.started += instance.OnTop;
+            @Top.performed += instance.OnTop;
+            @Top.canceled += instance.OnTop;
+            @Bottom.started += instance.OnBottom;
+            @Bottom.performed += instance.OnBottom;
+            @Bottom.canceled += instance.OnBottom;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
+        }
+
+        private void UnregisterCallbacks(IPrinterActions instance)
+        {
+            @Top.started -= instance.OnTop;
+            @Top.performed -= instance.OnTop;
+            @Top.canceled -= instance.OnTop;
+            @Bottom.started -= instance.OnBottom;
+            @Bottom.performed -= instance.OnBottom;
+            @Bottom.canceled -= instance.OnBottom;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
+        }
+
+        public void RemoveCallbacks(IPrinterActions instance)
+        {
+            if (m_Wrapper.m_PrinterActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPrinterActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PrinterActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PrinterActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PrinterActions @Printer => new PrinterActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1210,5 +1374,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnClose(InputAction.CallbackContext context);
+    }
+    public interface IPrinterActions
+    {
+        void OnTop(InputAction.CallbackContext context);
+        void OnBottom(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
     }
 }
