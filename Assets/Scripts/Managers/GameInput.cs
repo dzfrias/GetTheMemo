@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public enum ActionMap
 {
     Player,
+    PlayerNightTime,
     UI,
     Printer,
 }
@@ -20,6 +21,7 @@ public class GameInput : MonoBehaviour
     public event Action OnInteract;
     public event Action OnPickup;
     public event Action OnDrop;
+    public event Action OnThrow;
     public event Action OnJump;
 
     // UI action map
@@ -53,12 +55,19 @@ public class GameInput : MonoBehaviour
     {
         playerInputActions.Printer.Disable();
         playerInputActions.Player.Disable();
+        playerInputActions.PlayerNightTime.Disable();
         playerInputActions.UI.Disable();
         switch (actionMap)
         {
             case ActionMap.Player:
             {
                 playerInputActions.Player.Enable();
+                LockCursor();
+                break;
+            }
+            case ActionMap.PlayerNightTime:
+            {
+                playerInputActions.PlayerNightTime.Enable();
                 LockCursor();
                 break;
             }
@@ -96,6 +105,9 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Pickup.canceled += PlayerInputActions_OnPickupStopped;
         playerInputActions.Player.Jump.performed += PlayerInputActions_OnJump;
 
+        playerInputActions.PlayerNightTime.Throw.performed += PlayerInputActions_OnThrow;
+        playerInputActions.PlayerNightTime.Jump.performed += PlayerInputActions_OnJump;
+
         playerInputActions.UI.Close.performed += PlayerInputActions_OnCloseUI;
 
         playerInputActions.Printer.Left.performed += PlayerInputActions_PrinterLeft;
@@ -111,6 +123,9 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Pickup.canceled -= PlayerInputActions_OnPickupStopped;
         playerInputActions.Player.Jump.performed -= PlayerInputActions_OnJump;
 
+        playerInputActions.PlayerNightTime.Throw.performed -= PlayerInputActions_OnThrow;
+        playerInputActions.PlayerNightTime.Jump.performed -= PlayerInputActions_OnJump;
+
         playerInputActions.UI.Close.performed -= PlayerInputActions_OnCloseUI;
 
         playerInputActions.Printer.Left.performed -= PlayerInputActions_PrinterLeft;
@@ -121,14 +136,35 @@ public class GameInput : MonoBehaviour
 
     public Vector2 GetMovementVectorNormalized()
     {
-        Vector2 movementVector = playerInputActions.Player.Move.ReadValue<Vector2>();
+
+        Vector2 movementVector = Vector2.zero; 
+        
+        if (playerInputActions.Player.enabled)
+        {
+            movementVector = playerInputActions.Player.Move.ReadValue<Vector2>();
+        }
+        else if (playerInputActions.PlayerNightTime.enabled)
+        {
+            movementVector = playerInputActions.PlayerNightTime.Move.ReadValue<Vector2>();
+        }
+
         movementVector = movementVector.normalized;
         return movementVector;
     }
 
     public Vector2 GetMouseMovement()
     {
-        Vector2 mouseVector = playerInputActions.Player.Look.ReadValue<Vector2>();
+        Vector2 mouseVector = Vector2.zero; 
+        
+        if (playerInputActions.Player.enabled)
+        {
+            mouseVector = playerInputActions.Player.Look.ReadValue<Vector2>();
+        }
+        else if (playerInputActions.PlayerNightTime.enabled)
+        {
+            mouseVector = playerInputActions.PlayerNightTime.Look.ReadValue<Vector2>();
+        }
+
         return mouseVector;
     }
 
@@ -145,6 +181,11 @@ public class GameInput : MonoBehaviour
     private void PlayerInputActions_OnPickupStopped(InputAction.CallbackContext _)
     {
         OnDrop?.Invoke();
+    }
+
+    private void PlayerInputActions_OnThrow(InputAction.CallbackContext _)
+    {
+        OnThrow?.Invoke();
     }
 
     private void PlayerInputActions_OnJump(InputAction.CallbackContext _)

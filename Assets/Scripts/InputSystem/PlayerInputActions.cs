@@ -886,6 +886,215 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerNightTime"",
+            ""id"": ""3a132942-b9ba-4b68-848a-96f4704cb06a"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""ba86c5f7-5874-429c-8c09-5a31262da0e2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a3d31517-3fb5-467d-9af6-e275a97d53e7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ac7ffc6-dfa1-42bd-84bd-cfdacc4ca3a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""608de9b7-e2e0-4d59-a0c3-45754f036894"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""654ca839-ecbc-406a-99e5-74f0122aee26"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""de48afb0-0cc7-481a-9463-e00586f0c7fd"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f0baa1f7-788c-4dca-9cfd-150a3344bc69"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""9e69e39a-3620-4a8f-b6e3-5e1e6f694ad7"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4f584245-4cce-4951-bde7-ac43eef748e2"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""f1d53260-9900-478e-9293-a448e93107a5"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7d2a992a-2bd7-4564-b4a2-717c5386f966"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""15a50b67-cb50-48a1-bb2c-a95fa438f922"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""68c67369-c435-4e88-abba-6ac242023314"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6c080a07-54cd-480f-b0e5-5e0d877eef4c"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c03a5ff-b7cf-4d08-a83d-c208cb8116c9"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""509ed463-6aa5-42b0-bcce-45fc3892d16f"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""042a7615-6182-44cf-9dfb-6406a918e83e"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a065ea8c-13c3-4772-8c5b-6b345424d2cd"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4f3f3d6-0d75-4973-8b3a-caa441012082"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -977,6 +1186,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Printer_Bottom = m_Printer.FindAction("Bottom", throwIfNotFound: true);
         m_Printer_Left = m_Printer.FindAction("Left", throwIfNotFound: true);
         m_Printer_Right = m_Printer.FindAction("Right", throwIfNotFound: true);
+        // PlayerNightTime
+        m_PlayerNightTime = asset.FindActionMap("PlayerNightTime", throwIfNotFound: true);
+        m_PlayerNightTime_Move = m_PlayerNightTime.FindAction("Move", throwIfNotFound: true);
+        m_PlayerNightTime_Look = m_PlayerNightTime.FindAction("Look", throwIfNotFound: true);
+        m_PlayerNightTime_Throw = m_PlayerNightTime.FindAction("Throw", throwIfNotFound: true);
+        m_PlayerNightTime_Jump = m_PlayerNightTime.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1308,6 +1523,76 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PrinterActions @Printer => new PrinterActions(this);
+
+    // PlayerNightTime
+    private readonly InputActionMap m_PlayerNightTime;
+    private List<IPlayerNightTimeActions> m_PlayerNightTimeActionsCallbackInterfaces = new List<IPlayerNightTimeActions>();
+    private readonly InputAction m_PlayerNightTime_Move;
+    private readonly InputAction m_PlayerNightTime_Look;
+    private readonly InputAction m_PlayerNightTime_Throw;
+    private readonly InputAction m_PlayerNightTime_Jump;
+    public struct PlayerNightTimeActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public PlayerNightTimeActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerNightTime_Move;
+        public InputAction @Look => m_Wrapper.m_PlayerNightTime_Look;
+        public InputAction @Throw => m_Wrapper.m_PlayerNightTime_Throw;
+        public InputAction @Jump => m_Wrapper.m_PlayerNightTime_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerNightTime; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerNightTimeActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerNightTimeActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerNightTimeActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerNightTimeActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        private void UnregisterCallbacks(IPlayerNightTimeActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        public void RemoveCallbacks(IPlayerNightTimeActions instance)
+        {
+            if (m_Wrapper.m_PlayerNightTimeActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerNightTimeActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerNightTimeActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerNightTimeActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerNightTimeActions @PlayerNightTime => new PlayerNightTimeActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1381,5 +1666,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnBottom(InputAction.CallbackContext context);
         void OnLeft(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
+    }
+    public interface IPlayerNightTimeActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
