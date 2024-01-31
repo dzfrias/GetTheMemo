@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public event Action<float> OnSprintTimeChanged;
+
     [Header("Movement Settings")]
     [SerializeField]
     private float movementSpeed = 1f;
@@ -93,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 sprintAppliedPlayerVelocity = new Vector3(playerVelocity.x * sprintMultiplier, playerVelocity.y, playerVelocity.z * sprintMultiplier);
                 playerVelocity = sprintAppliedPlayerVelocity;
                 sprintTime -= Time.deltaTime;
+                OnSprintTimeChanged?.Invoke(sprintTime);
             }
             else if (!onSprintCooldown)
             {
@@ -102,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         else if (sprintTime < sprintTimeMax && !onSprintCooldown)
         {
             sprintTime += Time.deltaTime * sprintRegenSpeed;
+            OnSprintTimeChanged?.Invoke(sprintTime);
         }
     }
 
@@ -145,5 +150,10 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y = -1f;
         }
+    }
+
+    public float GetMaxSprintTime()
+    {
+        return sprintTimeMax;
     }
 }
