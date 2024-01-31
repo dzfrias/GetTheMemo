@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1415881813783677556}
   - component: {fileID: -3978764238961772279}
   - component: {fileID: 468337311833873238}
+  - component: {fileID: -2804156295284652753}
   m_Layer: 0
   m_Name: PaperProjectile
   m_TagString: Untagged
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5988e6763fe5045ba8e3566d564a35ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 2
   lifetime: 4
   speed: 10
 --- !u!54 &468337311833873238
@@ -126,3 +128,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &-2804156295284652753
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8603815669356658899}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

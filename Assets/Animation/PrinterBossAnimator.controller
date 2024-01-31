@@ -36,8 +36,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackNames:
   - GroundShockAttack
-  - PaperAttack
   - ChompAttack
+  - PaperAttack
 --- !u!1101 &-6038072943273196068
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e06f9c3943694aa4bb552a3373755ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
   cubePrefab: {fileID: 4504200969608770892, guid: aca0476d379a14d01ac4bd56b33c1182,
     type: 3}
   expandSpeed: 5
@@ -447,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c6cbe78651a46e6a4ac68e4498d1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
 --- !u!1101 &8064469936572001543
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

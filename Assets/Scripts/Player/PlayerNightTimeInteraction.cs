@@ -38,7 +38,6 @@ public class PlayerNightTimeInteraction : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         GameObject hitGameObject = collider.gameObject;
-        Debug.Log("COLLIDED WITH OBJECT");
         if (hitGameObject.CompareTag("PickupObject"))
         {
             HoldObject(hitGameObject);

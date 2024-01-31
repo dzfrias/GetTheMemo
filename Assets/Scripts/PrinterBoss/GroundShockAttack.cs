@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GroundShockAttack : StateMachineBehaviour
 {
+    [SerializeField] private float damage;
     [SerializeField] private GameObject cubePrefab;
     [SerializeField] private float expandSpeed;
     [SerializeField] private float startingRadius = 1f;
@@ -14,7 +15,19 @@ public class GroundShockAttack : StateMachineBehaviour
 
     private float radius;
 
-    private List<(GameObject, float)> cubeInfos;
+    private List<HitboxInfo> hitboxInfos;
+
+    private struct HitboxInfo
+    {
+        public HitboxInfo(GameObject gameObject, float radians)
+        {
+            this.gameObject = gameObject;
+            this.radians = radians;
+        }
+
+        public GameObject gameObject;
+        public float radians;
+    }
 
     private float timeElapsed;
     private bool isAttackStarted;
@@ -25,7 +38,7 @@ public class GroundShockAttack : StateMachineBehaviour
         timeElapsed = 0f;
         isAttackStarted = false;
         transform = animator.transform;
-        cubeInfos = new();
+        hitboxInfos = new();
         radius = startingRadius;
     }
 
@@ -52,9 +65,11 @@ public class GroundShockAttack : StateMachineBehaviour
             float z = startingRadius * Mathf.Sin(radians);
 
             Vector3 spawnPosition = new Vector3(transform.position.x + x, y, transform.position.z + z);
-            GameObject cube = Instantiate(cubePrefab, spawnPosition, Quaternion.identity);
-            cube.transform.position = spawnPosition;
-            cubeInfos.Add((cube, radians));
+            GameObject shockHitboxCube = Instantiate(cubePrefab, spawnPosition, Quaternion.identity);
+            GroundShockHitbox groundShockHitbox = shockHitboxCube.GetComponent<GroundShockHitbox>();
+            groundShockHitbox.OnHit += ShockHitboxCube_OnHit;
+            shockHitboxCube.transform.position = spawnPosition;
+            hitboxInfos.Add(new HitboxInfo(shockHitboxCube, radians));
         }
     }
 
@@ -64,23 +79,40 @@ public class GroundShockAttack : StateMachineBehaviour
 
         if (radius < maxRadius)
         {
-            foreach ((GameObject, float) cubeInfo in cubeInfos)
+            foreach (HitboxInfo hitboxInfo in hitboxInfos)
             {
-                float x = radius * Mathf.Cos(cubeInfo.Item2);
+                float x = radius * Mathf.Cos(hitboxInfo.radians);
                 float y = 0f;
-                float z = radius * Mathf.Sin(cubeInfo.Item2);
+                float z = radius * Mathf.Sin(hitboxInfo.radians);
 
                 Vector3 newPosition = new Vector3(transform.position.x + x, y, transform.position.z + z);
 
-                cubeInfo.Item1.transform.position = newPosition;
+                hitboxInfo.gameObject.transform.position = newPosition;
             }
         }
         else
         {
-            foreach ((GameObject, float) cubeInfo in cubeInfos)
-            {
-                Destroy(cubeInfo.Item1);
-            }
+            DestroyHitboxes();
         }
+    }
+
+    private void ShockHitboxCube_OnHit(Health health)
+    {
+        DestroyHitboxes();
+        health.TakeDamage(damage);
+    }
+
+    private void DestroyHitboxes()
+    {
+        foreach (HitboxInfo hitboxInfo in hitboxInfos)
+        {
+            GameObject hitboxObject = hitboxInfo.gameObject;
+
+            GroundShockHitbox groundShockHitbox = hitboxObject.GetComponent<GroundShockHitbox>();
+            groundShockHitbox.OnHit -= ShockHitboxCube_OnHit;
+
+            Destroy(hitboxObject);
+        }
+        hitboxInfos.Clear();
     }
 }
