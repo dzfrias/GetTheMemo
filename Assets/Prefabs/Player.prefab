@@ -112,6 +112,10 @@ MonoBehaviour:
   movementSpeed: 4.5
   jumpEnabled: 0
   jumpPower: 5
+  sprintMultiplier: 1.5
+  sprintTimeMax: 4
+  sprintRegenSpeed: 0.5
+  sprintCooldown: 3
 --- !u!114 &8481031941245057449
 MonoBehaviour:
   m_ObjectHideFlags: 0

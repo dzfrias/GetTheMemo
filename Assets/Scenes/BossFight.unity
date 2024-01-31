@@ -264,6 +264,11 @@ PrefabInstance:
       propertyPath: jumpEnabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1955191967144759490, guid: 783792e4c7a7d4b96a219598286ea572,
+        type: 3}
+      propertyPath: sprintEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4879248015924518829, guid: 783792e4c7a7d4b96a219598286ea572,
         type: 3}
       propertyPath: m_Name

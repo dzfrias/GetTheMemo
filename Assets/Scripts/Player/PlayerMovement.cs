@@ -7,14 +7,30 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField]
     private float movementSpeed = 1f;
-
+    
     [SerializeField]
     private bool jumpEnabled = false;
 
     [SerializeField]
     private float jumpPower = 1f;
+
+    [SerializeField]
+    private float sprintMultiplier = 1.5f;
+
+    [SerializeField]
+    private float sprintTimeMax = 3f;
+
+    [SerializeField]
+    private float sprintRegenSpeed = 3f;
+
+    [SerializeField]
+    private float sprintCooldown = 2f;
+
     private Vector3 playerVelocity;
     private bool jump = false;
+    private bool sprintInputPressed = false;
+    private float sprintTime;
+    private bool onSprintCooldown = false;
 
     private Transform camTransform;
     private CharacterController characterController;
@@ -23,16 +39,22 @@ public class PlayerMovement : MonoBehaviour
     {
         camTransform = Camera.main.transform;
         characterController = GetComponent<CharacterController>();
+
+        sprintTime = sprintTimeMax;
     }
 
     private void OnEnable()
     {
         GameInput.Instance.OnJump += GameInput_OnJump;
+        GameInput.Instance.OnSprintStart += GameInput_OnSprintStart;
+        GameInput.Instance.OnSprintStop += GameInput_OnSprintStop;
     }
 
     private void OnDisable()
     {
         GameInput.Instance.OnJump -= GameInput_OnJump;
+        GameInput.Instance.OnSprintStart -= GameInput_OnSprintStart;
+        GameInput.Instance.OnSprintStop -= GameInput_OnSprintStop;
     }
 
     private void Update()
@@ -46,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity.y += Mathf.Sqrt(jumpPower * -1.0f * Physics.gravity.y);
         }
 
+        HandleSprinting();
+
         characterController.Move(playerVelocity * Time.deltaTime);
 
         jump = false;
@@ -58,6 +82,44 @@ public class PlayerMovement : MonoBehaviour
         movement = camTransform.forward * movement.z + camTransform.right * movement.x;
         playerVelocity.x = movement.x * movementSpeed;
         playerVelocity.z = movement.z * movementSpeed;
+    }
+
+    private void HandleSprinting()
+    {
+        if (sprintInputPressed)
+        {
+            if (sprintTime > 0 && (playerVelocity.x != 0 || playerVelocity.z != 0))
+            {
+                Vector3 sprintAppliedPlayerVelocity = new Vector3(playerVelocity.x * sprintMultiplier, playerVelocity.y, playerVelocity.z * sprintMultiplier);
+                playerVelocity = sprintAppliedPlayerVelocity;
+                sprintTime -= Time.deltaTime;
+            }
+            else if (!onSprintCooldown)
+            {
+                StartCoroutine(SprintCooldown());
+            }
+        }
+        else if (sprintTime < sprintTimeMax && !onSprintCooldown)
+        {
+            sprintTime += Time.deltaTime * sprintRegenSpeed;
+        }
+    }
+
+    private IEnumerator SprintCooldown()
+    {
+        onSprintCooldown = true;
+        yield return new WaitForSeconds(sprintCooldown);
+        onSprintCooldown = false;
+    }
+
+    private void GameInput_OnSprintStart()
+    {
+        sprintInputPressed = true;
+    }
+
+    private void GameInput_OnSprintStop()
+    {
+        sprintInputPressed = false;
     }
 
     private void GameInput_OnJump()
