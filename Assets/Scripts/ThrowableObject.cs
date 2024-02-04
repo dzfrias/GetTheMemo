@@ -6,17 +6,27 @@ public class ThrowableObject : MonoBehaviour
 {
     [SerializeField] private float damage;
 
-    private GameObject player;
+    private Rigidbody rb;
 
-    private void Start()
+    private bool isThrown;
+
+    private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        rb = GetComponent<Rigidbody>();
+    }
+
+    public void Throw(Vector3 direction, float power)
+    {
+        rb.AddForce(direction * power, ForceMode.Impulse);
+        isThrown = true;
     }
 
     private void OnTriggerEnter(Collider collider)
     {
+        if (!isThrown) return;
+
         GameObject hitGameObject = collider.gameObject;
-        if (hitGameObject.TryGetComponent(out Health health) && hitGameObject != player)
+        if (hitGameObject.TryGetComponent(out Health health))
         {
             health.TakeDamage(damage);
             Destroy(gameObject);

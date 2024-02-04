@@ -28,9 +28,9 @@ public class PlayerNightTimeInteraction : MonoBehaviour
     {
         if (heldObject != null)
         {
-            Rigidbody heldRb = heldObject.GetComponent<Rigidbody>();
             heldObject.transform.parent = null;
-            heldRb.AddForce(transform.forward * throwPower, ForceMode.Impulse);
+            ThrowableObject throwableObject = heldObject.GetComponent<ThrowableObject>();
+            throwableObject.Throw(transform.forward, throwPower);
             heldObject = null;
         }
     }
@@ -38,16 +38,24 @@ public class PlayerNightTimeInteraction : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         GameObject hitGameObject = collider.gameObject;
-        if (hitGameObject.CompareTag("PickupObject"))
+        if (hitGameObject.CompareTag("PickupObject") && !IsHoldingThrowableObject())
         {
             HoldObject(hitGameObject);
         }
     }
 
+    private bool IsHoldingThrowableObject()
+    {
+        if (holdTransform.childCount == 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
     private void HoldObject(GameObject gameObjectToHold)
     {
         heldObject = gameObjectToHold;
-        Rigidbody heldRb = heldObject.GetComponent<Rigidbody>();
         heldObject.transform.position = holdTransform.position;
         heldObject.transform.parent = holdTransform;
     }
