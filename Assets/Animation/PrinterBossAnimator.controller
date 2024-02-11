@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paperProjectilePrefab: {fileID: 8603815669356658899, guid: e22ef5503c82648d59d1b8059f8e716a,
     type: 3}
+  paperSpawnHeight: 3
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

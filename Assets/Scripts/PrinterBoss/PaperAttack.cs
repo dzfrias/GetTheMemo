@@ -5,6 +5,7 @@ using UnityEngine;
 public class PaperAttack : StateMachineBehaviour
 {
     [SerializeField] private GameObject paperProjectilePrefab;
+    [SerializeField] private float paperSpawnHeight;
 
     private Transform transform;
 
@@ -41,7 +42,7 @@ public class PaperAttack : StateMachineBehaviour
     }
     private void ShootPaper()
     {
-        GameObject paper = Instantiate(paperProjectilePrefab, transform.position, transform.rotation);
+        GameObject paper = Instantiate(paperProjectilePrefab, transform.position + Vector3.up * paperSpawnHeight, transform.rotation);
         PaperProjectile paperProjectile = paper.GetComponent<PaperProjectile>();
         paperProjectile.SetTargetShootingPosition(GetTargetShootingPosition());
     }
