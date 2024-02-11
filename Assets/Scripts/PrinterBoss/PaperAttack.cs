@@ -14,7 +14,8 @@ public class PaperAttack : StateMachineBehaviour
 
     private float timeBetweenPaperShots;
     private float maxTimeBetweenPaperShots = 0.5f;
-    private int paperCount = 5;
+    private int maxPaperCount = 5;
+    private int paperCount;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -22,6 +23,7 @@ public class PaperAttack : StateMachineBehaviour
         Debug.Log("PAPER ATTACK ACTIVE!");
         transform = animator.transform;
         target = GameObject.FindGameObjectWithTag("Player");
+        paperCount = maxPaperCount;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -33,6 +35,7 @@ public class PaperAttack : StateMachineBehaviour
             {
                 ShootPaper();
                 timeBetweenPaperShots = maxTimeBetweenPaperShots;
+                paperCount--;
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GroundShockAttack : StateMachineBehaviour
 {
@@ -12,6 +13,7 @@ public class GroundShockAttack : StateMachineBehaviour
     [SerializeField] private float timeUntilAttack = 0.5f;
 
     private Transform transform;
+    private NavMeshAgent navMeshAgent;
 
     private float radius;
 
@@ -40,6 +42,19 @@ public class GroundShockAttack : StateMachineBehaviour
         transform = animator.transform;
         hitboxInfos = new();
         radius = startingRadius;
+
+        navMeshAgent = transform.GetComponent<NavMeshAgent>();
+
+        navMeshAgent.enabled = false;
+        animator.applyRootMotion = true;
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        DestroyHitboxes();
+
+        navMeshAgent.enabled = true;
+        animator.applyRootMotion = false;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
