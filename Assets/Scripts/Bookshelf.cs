@@ -11,7 +11,7 @@ public class Bookshelf : MonoBehaviour, IInteractable
         bookshelfData = new BookshelfData();
     }
 
-    public void Interact()
+    public void Interact(Vector3 playerPosition)
     {
         StationUIManager.Instance.Startup(bookshelfData);
     }

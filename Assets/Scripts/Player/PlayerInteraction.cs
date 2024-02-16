@@ -108,7 +108,7 @@ public class PlayerInteraction : MonoBehaviour
             GameObject detectedObject = raycastHit.collider.gameObject;
             if (detectedObject.TryGetComponent(out IInteractable interactable))
             {
-                interactable.Interact();
+                interactable.Interact(transform.position);
             }
         }
     }

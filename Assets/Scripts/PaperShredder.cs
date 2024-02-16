@@ -11,7 +11,7 @@ public class PaperShredder : MonoBehaviour, IInteractable
         paperShredderData = new PaperShredderData();
     }
 
-    public void Interact()
+    public void Interact(Vector3 playerPosition)
     {
         StationUIManager.Instance.Startup(paperShredderData);
     }

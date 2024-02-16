@@ -97,7 +97,7 @@ public class Printer : MonoBehaviour, IInteractable
         data.OnShutdown += Shutdown;
     }
 
-    public void Interact()
+    public void Interact(Vector3 playerPosition)
     {
         cam.gameObject.SetActive(true);
         StationUIManager.Instance.Startup(data);
