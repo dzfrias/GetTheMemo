@@ -16119,7 +16119,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  playOnStart: 0
+  playOnStart: 1
 --- !u!1 &1945581261
 GameObject:
   m_ObjectHideFlags: 0

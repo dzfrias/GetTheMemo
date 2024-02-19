@@ -34,11 +34,9 @@ public class BossSpeaker : MonoBehaviour
     {
         while (true)
         {
-            float volume = Random.Range(0.4f, 1f);
             float pitch = soundProbabilityCurve.Evaluate(Random.value);
             float newLength = source.clip.length / System.Math.Abs(pitch);
             source.pitch = pitch;
-            source.volume = volume;
             source.Play();
             yield return new WaitForSeconds(newLength);
         }
