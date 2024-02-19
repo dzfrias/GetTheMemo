@@ -10,10 +10,16 @@ public class DialogueBox : MonoBehaviour
     [SerializeField] private float typeDelay = 0.2f;
     [SerializeField] private float stopTime = 1f;
 
+    private Coroutine textCoroutine;
+
     public void DisplayText(string msg)
     {
+        if (textCoroutine is not null)
+        {
+            StopCoroutine(textCoroutine);
+        }
         gameObject.SetActive(true);
-        StartCoroutine(TypeText(msg));
+        textCoroutine = StartCoroutine(TypeText(msg));
     }
 
     private IEnumerator TypeText(string msg)
@@ -25,5 +31,6 @@ public class DialogueBox : MonoBehaviour
         }
         yield return new WaitForSeconds(stopTime);
         gameObject.SetActive(false);
+        textCoroutine = null;
     }
 }
