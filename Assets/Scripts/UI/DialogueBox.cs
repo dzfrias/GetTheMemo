@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 class Tokenizer
@@ -64,6 +65,9 @@ public class DialogueBox : MonoBehaviour
     [SerializeField] private float typeDelay = 0.2f;
     [SerializeField] private float stopTime = 1f;
 
+    [SerializeField] private UnityEvent onStart;
+    [SerializeField] private UnityEvent onEnd;
+
     private Coroutine textCoroutine;
 
     public void DisplayText(string msg)
@@ -84,6 +88,7 @@ public class DialogueBox : MonoBehaviour
         Tokenizer tokenizer = new Tokenizer(msg);
         List<string> tokens = tokenizer.Tokenize();
         textCoroutine = StartCoroutine(TypeText(tokens));
+        onStart?.Invoke();
     }
 
     private IEnumerator TypeText(List<string> tokens)
@@ -99,6 +104,7 @@ public class DialogueBox : MonoBehaviour
                 yield return new WaitForSeconds(typeDelay);
             }
         }
+        onEnd?.Invoke();
         yield return new WaitForSeconds(stopTime);
         gameObject.SetActive(false);
         textCoroutine = null;
