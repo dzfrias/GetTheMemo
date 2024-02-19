@@ -15954,7 +15954,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 200
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -15964,55 +15964,28 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1.0416679
-      inSlope: -7.815635
-      outSlope: -7.815635
+      time: 0.002
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.044302516
-      value: 0.36078435
-      inSlope: -6.0183916
-      outSlope: -6.0183916
+      time: 0.26963735
+      value: 0.30329204
+      inSlope: -1.002004
+      outSlope: -1.002004
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.15229267
-      value: 0.101379395
-      inSlope: -1.0422615
-      outSlope: -1.0422615
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.40637538
-      value: 0.035583496
-      inSlope: -0.030529825
-      outSlope: -0.030529825
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.6623754
-      value: 0.020568848
-      inSlope: -0.0076324563
-      outSlope: -0.0076324563
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
       time: 1
-      value: 0.002
-      inSlope: -0.002000801
-      outSlope: -0.002000801
+      value: 0
+      inSlope: -1.002004
+      outSlope: -1.002004
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -16040,7 +16013,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -16119,7 +16092,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  playOnStart: 1
+  playOnStart: 0
 --- !u!1 &1945581261
 GameObject:
   m_ObjectHideFlags: 0
