@@ -14,7 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private Transform holdTransform;
 
-    private IHoverable hoverable;
+    private GameObject hoverable;
     private IGrabbable heldObject;
     private PlayerHold playerHold;
 
@@ -82,15 +82,15 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out raycastHit, maxDistance) && raycastHit.collider != null)
         {
             GameObject detectedObject = raycastHit.collider.gameObject;
-            if (detectedObject.TryGetComponent(out IHoverable newHoverable))
+            if (detectedObject.TryGetComponent(out IInteractable newHoverable))
             {
-                if (hoverable != newHoverable)
+                if (hoverable != detectedObject)
                 {
                     TryNoHover();
                 }
 
-                hoverable = newHoverable;
-                hoverable.Hover();
+                hoverable = detectedObject;
+                detectedObject.layer = LayerMask.NameToLayer("Outline");
                 return;
             }
         }
@@ -117,6 +117,6 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (hoverable == null)
             return;
-        hoverable.NoHover();
+        hoverable.layer = 0;
     }
 }

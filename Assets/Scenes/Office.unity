@@ -3094,11 +3094,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CubicleArea (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 7659950651746540797, guid: 635e7dea0ca305d4dbffb7be36b8842e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7719817759527765683, guid: 635e7dea0ca305d4dbffb7be36b8842e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7115,11 +7110,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CubicleArea (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7659950651746540797, guid: 635e7dea0ca305d4dbffb7be36b8842e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7772161636649384609, guid: 635e7dea0ca305d4dbffb7be36b8842e,
         type: 3}
@@ -17671,11 +17661,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CubicleArea
-      objectReference: {fileID: 0}
-    - target: {fileID: 7659950651746540797, guid: 635e7dea0ca305d4dbffb7be36b8842e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7772161636649384609, guid: 635e7dea0ca305d4dbffb7be36b8842e,
         type: 3}
