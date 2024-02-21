@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IInteractable
+public class Door : MonoBehaviour, IInteractable, IRecordMode
 {
     private Animator animator;
 
@@ -27,6 +27,11 @@ public class Door : MonoBehaviour, IInteractable
         {
             Open(playerPosition);
         }
+    }
+
+    public void OnEnterRecordMode()
+    {
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 70, transform.rotation.eulerAngles.z);
     }
 
     private void Close()
