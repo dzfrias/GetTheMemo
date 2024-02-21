@@ -92,7 +92,7 @@ MonoBehaviour:
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
-  m_RenderingMode: 0
+  m_RenderingMode: 2
   m_DepthPrimingMode: 0
   m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
@@ -114,9 +114,6 @@ MonoBehaviour:
   outlinesLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  outlinesOccluderLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
   outlineSettings:
     outlineColor: {r: 0.4008989, g: 0.5247742, b: 0.9339623, a: 1}
     outlineScale: 1
@@ -125,11 +122,10 @@ MonoBehaviour:
     normalThreshold: 0.765
     steepAngleThreshold: 0
     steepAngleMultiplier: 60
-  viewSpaceNormalsTextureSettings:
     colorFormat: 0
-    depthBufferBits: 16
+    depthBufferBits: 0
     filterMode: 0
-    backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
     perObjectData: 0
     enableDynamicBatching: 0
     enableInstancing: 0
