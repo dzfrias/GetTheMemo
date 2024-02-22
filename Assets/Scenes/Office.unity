@@ -2237,6 +2237,12 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!4 &389998997 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7934717190259095708, guid: 2dad8f75644994eb0ad62ee45f04889d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1120691723}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &397584653
 GameObject:
   m_ObjectHideFlags: 0
@@ -7338,7 +7344,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1728993612}
     m_Modifications:
     - target: {fileID: 7302049761729995302, guid: 2dad8f75644994eb0ad62ee45f04889d,
         type: 3}
@@ -7400,6 +7406,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dad8f75644994eb0ad62ee45f04889d, type: 3}
+--- !u!4 &651346520 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7934717190259095708, guid: 2dad8f75644994eb0ad62ee45f04889d,
+    type: 3}
+  m_PrefabInstance: {fileID: 651346519}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &652543000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8581,7 +8593,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1728993612}
     m_Modifications:
     - target: {fileID: 7302049761729995302, guid: 2dad8f75644994eb0ad62ee45f04889d,
         type: 3}
@@ -17196,7 +17208,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1728993612}
     m_Modifications:
     - target: {fileID: 7302049761729995302, guid: 2dad8f75644994eb0ad62ee45f04889d,
         type: 3}
@@ -17484,6 +17496,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1228507218 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7934717190259095708, guid: 2dad8f75644994eb0ad62ee45f04889d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2076020311}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1281620414
 GameObject:
   m_ObjectHideFlags: 0
@@ -17786,7 +17804,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1728993612}
     m_Modifications:
     - target: {fileID: 7302049761729995302, guid: 2dad8f75644994eb0ad62ee45f04889d,
         type: 3}
@@ -18127,6 +18145,12 @@ Transform:
   - {fileID: 490065216}
   m_Father: {fileID: 1473173155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1456411276 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7934717190259095708, guid: 2dad8f75644994eb0ad62ee45f04889d,
+    type: 3}
+  m_PrefabInstance: {fileID: 774318228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1463689885
 GameObject:
   m_ObjectHideFlags: 0
@@ -21490,6 +21514,11 @@ Transform:
   - {fileID: 1036810060}
   - {fileID: 910466326}
   - {fileID: 2508667781087246576}
+  - {fileID: 1456411276}
+  - {fileID: 1228507218}
+  - {fileID: 389998997}
+  - {fileID: 2041925286}
+  - {fileID: 651346520}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1730942544
@@ -23960,13 +23989,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2040074015}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2041925286 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7934717190259095708, guid: 2dad8f75644994eb0ad62ee45f04889d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1311977155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2076020311
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1728993612}
     m_Modifications:
     - target: {fileID: 7302049761729995302, guid: 2dad8f75644994eb0ad62ee45f04889d,
         type: 3}
@@ -28187,8 +28222,3 @@ SceneRoots:
   - {fileID: 1184939243}
   - {fileID: 96412069}
   - {fileID: 1728993612}
-  - {fileID: 774318228}
-  - {fileID: 2076020311}
-  - {fileID: 1120691723}
-  - {fileID: 1311977155}
-  - {fileID: 651346519}
