@@ -21406,6 +21406,7 @@ Transform:
   - {fileID: 1473173155}
   - {fileID: 1281620415}
   - {fileID: 1036810060}
+  - {fileID: 1813247449}
   - {fileID: 910466326}
   - {fileID: 2508667781087246576}
   - {fileID: 1456411276}
@@ -22316,6 +22317,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813177854}
   m_CullTransparentMesh: 1
+--- !u!4 &1813247449 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+    type: 3}
+  m_PrefabInstance: {fileID: 8003341499969956540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1820706202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28100,6 +28107,84 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635e7dea0ca305d4dbffb7be36b8842e, type: 3}
+--- !u!1001 &8003341499969956540
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1728993612}
+    m_Modifications:
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.985
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.546
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659709806708501969, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666639058705958189, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347563276401805241, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_Name
+      value: MeetingRoomSign
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746827095824363395, guid: 7d3a6b915e5104ea09af58e1ccf29478,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1463689889}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7d3a6b915e5104ea09af58e1ccf29478, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
