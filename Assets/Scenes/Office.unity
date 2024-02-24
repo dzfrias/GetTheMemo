@@ -17978,6 +17978,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6508537860709507327, guid: 783792e4c7a7d4b96a219598286ea572,
+        type: 3}
+      propertyPath: m_StepOffset
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21420,6 +21425,7 @@ Transform:
   - {fileID: 389998997}
   - {fileID: 2041925286}
   - {fileID: 651346520}
+  - {fileID: 5498281704002777183}
   - {fileID: 318570680}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24196,6 +24202,80 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ce71bb55ba094b8385e8e11fca19aff, type: 3}
+--- !u!1001 &5498281704002777179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1728993612}
+    m_Modifications:
+    - target: {fileID: 1576649385607512683, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_Name
+      value: CrumpledPaper
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.159
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.234
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.265
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ab1acfe016e14b7fb29c8d6a2cec751, type: 3}
+--- !u!4 &5498281704002777183 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7387844588206087841, guid: 5ab1acfe016e14b7fb29c8d6a2cec751,
+    type: 3}
+  m_PrefabInstance: {fileID: 5498281704002777179}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7285714530997628219
 PrefabInstance:
   m_ObjectHideFlags: 0
