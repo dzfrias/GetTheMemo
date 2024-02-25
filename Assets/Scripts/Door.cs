@@ -1,24 +1,36 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Tools;
+using MoreMountains.Feedbacks;
 
 public class Door : MonoBehaviour, IInteractable, IRecordMode
 {
-    private Animator animator;
+    private MMF_Player player;
+    private MMF_Rotation openRotation;
+    private MMF_Rotation closeRotation;
 
     private Vector3 forwardDirection;
     private bool isOpen = false;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        player = GetComponent<MMF_Player>();
+        List<MMF_Rotation> rotationFeedbacks = player.GetFeedbacksOfType<MMF_Rotation>();
+        if (rotationFeedbacks.Count != 2)
+        {
+            Debug.LogError("MMF_Player should have two rotation feedbacks");
+        }
+        openRotation = rotationFeedbacks[0];
+        closeRotation = rotationFeedbacks[1];
 
         forwardDirection = transform.forward;
     }
 
     public void Interact(Vector3 playerPosition)
     {
+        if (player.HasFeedbackStillPlaying()) return;
+
         if (isOpen)
         {
             Close();
@@ -36,22 +48,24 @@ public class Door : MonoBehaviour, IInteractable, IRecordMode
 
     private void Close()
     {
-        animator.SetTrigger("CloseDoor");
+        player.ResumeFeedbacks();
         isOpen = false;
     }
 
     private void Open(Vector3 playerPosition)
     {
         float direction = Vector3.Dot(forwardDirection, (playerPosition - transform.position).normalized);
-        Debug.Log(direction);
         if (direction > 0)
         {
-            animator.SetTrigger("OpenDoorForward");
+            openRotation.RemapCurveOne = -90f;
+            closeRotation.RemapCurveOne = 90f;
         }
         else
         {
-            animator.SetTrigger("OpenDoorBackward");
+            openRotation.RemapCurveOne = 90f;
+            closeRotation.RemapCurveOne = -90f;
         }
+        player.PlayFeedbacks();
         isOpen = true;
     }
 }
