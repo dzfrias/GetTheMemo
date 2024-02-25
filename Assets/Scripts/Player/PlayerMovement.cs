@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
         HandleSprinting();
 
-        characterController.Move(playerVelocity * Time.deltaTime);
+        characterController.Move(playerVelocity.normalized * movementSpeed * Time.deltaTime);
 
         jump = false;
     }
