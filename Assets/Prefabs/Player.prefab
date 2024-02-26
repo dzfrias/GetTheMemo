@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 8481031941245057449}
   - component: {fileID: 6591005490235015433}
   - component: {fileID: 6508537860709507327}
+  - component: {fileID: 2911652871771769013}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9dc81c85b824bc6be59f3bbe8e5a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 4
+  maxDistance: 7
   holdTransform: {fileID: 7905994758175564649}
 --- !u!114 &6591005490235015433
 MonoBehaviour:
@@ -169,10 +170,22 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2911652871771769013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4879248015924518829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e531b0165444347499fd9c6ddacc7f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7784764860652417160
 GameObject:
   m_ObjectHideFlags: 0
