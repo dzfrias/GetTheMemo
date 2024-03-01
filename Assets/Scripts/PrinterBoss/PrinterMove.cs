@@ -5,21 +5,32 @@ using UnityEngine.AI;
 
 public class PrinterMove : StateMachineBehaviour
 {
+    [SerializeField] private float distanceToAttack = 10;
+
+    private Transform transform;
     private GameObject target;
     private NavMeshAgent navMeshAgent;
 
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        transform = animator.transform;
+
         target = GameObject.FindGameObjectWithTag("Player");
         navMeshAgent = animator.GetComponent<NavMeshAgent>();
+
+        navMeshAgent.enabled = true;
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        navMeshAgent.enabled = false;
+    }
+
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         SetDestinationToTarget();
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+        if (distance <= distanceToAttack)
         {
             animator.SetTrigger("ChooseAttack");
         }

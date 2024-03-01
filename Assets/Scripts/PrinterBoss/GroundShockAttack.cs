@@ -13,7 +13,6 @@ public class GroundShockAttack : StateMachineBehaviour
     [SerializeField] private float timeUntilAttack = 0.5f;
 
     private Transform transform;
-    private NavMeshAgent navMeshAgent;
 
     private float radius;
 
@@ -43,9 +42,6 @@ public class GroundShockAttack : StateMachineBehaviour
         hitboxInfos = new();
         radius = startingRadius;
 
-        navMeshAgent = transform.GetComponent<NavMeshAgent>();
-
-        navMeshAgent.enabled = false;
         animator.applyRootMotion = true;
     }
 
@@ -53,7 +49,6 @@ public class GroundShockAttack : StateMachineBehaviour
     {
         DestroyHitboxes();
 
-        navMeshAgent.enabled = true;
         animator.applyRootMotion = false;
     }
 

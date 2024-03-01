@@ -25,10 +25,9 @@ public class ThrowableObject : MonoBehaviour
     {
         if (!isThrown) return;
 
-        GameObject hitGameObject = collider.gameObject;
-        if (hitGameObject.TryGetComponent(out Health health))
+        if (collider.TryGetComponent(out PrinterBossStunTracker printerBossStunTracker))
         {
-            health.TakeDamage(damage);
+            printerBossStunTracker.IncreaseStunAmount();
             Destroy(gameObject);
         }
     }
