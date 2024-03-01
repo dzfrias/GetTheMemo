@@ -29,6 +29,7 @@ public class PaperAttack : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        transform.LookAt(target.transform);
         if (paperCount > 0)
         {
             timeBetweenPaperShots -= Time.deltaTime;
