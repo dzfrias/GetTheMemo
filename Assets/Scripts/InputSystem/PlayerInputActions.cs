@@ -935,6 +935,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""bace0804-b216-49aa-8498-a149d63edb0e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1113,6 +1122,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2c3e953-fbd3-461d-bd62-7d61630f924a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1213,6 +1233,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerNightTime_Throw = m_PlayerNightTime.FindAction("Throw", throwIfNotFound: true);
         m_PlayerNightTime_Jump = m_PlayerNightTime.FindAction("Jump", throwIfNotFound: true);
         m_PlayerNightTime_Sprint = m_PlayerNightTime.FindAction("Sprint", throwIfNotFound: true);
+        m_PlayerNightTime_Attack = m_PlayerNightTime.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1553,6 +1574,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerNightTime_Throw;
     private readonly InputAction m_PlayerNightTime_Jump;
     private readonly InputAction m_PlayerNightTime_Sprint;
+    private readonly InputAction m_PlayerNightTime_Attack;
     public struct PlayerNightTimeActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1562,6 +1584,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Throw => m_Wrapper.m_PlayerNightTime_Throw;
         public InputAction @Jump => m_Wrapper.m_PlayerNightTime_Jump;
         public InputAction @Sprint => m_Wrapper.m_PlayerNightTime_Sprint;
+        public InputAction @Attack => m_Wrapper.m_PlayerNightTime_Attack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerNightTime; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1586,6 +1609,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
         }
 
         private void UnregisterCallbacks(IPlayerNightTimeActions instance)
@@ -1605,6 +1631,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
         }
 
         public void RemoveCallbacks(IPlayerNightTimeActions instance)
@@ -1703,5 +1732,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnThrow(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }
