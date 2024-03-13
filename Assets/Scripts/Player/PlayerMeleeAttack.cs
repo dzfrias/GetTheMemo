@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerMeleeAttack : MonoBehaviour
 {
+    [SerializeField] private LayerMask ignoreRaycast;
     [SerializeField] private Camera cam;
     [SerializeField] private Transform head;
     [SerializeField] private float attackDistance = 5f;
     [SerializeField] private float attackDelay = 0.5f;
+    [SerializeField] private float attackDamage = 5f;
     private bool isAttacking = false;
 
     private Animator animator;
@@ -41,8 +43,12 @@ public class PlayerMeleeAttack : MonoBehaviour
         Vector3 middleOfScreen = new Vector3(0.5f, 0.5f, 0f);
         Ray ray = cam.ViewportPointToRay(middleOfScreen);
         Debug.DrawRay(ray.GetPoint(0), ray.direction, Color.red, 5f);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit))
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, attackDistance, ~ignoreRaycast))
         {
+            if (raycastHit.collider.TryGetComponent(out Health health))
+            {
+                health.TakeDamage(attackDamage);
+            }
             Debug.Log("Hit: " + raycastHit.collider.gameObject.name);
         }
         isAttacking = false;
