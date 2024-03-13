@@ -6,9 +6,16 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Vector3 attackArea;
+    [SerializeField] private float attackDelay = 0.5f;
+    [SerializeField] private Transform attackTransform;
+    [SerializeField] private float damage = 2f;
+
     private Transform player;
     private NavMeshAgent navMeshAgent;
     private Health health;
+
+    private bool isAttacking = false;
 
     private void Awake()
     {
@@ -19,6 +26,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        SetDestinationToPlayerPosition();
     }
 
     private void OnEnable()
@@ -41,7 +49,36 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        SetDestinationToPlayerPosition();
+        if (!isAttacking)
+        {
+            SetDestinationToPlayerPosition();
+            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            {
+                Attack();
+            }
+        }
+    }
+
+    private void Attack()
+    {
+        Debug.Log("ENEMY ATTACK");
+        isAttacking = true;
+        Invoke(nameof(HitArea), attackDelay);
+    }
+
+    private void HitArea()
+    {
+        Debug.Log("ENEMY TRY HIT");
+        Collider[] hitColliders = Physics.OverlapBox(attackTransform.position, attackArea/2, Quaternion.identity);
+        foreach (Collider hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Player"))
+            {
+                hitCollider.GetComponent<Health>().TakeDamage(damage);
+                Debug.Log("ENEMY HIT");
+            }
+        }
+        isAttacking = false;
     }
 
     private void SetDestinationToPlayerPosition()
