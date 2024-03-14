@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private Transform player;
     private NavMeshAgent navMeshAgent;
     private Health health;
+    private Animator animator;
 
     private bool isAttacking = false;
 
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -63,6 +65,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("ENEMY ATTACK");
         isAttacking = true;
+        animator.SetTrigger("Attack");
         Invoke(nameof(HitArea), attackDelay);
     }
 
