@@ -9,6 +9,7 @@ using UnityHFSM;
 [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Transform enemyFieldOfView;
     [SerializeField] private float attackCooldown = 1f;
 
     private Transform player;
@@ -27,7 +28,10 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
+    private void Start()
+    {
         enemyFSM = new StateMachine<EnemyState, StateEvent>();
         AddStatesToEnemyFSM();
         AddEnemyStateTransitions();
@@ -37,7 +41,7 @@ public class Enemy : MonoBehaviour
     private void AddStatesToEnemyFSM()
     {
         enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
-        enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player));
+        enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player, enemyFieldOfView));
         enemyFSM.AddState(EnemyState.Attack, new AttackState(true, this, OnAttack, 1f));
         enemyFSM.AddState(EnemyState.Dodge, new DodgeState(false, this));
 
