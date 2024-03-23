@@ -12,6 +12,6 @@ public class IdleState : EnemyStateBase
         Debug.Log("ENTER IDLE STATE");
         base.OnEnter();
         agent.isStopped = true;
-        animator.Play("Empty");
+        animator.Play("Idle");
     }
 }

@@ -6,16 +6,16 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityHFSM;
 
-[RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform enemyFieldOfView;
     [SerializeField] private float attackCooldown = 1f;
 
     private Transform player;
     private NavMeshAgent navMeshAgent;
     private Health health;
-    private Animator animator;
     private StateMachine<EnemyState, StateEvent> enemyFSM;
 
     private float lastAttackTime;
@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();
-        animator = GetComponent<Animator>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -104,5 +103,10 @@ public class Enemy : MonoBehaviour
     private bool IsInMeleeRange()
     {
         return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+    }
+
+    public Animator GetAnimator() 
+    {
+        return animator;
     }
 }

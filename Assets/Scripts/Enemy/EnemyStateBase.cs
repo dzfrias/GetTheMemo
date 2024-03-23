@@ -31,7 +31,7 @@ public abstract class EnemyStateBase : State<EnemyState, StateEvent>
         this.canExit = canExit;
 
         agent = enemy.GetComponent<NavMeshAgent>();
-        animator = enemy.GetComponent<Animator>();
+        animator = enemy.GetComponent<Enemy>().GetAnimator();
     }
 
     public override void OnEnter()
