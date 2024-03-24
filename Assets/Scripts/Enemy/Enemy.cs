@@ -10,8 +10,7 @@ using UnityHFSM;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform enemyFieldOfView;
-    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float attackCooldown = 3f;
 
     private Transform player;
     private NavMeshAgent navMeshAgent;
@@ -40,9 +39,9 @@ public class Enemy : MonoBehaviour
     private void AddStatesToEnemyFSM()
     {
         enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
-        enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player, enemyFieldOfView));
+        enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player));
         enemyFSM.AddState(EnemyState.Attack, new AttackState(true, this, OnAttack, 1f));
-        enemyFSM.AddState(EnemyState.Dodge, new DodgeState(false, this));
+        enemyFSM.AddState(EnemyState.Impact, new ImpactState(true, this, exitTime: 1.5f));
 
         enemyFSM.SetStartState(EnemyState.Chase);
     }
@@ -50,10 +49,17 @@ public class Enemy : MonoBehaviour
     private void AddEnemyStateTransitions()
     {
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Attack, ShouldMelee));
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Idle, IsWithinIdleRange));
-
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase, ShouldChase));
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Attack, ShouldMelee));
+        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Attack, ShouldMelee));
+
+        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Chase, ShouldChase));
+        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase, ShouldChase));
+        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Chase, ShouldChase));
+
+        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Idle, IsWithinIdleRange));
+        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Idle, IsWithinIdleRange));
+
+        enemyFSM.AddTriggerTransitionFromAny(StateEvent.Impact, EnemyState.Impact, forceInstantly: true);
     }
 
     private bool IsWithinIdleRange(Transition<EnemyState> _)
@@ -83,6 +89,7 @@ public class Enemy : MonoBehaviour
     
     private void Health_OnHealthChanged(float health)
     {
+        enemyFSM.Trigger(StateEvent.Impact);
         if (health <= 0)
         {
             Destroy(gameObject);

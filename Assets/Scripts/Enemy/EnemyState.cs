@@ -7,5 +7,6 @@ public enum EnemyState
     Idle,
     Chase,
     Attack,
-    Dodge
+    Dodge,
+    Impact
 }
