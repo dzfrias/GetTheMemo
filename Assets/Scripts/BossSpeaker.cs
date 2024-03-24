@@ -21,6 +21,7 @@ public class BossSpeaker : MonoBehaviour
 
     public void StartPlaying()
     {
+        if (playCoroutine != null) return;
         playCoroutine = StartCoroutine(PlayCoroutine());
     }
 
