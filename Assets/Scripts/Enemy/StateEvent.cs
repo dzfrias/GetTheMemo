@@ -4,6 +4,5 @@ using UnityEngine;
 
 public enum StateEvent
 {
-    DetectPlayer,
-    LostPlayer
+    Impact
 }
