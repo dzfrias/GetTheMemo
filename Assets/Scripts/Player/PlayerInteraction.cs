@@ -6,13 +6,12 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Interact Settings")]
-    [SerializeField]
-    private float maxDistance = 1f;
+    [SerializeField] private float maxDistance = 1f;
+    [SerializeField] private Pointer pointer;
     private Camera cam;
 
     [Header("Pickup Settings")]
-    [SerializeField]
-    private Transform holdTransform;
+    [SerializeField] private Transform holdTransform;
 
     private GameObject hoverable;
     private IGrabbable heldObject;
@@ -79,23 +78,37 @@ public class PlayerInteraction : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
 
         RaycastHit raycastHit;
-        if (Physics.Raycast(ray, out raycastHit, maxDistance) && raycastHit.collider != null)
+        // Checks if the object we're looking at (in range) is interactable
+        if (Physics.Raycast(ray, out raycastHit, maxDistance)
+                && raycastHit.collider != null
+                && raycastHit.collider.gameObject.TryGetComponent(out IInteractable newHoverable))
         {
             GameObject detectedObject = raycastHit.collider.gameObject;
-            if (detectedObject.TryGetComponent(out IInteractable newHoverable))
+            // Case 1: We're hovering over the same object
+            if (hoverable == detectedObject)
             {
-                if (hoverable != detectedObject)
-                {
-                    TryNoHover();
-                }
-
-                hoverable = detectedObject;
-                detectedObject.layer = LayerMask.NameToLayer("Outline");
                 return;
             }
+            // Case 2: We're hovering over a different object, try to unhover
+            // the current one (falls through to). Then hover the new object.
+            if (hoverable != detectedObject)
+            {
+                TryNoHover();
+            }
+            hoverable = detectedObject;
+            detectedObject.layer = LayerMask.NameToLayer("Outline");
+            pointer.OnHover();
         }
-        TryNoHover();
-        hoverable = null;
+        else
+        {
+            if (hoverable != null)
+            {
+                // Only called when an object is newly unhovered
+                pointer.Reset();
+            }
+            TryNoHover();
+            hoverable = null;
+        }
     }
 
     private void Interact()
@@ -115,8 +128,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void TryNoHover()
     {
-        if (hoverable == null)
-            return;
+        if (hoverable == null) return;
         hoverable.layer = 0;
     }
 }
