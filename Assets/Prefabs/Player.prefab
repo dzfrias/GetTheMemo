@@ -130,6 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 7
+  pointer: {fileID: 0}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 5
   holdTransform: {fileID: 7905994758175564649}
 --- !u!114 &6591005490235015433
 MonoBehaviour:

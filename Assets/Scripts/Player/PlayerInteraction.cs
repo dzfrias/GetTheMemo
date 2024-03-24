@@ -8,11 +8,15 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Interact Settings")]
     [SerializeField] private float maxDistance = 1f;
     [SerializeField] private Pointer pointer;
-    private Camera cam;
+
+    [Header("Oultine Settings")]
+    [SerializeField] private Color outlineColor;
+    [SerializeField] private float outlineWidth = 5f;
 
     [Header("Pickup Settings")]
     [SerializeField] private Transform holdTransform;
 
+    private Camera cam;
     private GameObject hoverable;
     private IGrabbable heldObject;
     private PlayerHold playerHold;
@@ -96,7 +100,10 @@ public class PlayerInteraction : MonoBehaviour
                 TryNoHover();
             }
             hoverable = detectedObject;
-            detectedObject.layer = LayerMask.NameToLayer("Outline");
+            Outline outline = hoverable.AddComponent<Outline>();
+            outline.OutlineMode = Outline.Mode.OutlineAll;
+            outline.OutlineColor = outlineColor;
+            outline.OutlineWidth = outlineWidth;
             pointer.OnHover();
         }
         else
@@ -105,6 +112,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 // Only called when an object is newly unhovered
                 pointer.Reset();
+                Destroy(hoverable.GetComponent<Outline>());
             }
             TryNoHover();
             hoverable = null;
