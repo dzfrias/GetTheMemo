@@ -10,7 +10,6 @@ using UnityHFSM;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform enemyFieldOfView;
     [SerializeField] private float attackCooldown = 3f;
 
     private Transform player;
@@ -40,7 +39,7 @@ public class Enemy : MonoBehaviour
     private void AddStatesToEnemyFSM()
     {
         enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
-        enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player, enemyFieldOfView));
+        enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player));
         enemyFSM.AddState(EnemyState.Attack, new AttackState(true, this, OnAttack, 1f));
         enemyFSM.AddState(EnemyState.Impact, new ImpactState(true, this, exitTime: 1.5f));
 

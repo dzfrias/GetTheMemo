@@ -11,16 +11,14 @@ public class ChaseState : EnemyStateBase
 
     private Transform target;
     private Transform enemy;
-    private Transform enemyFieldOfView;
 
     private LayerMask targetLayer;
 
     private int destinationIndex;
     private float playerDetectionDistance = 6f;
 
-    public ChaseState(bool needsExitTime, Enemy enemy, Transform target, Transform enemyFieldOfView) : base(needsExitTime, enemy) 
-    {
-        this.enemyFieldOfView = enemyFieldOfView;
+    public ChaseState(bool needsExitTime, Enemy enemy, Transform target) : base(needsExitTime, enemy) 
+    {;
         this.enemy = enemy.transform;
         this.target = target;
         enemyManager = EnemyManager.Instance;
@@ -45,21 +43,8 @@ public class ChaseState : EnemyStateBase
             Vector3 enemyPlanePosition = new Vector3(enemy.position.x, 0, enemy.position.z);
             Vector3 targetPlanePosition = new Vector3(target.position.x, 0, target.position.z);
 
-            Ray ray = new Ray(enemyFieldOfView.position, (targetPlanePosition + Vector3.up) - (enemyPlanePosition + Vector3.up));
-            Debug.DrawRay(enemyFieldOfView.position, (targetPlanePosition + Vector3.up) - (enemyPlanePosition + Vector3.up), Color.magenta);
 
-
-            bool hasLineOfSight = false;
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, playerDetectionDistance))
-            {
-                Debug.Log(hitInfo.collider.name);
-                if (hitInfo.collider.CompareTag("Player")) {
-                    hasLineOfSight = true;
-                }
-            }
-
-
-            if (Vector3.Distance(enemyPlanePosition, targetPlanePosition) > playerDetectionDistance || !hasLineOfSight)
+            if (Vector3.Distance(enemyPlanePosition, targetPlanePosition) > playerDetectionDistance)
             {
                 agent.SetDestination(enemyManager.GetDestinationAroundPlayer(destinationIndex));
             }

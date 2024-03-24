@@ -31,6 +31,7 @@ public class EnemyManager : MonoBehaviour
     public Vector3 GetDestinationAroundPlayer(int index)
     {
         Vector3 destination = new Vector3(
+            
             player.position.x + radius * Mathf.Cos(2 * Mathf.PI * index / pointsAroundPlayer),
             player.position.y,
             player.position.z + radius * Mathf.Sin(2 * Mathf.PI * index / pointsAroundPlayer)
