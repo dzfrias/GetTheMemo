@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,5 +19,15 @@ public class AbilitiesHolder : MonoBehaviour
         abilities.Add(ability);
         balance -= ability.Cost();
         Debug.Log($"Ability added: {ability.Name()}. New balance: {balance}");
+    }
+
+    public IEnumerable<T> GetAbilities<T>()
+    {
+        return abilities.OfType<T>();
+    }
+
+    public T GetAbility<T>()
+    {
+        return GetAbilities<T>().First();
     }
 }
