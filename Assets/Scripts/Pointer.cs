@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MoreMountains.Tools;
+using MoreMountains.Feedbacks;
 
 public class Pointer : MonoBehaviour
 {
-    [SerializeField] private Color hoverColor;
-
-    private Color normalColor;
-    private Image img;
+    private MMF_Player player;
 
     private void Start()
     {
-        img = GetComponent<Image>();
-        normalColor = img.color;
+        player = GetComponent<MMF_Player>();
     }
 
     public void OnHover()
     {
-        img.color = hoverColor;
+        player.SetDirectionTopToBottom();
+        player.PlayFeedbacks();
     }
 
     public void Reset()
     {
-        img.color = normalColor;
+        player.SetDirectionBottomToTop();
+        if (!player.HasFeedbackStillPlaying())
+        {
+            player.PlayFeedbacks();
+        }
     }
 }
