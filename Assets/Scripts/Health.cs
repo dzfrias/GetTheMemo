@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public event Action OnDeath;
     public event Action<float> OnHealthChanged;
 
     [SerializeField] private float maxHealth;
@@ -26,6 +27,7 @@ public class Health : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
+            OnDeath?.Invoke();
             Debug.Log("DEAD");
         }
         OnHealthChanged?.Invoke(health);

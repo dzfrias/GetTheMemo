@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc004b6e2a6be4acf9e03e1e4196e396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 10
 --- !u!114 &3091326968878551393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8798058334504581177}
-  enemyFieldOfView: {fileID: 0}
   attackCooldown: 5
 --- !u!1 &8355244722382632407
 GameObject:
