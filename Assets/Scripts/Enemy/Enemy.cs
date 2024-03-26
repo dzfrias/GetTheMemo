@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void OnAttack(State<EnemyState, StateEvent> _)
+    public virtual void OnAttack(State<EnemyState, StateEvent> _)
     {
         transform.LookAt(player.transform.position);
         lastAttackTime = Time.time;
