@@ -16,6 +16,10 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Pickup Settings")]
     [SerializeField] private Transform holdTransform;
 
+    [Header("Click Settings")]
+    [SerializeField] private float clickDistance;
+    [SerializeField] private float clickStrength = 10f;
+
     private Camera cam;
     private GameObject hoverable;
     private IGrabbable heldObject;
@@ -32,6 +36,7 @@ public class PlayerInteraction : MonoBehaviour
         GameInput.Instance.OnInteract += GameInput_OnInteract;
         GameInput.Instance.OnPickup += GameInput_OnPickup;
         GameInput.Instance.OnDrop += GameInput_OnDrop;
+        GameInput.Instance.OnClick += GameInput_OnClick;
     }
 
     private void OnDisable()
@@ -39,6 +44,7 @@ public class PlayerInteraction : MonoBehaviour
         GameInput.Instance.OnInteract -= GameInput_OnInteract;
         GameInput.Instance.OnPickup -= GameInput_OnPickup;
         GameInput.Instance.OnDrop -= GameInput_OnDrop;
+        GameInput.Instance.OnClick -= GameInput_OnClick;
     }
 
     private void Update()
@@ -74,6 +80,16 @@ public class PlayerInteraction : MonoBehaviour
         {
             heldObject.Drop();
             playerHold.DestroyAnchorPoint();
+        }
+    }
+
+    private void GameInput_OnClick()
+    {
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        if (Physics.Raycast(ray, out RaycastHit hit, clickDistance))
+        {
+            if (hit.rigidbody == null) return;
+            hit.rigidbody.AddForceAtPosition(ray.direction * clickStrength, hit.point, ForceMode.Impulse);
         }
     }
 

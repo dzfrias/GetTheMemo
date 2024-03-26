@@ -9896,7 +9896,7 @@ MonoBehaviour:
         ColorOverTime:
           serializedVersion: 2
           key0: {r: 1, g: 1, b: 1, a: 1}
-          key1: {r: 0.3764706, g: 0.30588236, b: 0.9019608, a: 1}
+          key1: {r: 0.30588236, g: 0.6237542, b: 0.9019608, a: 1}
           key2: {r: 1, g: 1, b: 1, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
@@ -18978,6 +18978,16 @@ PrefabInstance:
       propertyPath: pointer
       value: 
       objectReference: {fileID: 816320570}
+    - target: {fileID: 8481031941245057449, guid: 783792e4c7a7d4b96a219598286ea572,
+        type: 3}
+      propertyPath: clickDistance
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481031941245057449, guid: 783792e4c7a7d4b96a219598286ea572,
+        type: 3}
+      propertyPath: clickStrength
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

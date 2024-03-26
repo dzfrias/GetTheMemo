@@ -26,6 +26,7 @@ public class GameInput : MonoBehaviour
     public event Action OnSprintStart;
     public event Action OnSprintStop;
     public event Action OnAttack;
+    public event Action OnClick;
 
     // UI action map
     public event Action OnCloseUI;
@@ -104,9 +105,10 @@ public class GameInput : MonoBehaviour
     private void OnEnable()
     {
         playerInputActions.Player.Interact.performed += PlayerInputActions_OnInteract;
-        playerInputActions.Player.Pickup.started += PlayerInputActions_OnPickupStarted;
+        playerInputActions.Player.Pickup.performed += PlayerInputActions_OnPickupStarted;
         playerInputActions.Player.Pickup.canceled += PlayerInputActions_OnPickupStopped;
         playerInputActions.Player.Jump.performed += PlayerInputActions_OnJump;
+        playerInputActions.Player.Click.performed += PlayerInputActions_OnClick;
 
         playerInputActions.PlayerNightTime.Throw.performed += PlayerInputActions_OnThrow;
         playerInputActions.PlayerNightTime.Jump.performed += PlayerInputActions_OnJump;
@@ -125,9 +127,10 @@ public class GameInput : MonoBehaviour
     private void OnDisable()
     {
         playerInputActions.Player.Interact.performed -= PlayerInputActions_OnInteract;
-        playerInputActions.Player.Pickup.started -= PlayerInputActions_OnPickupStarted;
+        playerInputActions.Player.Pickup.performed -= PlayerInputActions_OnPickupStarted;
         playerInputActions.Player.Pickup.canceled -= PlayerInputActions_OnPickupStopped;
         playerInputActions.Player.Jump.performed -= PlayerInputActions_OnJump;
+        playerInputActions.Player.Click.performed -= PlayerInputActions_OnClick;
 
         playerInputActions.PlayerNightTime.Throw.performed -= PlayerInputActions_OnThrow;
         playerInputActions.PlayerNightTime.Jump.performed -= PlayerInputActions_OnJump;
@@ -240,5 +243,10 @@ public class GameInput : MonoBehaviour
     public void PlayerInputActions_PrinterLeft(InputAction.CallbackContext _)
     {
         OnPrinterLeft?.Invoke();
+    }
+
+    public void PlayerInputActions_OnClick(InputAction.CallbackContext _)
+    {
+        OnClick?.Invoke();
     }
 }
