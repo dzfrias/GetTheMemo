@@ -12,9 +12,7 @@ public class MeleeEnemy : Enemy
     public override void AddStatesToEnemyFSM()
     {
         base.AddStatesToEnemyFSM();
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Attack, ShouldMelee));
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Attack, ShouldMelee));
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Attack, ShouldMelee));
+        enemyFSM.AddState(EnemyState.Attack, new AttackState(true, this, OnAttack, 1f));
     }
 
     public override void AddEnemyStateTransitions()
