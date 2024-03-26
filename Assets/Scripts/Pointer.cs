@@ -16,6 +16,12 @@ public class Pointer : MonoBehaviour
         GameInput.Instance.OnCloseUI += GameInput_OnCloseUI;
     }
 
+    private void OnDestroy()
+    {
+        GameInput.Instance.OnOpenUI -= GameInput_OnOpenUI;
+        GameInput.Instance.OnCloseUI -= GameInput_OnCloseUI;
+    }
+
     public void OnHover()
     {
         player.SetDirectionTopToBottom();
