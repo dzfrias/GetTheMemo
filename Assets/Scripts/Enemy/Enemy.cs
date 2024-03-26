@@ -1,23 +1,20 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityHFSM;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private float attackCooldown = 3f;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected float attackCooldown = 3f;
 
-    private Transform player;
-    private NavMeshAgent navMeshAgent;
-    private Health health;
-    private StateMachine<EnemyState, StateEvent> enemyFSM;
+    protected Transform player;
+    protected NavMeshAgent navMeshAgent;
+    protected Health health;
+    protected StateMachine<EnemyState, StateEvent> enemyFSM;
 
-    private float lastAttackTime;
+    protected float lastAttackTime;
 
 
     private void Awake()
@@ -36,7 +33,7 @@ public class Enemy : MonoBehaviour
         enemyFSM.Init();
     }
 
-    private void AddStatesToEnemyFSM()
+    public virtual void AddStatesToEnemyFSM()
     {
         enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
         enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player));
@@ -46,12 +43,8 @@ public class Enemy : MonoBehaviour
         enemyFSM.SetStartState(EnemyState.Chase);
     }
 
-    private void AddEnemyStateTransitions()
+    public virtual void AddEnemyStateTransitions()
     {
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Attack, ShouldMelee));
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Attack, ShouldMelee));
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Attack, ShouldMelee));
-
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Chase, ShouldChase));
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase, ShouldChase));
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Chase, ShouldChase));
@@ -100,16 +93,6 @@ public class Enemy : MonoBehaviour
     {
         transform.LookAt(player.transform.position);
         lastAttackTime = Time.time;
-    }
-
-    private bool ShouldMelee(Transition<EnemyState> _)
-    {
-        return lastAttackTime + attackCooldown < Time.time && IsInMeleeRange();
-    }
-
-    private bool IsInMeleeRange()
-    {
-        return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
     }
 
     public Animator GetAnimator() 
