@@ -1,0 +1,62 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WaveManager : MonoBehaviour
+{
+    [SerializeField] List<Transform> enemySpawnPoints;
+    [SerializeField] List<WaveSO> waves;
+
+    private List<GameObject> enemiesToSpawn;
+    private int enemiesRemaining;
+    private int waveIndex = 0;
+    private bool isSpawning = false;
+
+    private void Start()
+    {
+        enemiesToSpawn = new();
+        SpawnWave();
+    }
+
+    private void Update()
+    {
+        if (enemiesRemaining <= 0 && !isSpawning)
+        {
+            waveIndex++;
+            SpawnWave();
+        }
+    }
+
+    private void SpawnWave()
+    {
+        isSpawning = true;
+        foreach (GameObject gameObject in waves[waveIndex].enemies)
+        {
+            enemiesToSpawn.Add(gameObject);
+        }
+        InvokeRepeating(nameof(SpawnEnemy), waves[waveIndex].prepTime, waves[waveIndex].spawnDelay);
+    }
+
+    private void SpawnEnemy()
+    {
+        if (enemiesToSpawn.Count == 0)
+        {
+            CancelInvoke(nameof(SpawnEnemy));
+            isSpawning = false;
+            return;
+        }
+
+        int randomSpawnIndex = Random.Range(0, enemySpawnPoints.Count - 1);
+        Transform randomSpawnPoint = enemySpawnPoints[randomSpawnIndex];
+        GameObject enemy = Instantiate(enemiesToSpawn[0], randomSpawnPoint.position, Quaternion.identity);
+        enemy.GetComponent<Health>().OnDeath += Enemy_OnDeath;
+
+        enemiesToSpawn.RemoveAt(0);
+        enemiesRemaining++;
+    }
+
+    private void Enemy_OnDeath()
+    {
+        enemiesRemaining--;
+    }
+}
