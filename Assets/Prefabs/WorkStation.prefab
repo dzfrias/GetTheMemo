@@ -226,7 +226,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ba3e333c79ea431a8f4177919b6da1f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4379463570253736930}
+      addedObject: {fileID: 1171570581199113726}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ba3e333c79ea431a8f4177919b6da1f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3739642452880564504}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ba3e333c79ea431a8f4177919b6da1f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 687340993175426620}
   m_SourcePrefab: {fileID: 100100000, guid: 6ba3e333c79ea431a8f4177919b6da1f, type: 3}
 --- !u!1 &133051874523656359 stripped
 GameObject:
@@ -234,7 +242,47 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 944023265127665142}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &4379463570253736930
+--- !u!54 &1171570581199113726
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133051874523656359}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3739642452880564504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133051874523656359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8e4919164e0447a91dc997f1e366b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwMultiplier: 2
+--- !u!65 &687340993175426620
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,8 +301,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25066686, y: 0.04097583, z: 0.5000001}
-  m_Center: {x: -0.0000009536743, y: 0.0032333555, z: -0.00000023841858}
+  m_Size: {x: 25.066685, y: 4.097587, z: 50.00001}
+  m_Center: {x: -0.000015258789, y: 0.3233356, z: 0}
 --- !u!4 &762059779909544477 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ba3e333c79ea431a8f4177919b6da1f,
