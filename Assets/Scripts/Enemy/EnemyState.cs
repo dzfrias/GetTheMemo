@@ -8,5 +8,5 @@ public enum EnemyState
     Chase,
     Attack,
     Dodge,
-    Impact
+    Impact,
 }

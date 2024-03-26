@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     {
         enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
         enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player));
-        enemyFSM.AddState(EnemyState.Attack, new AttackState(true, this, OnAttack, 1f));
+
         enemyFSM.AddState(EnemyState.Impact, new ImpactState(true, this, exitTime: 1.5f));
 
         enemyFSM.SetStartState(EnemyState.Chase);
@@ -45,7 +45,6 @@ public class Enemy : MonoBehaviour
 
     public virtual void AddEnemyStateTransitions()
     {
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Chase, ShouldChase));
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase, ShouldChase));
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Chase, ShouldChase));
 
@@ -89,7 +88,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnAttack(State<EnemyState, StateEvent> _)
+    public void OnAttack(State<EnemyState, StateEvent> _)
     {
         transform.LookAt(player.transform.position);
         lastAttackTime = Time.time;
