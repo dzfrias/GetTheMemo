@@ -12,6 +12,8 @@ public class Pointer : MonoBehaviour
     private void Start()
     {
         player = GetComponent<MMF_Player>();
+        GameInput.Instance.OnOpenUI += GameInput_OnOpenUI;
+        GameInput.Instance.OnCloseUI += GameInput_OnCloseUI;
     }
 
     public void OnHover()
@@ -27,5 +29,15 @@ public class Pointer : MonoBehaviour
         {
             player.PlayFeedbacks();
         }
+    }
+
+    public void GameInput_OnOpenUI()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void GameInput_OnCloseUI()
+    {
+        gameObject.SetActive(true);
     }
 }

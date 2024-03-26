@@ -29,6 +29,7 @@ public class GameInput : MonoBehaviour
     public event Action OnClick;
 
     // UI action map
+    public event Action OnOpenUI;
     public event Action OnCloseUI;
 
     // Printer action map
@@ -79,6 +80,7 @@ public class GameInput : MonoBehaviour
             {
                 playerInputActions.UI.Enable();
                 UnlockCursor();
+                OnOpenUI?.Invoke();
                 break;
             }
             case ActionMap.Printer:
