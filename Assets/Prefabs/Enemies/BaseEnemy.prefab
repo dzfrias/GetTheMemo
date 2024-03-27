@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 1313398842832997419}
   - component: {fileID: 676919004254080684}
   - component: {fileID: 3870238343100744397}
-  - component: {fileID: 3091326968878551393}
   m_Layer: 0
-  m_Name: MeleeEnemy
+  m_Name: BaseEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,20 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
---- !u!114 &3091326968878551393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7065562202667864304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7efdbf0a192a4b80b6fab30776a95da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 8798058334504581177}
-  attackCooldown: 5
 --- !u!1 &8355244722382632407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1622,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: b2408ca81f96c4b10b812015f69c0352, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 81bb9eea30387e442899949a80011e55,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -2106,12 +2091,6 @@ Transform:
 --- !u!4 &7503872342462456391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4372587343206045713, guid: 81bb9eea30387e442899949a80011e55,
-    type: 3}
-  m_PrefabInstance: {fileID: 3130686569641395624}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8798058334504581177 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 81bb9eea30387e442899949a80011e55,
     type: 3}
   m_PrefabInstance: {fileID: 3130686569641395624}
   m_PrefabAsset: {fileID: 0}
