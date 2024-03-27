@@ -9,13 +9,13 @@ public class RangedEnemy : Enemy
     public override void AddStatesToEnemyFSM()
     {
         base.AddStatesToEnemyFSM();
-        enemyFSM.AddState(EnemyState.Attack, new AttackState(true, this, ShootArrow, exitTime: 4f));
+        enemyFSM.AddState(EnemyState.Attack, new AttackState(true, this, OnAttack, exitTime: 4f));
     }
 
-    private void ShootArrow(State<EnemyState, StateEvent> state)
+    public override void OnAttack(State<EnemyState, StateEvent> _)
     {
-        lastAttackTime = Time.time;
-        Debug.Log("SHOOT PROJECTILE");
+        base.OnAttack(_);
+        Debug.Log("Shoot Projectile");
     }
 
     public override void AddEnemyStateTransitions()
