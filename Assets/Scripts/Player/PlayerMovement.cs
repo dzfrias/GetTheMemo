@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float sprintCooldown = 2f;
+    [Header("Dash Settings")]
+    [SerializeField] private float dashForce;
+    [SerializeField] private float dashDuration;
+    private bool isDashing = false;
 
     private Vector3 playerVelocity;
     private bool jump = false;
@@ -51,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         GameInput.Instance.OnJump += GameInput_OnJump;
         GameInput.Instance.OnSprintStart += GameInput_OnSprintStart;
         GameInput.Instance.OnSprintStop += GameInput_OnSprintStop;
+        GameInput.Instance.OnDash += GameInput_OnDash;
     }
 
     private void OnDisable()
@@ -58,24 +63,36 @@ public class PlayerMovement : MonoBehaviour
         GameInput.Instance.OnJump -= GameInput_OnJump;
         GameInput.Instance.OnSprintStart -= GameInput_OnSprintStart;
         GameInput.Instance.OnSprintStop -= GameInput_OnSprintStop;
+        GameInput.Instance.OnDash -= GameInput_OnDash;
     }
 
     private void Update()
     {
-        ApplyMovement();
         RotateToCamera();
-        ApplyGravity();
+
+        if (isDashing)
+        {
+            ApplyDash();
+            return;
+        }
 
         if (jump)
         {
             playerVelocity.y += Mathf.Sqrt(jumpPower * -1.0f * Physics.gravity.y);
         }
 
+        ApplyMovement();
+        ApplyGravity();
         HandleSprinting();
 
         characterController.Move(playerVelocity.normalized * movementSpeed * Time.deltaTime);
 
         jump = false;
+    }
+
+    private void ApplyDash()
+    {
+        characterController.Move(playerVelocity.normalized * dashForce * Time.deltaTime);
     }
 
     private void ApplyMovement()
@@ -133,6 +150,20 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
         }
+    }
+
+    private void GameInput_OnDash()
+    {
+        if (isDashing) return;
+
+        StartCoroutine(ActivateDashDuration());
+    }
+
+    private IEnumerator ActivateDashDuration()
+    {
+        isDashing = true;
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
     }
 
     private void RotateToCamera()

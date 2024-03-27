@@ -27,6 +27,7 @@ public class GameInput : MonoBehaviour
     public event Action OnSprintStop;
     public event Action OnAttack;
     public event Action OnClick;
+    public event Action OnDash;
 
     // UI action map
     public event Action OnOpenUI;
@@ -117,6 +118,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.PlayerNightTime.Sprint.started += PlayerInputActions_OnSprintStart;
         playerInputActions.PlayerNightTime.Sprint.canceled += PlayerInputActions_OnSprintStop;
         playerInputActions.PlayerNightTime.Attack.performed += PlayerInputActions_OnAttack;
+        playerInputActions.PlayerNightTime.Dash.performed += PlayerInputActions_OnDash;
 
         playerInputActions.UI.Close.performed += PlayerInputActions_OnCloseUI;
 
@@ -139,6 +141,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.PlayerNightTime.Sprint.started -= PlayerInputActions_OnSprintStart;
         playerInputActions.PlayerNightTime.Sprint.canceled -= PlayerInputActions_OnSprintStop;
         playerInputActions.PlayerNightTime.Attack.performed -= PlayerInputActions_OnAttack;
+        playerInputActions.PlayerNightTime.Dash.performed -= PlayerInputActions_OnDash;
 
         playerInputActions.UI.Close.performed -= PlayerInputActions_OnCloseUI;
 
@@ -220,6 +223,11 @@ public class GameInput : MonoBehaviour
     private void PlayerInputActions_OnAttack(InputAction.CallbackContext _)
     {
         OnAttack?.Invoke();
+    }
+
+    private void PlayerInputActions_OnDash(InputAction.CallbackContext _)
+    {
+        OnDash?.Invoke();
     }
 
     private void PlayerInputActions_OnCloseUI(InputAction.CallbackContext _)
