@@ -15,9 +15,9 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance;
 
     [SerializeField] private List<StoryBeat> beats;
+    [SerializeField] private DialogueBox dialogueBox;
 
     private int currentBeat;
-    private int currentDay;
 
     private void Awake()
     {
@@ -51,8 +51,18 @@ public class LevelManager : MonoBehaviour
         currentBeat += 1;
     }
 
-    public int CurrentDay()
+    public void PlayDialogueSequence(DialogueSO dialogueList)
     {
-        return currentDay;
+        StartCoroutine(_PlayDialogueSequence(dialogueList));
+    }
+
+    private IEnumerator _PlayDialogueSequence(DialogueSO dialogueList)
+    {
+        foreach (var dialogue in dialogueList.dialogues)
+        {
+            yield return new WaitWhile(() => dialogueBox.IsPlaying());
+            yield return new WaitForSeconds(dialogue.preDelay);
+            dialogueBox.DisplayText(dialogue.text);
+        }
     }
 }

@@ -7,7 +7,6 @@ public class OpeningCamera : MonoBehaviour
     private void Start()
     {
         GameInput.Instance.SwitchActionMaps(ActionMap.OpeningSequence);
-        GameInput.Instance.OnAwake += GameInput_OnAwake;
     }
 
     private void OnEnable()

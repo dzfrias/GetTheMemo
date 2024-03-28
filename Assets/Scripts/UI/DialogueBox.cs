@@ -6,6 +6,50 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 
+abstract class Token {}
+
+class StringToken : Token
+{
+    public string text { get; }
+
+    public StringToken(string text)
+    {
+        this.text = text;
+    }
+
+    public override string ToString()
+    {
+        return text;
+    }
+}
+
+class WaitToken : Token
+{
+    public float waitTime { get; }
+    public char ate { get; }
+
+    public WaitToken(float value, char ate)
+    {
+        waitTime = value;
+        this.ate = ate;
+    }
+}
+
+class StylingToken : Token
+{
+    public string text { get; }
+
+    public StylingToken(string text)
+    {
+        this.text = text;
+    }
+
+    public override string ToString()
+    {
+        return text;
+    }
+}
+
 class Tokenizer
 {
     private CharEnumerator chars;
@@ -22,16 +66,16 @@ class Tokenizer
     /// A token is defined as either:
     /// - A character
     /// - A tag (`<b>`, `<color="red">`, etc.)
-    public List<string> Tokenize()
+    public List<Token> Tokenize()
     {
-        List<string> tokens = new List<string>();
+        var tokens = new List<Token>();
 
         while (chars.MoveNext())
         {
             switch (chars.Current)
             {
                 case '<':
-                    StringBuilder sb = new StringBuilder();
+                    var sb = new StringBuilder();
                     while (chars.Current != '>')
                     {
                         sb.Append(chars.Current);
@@ -42,7 +86,21 @@ class Tokenizer
                         }
                     }
                     sb.Append('>');
-                    tokens.Add(sb.ToString());
+                    tokens.Add(new StylingToken(sb.ToString()));
+                    break;
+                case '%':
+                    var waitSb = new StringBuilder();
+                    chars.MoveNext();
+                    while (Char.IsDigit(chars.Current) || chars.Current == '.')
+                    {
+                        waitSb.Append(chars.Current);
+                        if (!chars.MoveNext())
+                        {
+                            break;
+                        }
+                    }
+                    var waitTime = float.Parse(waitSb.ToString());
+                    tokens.Add(new WaitToken(waitTime, chars.Current));
                     break;
                 default:
                     // Allocating a new `string` for every single character
@@ -50,7 +108,7 @@ class Tokenizer
                     // issues  we can easily fix this with a tagged union-like
                     // data structure (C# doesn't have them built-in
                     // unfortunately)
-                    tokens.Add(chars.Current.ToString());
+                    tokens.Add(new StringToken(chars.Current.ToString()));
                     break;
             }
         }
@@ -86,20 +144,33 @@ public class DialogueBox : MonoBehaviour
         // want to display each character of `<color...>` one by one, it should
         // just go to the TMP text as one contiguous block.
         Tokenizer tokenizer = new Tokenizer(msg);
-        List<string> tokens = tokenizer.Tokenize();
+        List<Token> tokens = tokenizer.Tokenize();
         textCoroutine = StartCoroutine(TypeText(tokens));
         onStart?.Invoke();
     }
 
-    private IEnumerator TypeText(List<string> tokens)
+    public bool IsPlaying()
     {
-        StringBuilder sb = new StringBuilder();
+        return textCoroutine != null;
+    }
+
+    private IEnumerator TypeText(List<Token> tokens)
+    {
+        var sb = new StringBuilder();
         foreach (var token in tokens)
         {
-            sb.Append(token);
+            if (token is WaitToken)
+            {
+                var waitToken = (WaitToken)token;
+                sb.Append(waitToken.ate);
+                yield return new WaitForSeconds(waitToken.waitTime);
+                continue;
+            }
+            string tokenText = token.ToString();
+            sb.Append(tokenText);
             dialogueText.text = sb.ToString();
             // If length > 1, it is a styling token, so no delay needed.
-            if (token.Length == 1)
+            if (token is StringToken)
             {
                 yield return new WaitForSeconds(typeDelay);
             }

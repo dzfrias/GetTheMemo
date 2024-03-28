@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95e9d53675c94c9b82aeb7a4d004270, type: 3}
+  m_Name: Dialogue 1.2
+  m_EditorClassIdentifier: 
+  dialogues:
+  - text: That's the spirit!
+    preDelay: 3
+  - text: It's always a great Monday when we get a new intern!
+    preDelay: 0
+  - text: Welcome to the office, kiddo.
+    preDelay: 0
+  - text: "I know it\u2019s hard to believe, but you\u2019re now officially part
+      of the Big Corp family."
+    preDelay: 2
