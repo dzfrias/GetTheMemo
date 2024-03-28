@@ -21,8 +21,8 @@ public class CinemachinePOVExtension : CinemachineExtension
     protected override void Awake()
     {
         base.Awake();
-        targetRot = transform.localRotation.eulerAngles;
         camTransform = Camera.main.transform;
+        targetRot = camTransform.localRotation.eulerAngles;
     }
 
     protected override void PostPipelineStageCallback(

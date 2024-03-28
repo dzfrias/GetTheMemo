@@ -11,6 +11,7 @@ public enum ActionMap
     PlayerNightTime,
     UI,
     Printer,
+    OpeningSequence,
 }
 
 public class GameInput : MonoBehaviour
@@ -39,6 +40,9 @@ public class GameInput : MonoBehaviour
     public event Action OnPrinterTop;
     public event Action OnPrinterBottom;
 
+    // Opening sequence action map
+    public event Action OnAwake;
+
     private PlayerInputActions playerInputActions;
 
     private void Awake()
@@ -63,11 +67,18 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Disable();
         playerInputActions.PlayerNightTime.Disable();
         playerInputActions.UI.Disable();
+        playerInputActions.OpeningSequence.Disable();
         switch (actionMap)
         {
             case ActionMap.Player:
             {
                 playerInputActions.Player.Enable();
+                LockCursor();
+                break;
+            }
+            case ActionMap.OpeningSequence:
+            {
+                playerInputActions.OpeningSequence.Enable();
                 LockCursor();
                 break;
             }
@@ -126,6 +137,8 @@ public class GameInput : MonoBehaviour
         playerInputActions.Printer.Right.performed += PlayerInputActions_PrinterRight;
         playerInputActions.Printer.Top.performed += PlayerInputActions_PrinterTop;
         playerInputActions.Printer.Bottom.performed += PlayerInputActions_PrinterBottom;
+
+        playerInputActions.OpeningSequence.Awake.performed += PlayerInputActions_OnAwake;
     }
 
     private void OnDisable()
@@ -149,6 +162,8 @@ public class GameInput : MonoBehaviour
         playerInputActions.Printer.Right.performed -= PlayerInputActions_PrinterRight;
         playerInputActions.Printer.Top.performed -= PlayerInputActions_PrinterTop;
         playerInputActions.Printer.Bottom.performed -= PlayerInputActions_PrinterBottom;
+
+        playerInputActions.OpeningSequence.Awake.performed -= PlayerInputActions_OnAwake;
     }
 
     public Vector2 GetMovementVectorNormalized()
@@ -258,5 +273,10 @@ public class GameInput : MonoBehaviour
     public void PlayerInputActions_OnClick(InputAction.CallbackContext _)
     {
         OnClick?.Invoke();
+    }
+
+    public void PlayerInputActions_OnAwake(InputAction.CallbackContext _)
+    {
+        OnAwake?.Invoke();
     }
 }

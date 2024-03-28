@@ -1153,6 +1153,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "OpeningSequence",
+            "id": "afed4e2b-8c55-4b9e-b119-4e999ddb1a64",
+            "actions": [
+                {
+                    "name": "Awake",
+                    "type": "Button",
+                    "id": "b80b2707-bd58-4590-8582-eac95ac2eb7d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e7378b33-71ff-4912-a998-e9c3723aba4c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Awake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

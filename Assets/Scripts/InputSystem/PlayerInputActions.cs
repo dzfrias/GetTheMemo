@@ -1175,6 +1175,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""OpeningSequence"",
+            ""id"": ""afed4e2b-8c55-4b9e-b119-4e999ddb1a64"",
+            ""actions"": [
+                {
+                    ""name"": ""Awake"",
+                    ""type"": ""Button"",
+                    ""id"": ""b80b2707-bd58-4590-8582-eac95ac2eb7d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e7378b33-71ff-4912-a998-e9c3723aba4c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Awake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1276,6 +1304,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerNightTime_Sprint = m_PlayerNightTime.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerNightTime_Attack = m_PlayerNightTime.FindAction("Attack", throwIfNotFound: true);
         m_PlayerNightTime_Dash = m_PlayerNightTime.FindAction("Dash", throwIfNotFound: true);
+        // OpeningSequence
+        m_OpeningSequence = asset.FindActionMap("OpeningSequence", throwIfNotFound: true);
+        m_OpeningSequence_Awake = m_OpeningSequence.FindAction("Awake", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1709,6 +1740,52 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerNightTimeActions @PlayerNightTime => new PlayerNightTimeActions(this);
+
+    // OpeningSequence
+    private readonly InputActionMap m_OpeningSequence;
+    private List<IOpeningSequenceActions> m_OpeningSequenceActionsCallbackInterfaces = new List<IOpeningSequenceActions>();
+    private readonly InputAction m_OpeningSequence_Awake;
+    public struct OpeningSequenceActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public OpeningSequenceActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Awake => m_Wrapper.m_OpeningSequence_Awake;
+        public InputActionMap Get() { return m_Wrapper.m_OpeningSequence; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(OpeningSequenceActions set) { return set.Get(); }
+        public void AddCallbacks(IOpeningSequenceActions instance)
+        {
+            if (instance == null || m_Wrapper.m_OpeningSequenceActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_OpeningSequenceActionsCallbackInterfaces.Add(instance);
+            @Awake.started += instance.OnAwake;
+            @Awake.performed += instance.OnAwake;
+            @Awake.canceled += instance.OnAwake;
+        }
+
+        private void UnregisterCallbacks(IOpeningSequenceActions instance)
+        {
+            @Awake.started -= instance.OnAwake;
+            @Awake.performed -= instance.OnAwake;
+            @Awake.canceled -= instance.OnAwake;
+        }
+
+        public void RemoveCallbacks(IOpeningSequenceActions instance)
+        {
+            if (m_Wrapper.m_OpeningSequenceActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IOpeningSequenceActions instance)
+        {
+            foreach (var item in m_Wrapper.m_OpeningSequenceActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_OpeningSequenceActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public OpeningSequenceActions @OpeningSequence => new OpeningSequenceActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1793,5 +1870,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+    }
+    public interface IOpeningSequenceActions
+    {
+        void OnAwake(InputAction.CallbackContext context);
     }
 }
