@@ -10,9 +10,9 @@ public class StoryBeat
     public UnityEvent onEnd;
 }
 
-public class LevelManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static LevelManager Instance;
+    public static GameManager Instance;
 
     [SerializeField] private List<StoryBeat> beats;
     [SerializeField] private DialogueBox dialogueBox;

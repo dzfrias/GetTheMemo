@@ -23,6 +23,6 @@ public class OpeningCamera : MonoBehaviour
     {
         gameObject.SetActive(false);
         GameInput.Instance.SwitchActionMaps(ActionMap.Player);
-        LevelManager.Instance.NextBeat();
+        GameManager.Instance.NextBeat();
     }
 }
