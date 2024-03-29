@@ -49,6 +49,9 @@ public class PlayerHold : MonoBehaviour
         ConfigurableJoint configurableJoint = anchorObject.AddComponent<ConfigurableJoint>();
         configurableJoint.connectedBody = heldObject.GetComponent<Rigidbody>();
         configurableJoint.autoConfigureConnectedAnchor = false;
+        // This is automatically set in debug builds but NOT in release mode
+        // for some reason. Holding breaks in build without this line
+        configurableJoint.connectedAnchor = new Vector3(0, 0, 0);
 
         configurableJoint.xDrive = CreateJointDrive();
         configurableJoint.yDrive = CreateJointDrive();
