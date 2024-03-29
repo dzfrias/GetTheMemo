@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public class StoryBeat
 {
+    public float autoContinue = -1;
     public UnityEvent onStart;
     public UnityEvent onEnd;
 }
@@ -47,8 +48,13 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("Attempting to go to story beat that does not exist");
             return;
         }
-        beats[currentBeat].onStart?.Invoke();
+        var current = beats[currentBeat];
+        current.onStart?.Invoke();
         currentBeat += 1;
+        if (current.autoContinue > 0)
+        {
+            StartCoroutine(AutoContinue(current.autoContinue));
+        }
     }
 
     public void PlayDialogueSequence(DialogueSO dialogueList)
@@ -64,5 +70,11 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(dialogue.preDelay);
             dialogueBox.DisplayText(dialogue.text);
         }
+    }
+
+    private IEnumerator AutoContinue(float time)
+    {
+        yield return new WaitForSeconds(time);
+        NextBeat();
     }
 }

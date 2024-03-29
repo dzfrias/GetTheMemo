@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OpeningCamera : MonoBehaviour
 {
+    public bool canContinue;
+
     private void Start()
     {
         GameInput.Instance.SwitchActionMaps(ActionMap.OpeningSequence);
@@ -21,8 +23,14 @@ public class OpeningCamera : MonoBehaviour
 
     private void GameInput_OnAwake()
     {
+        if (!canContinue) return;
         gameObject.SetActive(false);
         GameInput.Instance.SwitchActionMaps(ActionMap.Player);
         GameManager.Instance.NextBeat();
+    }
+
+    public void CanContinue()
+    {
+        canContinue = true;
     }
 }
