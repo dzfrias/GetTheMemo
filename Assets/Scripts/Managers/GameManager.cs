@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [SerializeField] private bool devMode;
     [SerializeField] private List<StoryBeat> beats;
     [SerializeField] private DialogueBox dialogueBox;
 
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public void NextBeat()
     {
+        if (devMode) return;
         if (currentBeat != 0)
         {
             beats[currentBeat - 1].onEnd?.Invoke();
