@@ -11,7 +11,7 @@ public class StoryBeat
     public UnityEvent onEnd;
 }
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IRecordMode
 {
     public static GameManager Instance;
 
@@ -73,6 +73,11 @@ public class GameManager : MonoBehaviour
     public void HideTutorial()
     {
         tutorialText.Hide();
+    }
+
+    public void OnEnterRecordMode()
+    {
+        devMode = true;
     }
 
     private IEnumerator _PlayDialogueSequence(DialogueSO dialogueList)
