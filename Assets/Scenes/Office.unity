@@ -9232,7 +9232,7 @@ MonoBehaviour:
   AutoInitialization: 1
   SafeMode: 3
   Direction: 0
-  AutoChangeDirectionOnEnd: 1
+  AutoChangeDirectionOnEnd: 0
   AutoPlayOnStart: 0
   AutoPlayOnEnable: 0
   ForceTimescaleMode: 1

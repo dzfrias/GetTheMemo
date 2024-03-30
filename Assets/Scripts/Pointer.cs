@@ -13,13 +13,13 @@ public class Pointer : MonoBehaviour
     {
         player = GetComponent<MMF_Player>();
         GameInput.Instance.OnOpenUI += GameInput_OnOpenUI;
-        GameInput.Instance.OnCloseUI += GameInput_OnCloseUI;
+        GameInput.Instance.OnCloseUISuccess += GameInput_OnCloseUISuccess;
     }
 
     private void OnDestroy()
     {
         GameInput.Instance.OnOpenUI -= GameInput_OnOpenUI;
-        GameInput.Instance.OnCloseUI -= GameInput_OnCloseUI;
+        GameInput.Instance.OnCloseUISuccess -= GameInput_OnCloseUISuccess;
     }
 
     public void OnHover()
@@ -42,7 +42,7 @@ public class Pointer : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void GameInput_OnCloseUI()
+    public void GameInput_OnCloseUISuccess()
     {
         gameObject.SetActive(true);
     }

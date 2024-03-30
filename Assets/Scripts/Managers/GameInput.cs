@@ -34,6 +34,7 @@ public class GameInput : MonoBehaviour
     // UI action map
     public event Action OnOpenUI;
     public event Action OnCloseUI;
+    public event Action OnCloseUISuccess;
 
     // Printer action map
     public event Action OnPrinterLeft;
@@ -64,6 +65,7 @@ public class GameInput : MonoBehaviour
 
     public void SwitchActionMaps(ActionMap actionMap)
     {
+        bool wasInUI = playerInputActions.UI.enabled;
         playerInputActions.Printer.Disable();
         playerInputActions.Player.Disable();
         playerInputActions.PlayerNightTime.Disable();
@@ -102,6 +104,10 @@ public class GameInput : MonoBehaviour
                 UnlockCursor();
                 break;
             }
+        }
+        if (wasInUI && !playerInputActions.UI.enabled)
+        {
+            OnCloseUISuccess?.Invoke();
         }
     }
 

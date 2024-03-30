@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (player.HasFeedbackStillPlaying()) return;
         GameInput.Instance.SwitchActionMaps(ActionMap.Player);
-        player.PlayFeedbacks();
+        player.PlayFeedbacksInReverse();
         Time.timeScale = 1;
     }
 
@@ -51,6 +51,7 @@ public class PauseMenu : MonoBehaviour
         if (!isOpen)
         {
             Display(false);
+            player.SetDirectionTopToBottom();
         }
     }
 
