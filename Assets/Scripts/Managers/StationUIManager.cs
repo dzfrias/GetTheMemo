@@ -45,6 +45,7 @@ public class StationUIManager : MonoBehaviour
 
     private void CloseCurrentStationUI()
     {
+        if (currentStationUI == null) return;
         currentStationUI.SetActive(false);
         GameInput.Instance.SwitchActionMaps(ActionMap.Player);
         currentStationUI = null;

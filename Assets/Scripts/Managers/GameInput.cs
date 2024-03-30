@@ -29,6 +29,7 @@ public class GameInput : MonoBehaviour
     public event Action OnAttack;
     public event Action OnClick;
     public event Action OnDash;
+    public event Action OnPause;
 
     // UI action map
     public event Action OnOpenUI;
@@ -123,6 +124,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Pickup.canceled += PlayerInputActions_OnPickupStopped;
         playerInputActions.Player.Jump.performed += PlayerInputActions_OnJump;
         playerInputActions.Player.Click.performed += PlayerInputActions_OnClick;
+        playerInputActions.Player.Pause.performed += PlayerInputActions_OnPause;
 
         playerInputActions.PlayerNightTime.Throw.performed += PlayerInputActions_OnThrow;
         playerInputActions.PlayerNightTime.Jump.performed += PlayerInputActions_OnJump;
@@ -148,6 +150,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Pickup.canceled -= PlayerInputActions_OnPickupStopped;
         playerInputActions.Player.Jump.performed -= PlayerInputActions_OnJump;
         playerInputActions.Player.Click.performed -= PlayerInputActions_OnClick;
+        playerInputActions.Player.Pause.performed -= PlayerInputActions_OnPause;
 
         playerInputActions.PlayerNightTime.Throw.performed -= PlayerInputActions_OnThrow;
         playerInputActions.PlayerNightTime.Jump.performed -= PlayerInputActions_OnJump;
@@ -278,5 +281,10 @@ public class GameInput : MonoBehaviour
     public void PlayerInputActions_OnAwake(InputAction.CallbackContext _)
     {
         OnAwake?.Invoke();
+    }
+
+    public void PlayerInputActions_OnPause(InputAction.CallbackContext _)
+    {
+        OnPause?.Invoke();
     }
 }
