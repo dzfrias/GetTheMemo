@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private bool devMode;
+    [SerializeField] private TutorialText tutorialText;
     [SerializeField] private List<StoryBeat> beats;
     [SerializeField] private DialogueBox dialogueBox;
 
@@ -62,6 +63,16 @@ public class GameManager : MonoBehaviour
     public void PlayDialogueSequence(DialogueSO dialogueList)
     {
         StartCoroutine(_PlayDialogueSequence(dialogueList));
+    }
+
+    public void DisplayTutorial(string text)
+    {
+        tutorialText.Display(text);
+    }
+
+    public void HideTutorial()
+    {
+        tutorialText.Hide();
     }
 
     private IEnumerator _PlayDialogueSequence(DialogueSO dialogueList)

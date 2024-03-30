@@ -24,6 +24,7 @@ public class PlayerInteraction : MonoBehaviour
     private GameObject hoverable;
     private IGrabbable heldObject;
     private PlayerHold playerHold;
+    private bool firstInteract = true;
 
     private void Awake()
     {
@@ -121,6 +122,10 @@ public class PlayerInteraction : MonoBehaviour
             outline.OutlineColor = outlineColor;
             outline.OutlineWidth = outlineWidth;
             pointer.OnHover();
+            if (firstInteract)
+            {
+                GameManager.Instance.DisplayTutorial("E to interact");
+            }
         }
         else
         {
@@ -129,6 +134,10 @@ public class PlayerInteraction : MonoBehaviour
                 // Only called when an object is newly unhovered
                 pointer.Reset();
                 Destroy(hoverable.GetComponent<Outline>());
+                if (firstInteract)
+                {
+                    GameManager.Instance.HideTutorial();
+                }
             }
             TryNoHover();
             hoverable = null;
@@ -146,6 +155,11 @@ public class PlayerInteraction : MonoBehaviour
             if (detectedObject.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact(transform.position);
+                if (firstInteract)
+                {
+                    GameManager.Instance.HideTutorial();
+                    firstInteract = false;
+                }
             }
         }
     }
