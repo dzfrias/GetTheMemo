@@ -649,6 +649,11 @@ PrefabInstance:
       propertyPath: forwardDashDuration
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1955191967144759490, guid: 783792e4c7a7d4b96a219598286ea572,
+        type: 3}
+      propertyPath: staminaRegenerationCooldown
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4879248015924518829, guid: 783792e4c7a7d4b96a219598286ea572,
         type: 3}
       propertyPath: m_Name
@@ -1192,7 +1197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567312168}
   m_Layer: 5
-  m_Name: SprintUI
+  m_Name: StaminaUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1263,7 +1268,7 @@ GameObject:
   - component: {fileID: 681875428}
   - component: {fileID: 681875427}
   m_Layer: 5
-  m_Name: SprintBarBackground
+  m_Name: StaminaBarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1757,7 +1762,7 @@ GameObject:
   - component: {fileID: 1045744830}
   - component: {fileID: 1045744832}
   m_Layer: 5
-  m_Name: SprintBar
+  m_Name: StaminaBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

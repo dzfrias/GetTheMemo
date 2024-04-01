@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public event Action<float> OnSprintTimeChanged;
+    public event Action<float> OnStaminaChanged;
 
     [Header("Movement Settings")]
     [SerializeField]
@@ -21,13 +21,15 @@ public class PlayerMovement : MonoBehaviour
     private float sprintMultiplier = 1.5f;
 
     [SerializeField]
-    private float sprintTimeMax = 3f;
+    private float maxStamina = 100f;
 
     [SerializeField]
-    private float sprintRegenSpeed = 3f;
+    private float staminaRegenerationSpeed = 3f;
 
-    [SerializeField]
-    private float sprintCooldown = 2f;
+    [SerializeField] private float staminaRegenerationCooldownTimeMax = 1f;
+
+    [SerializeField] private float sprintStaminaCost = 3f;
+
     [Header("Dash Settings")]
     [SerializeField] private float dashForce;
     [SerializeField] private float dashDuration;
@@ -36,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 playerVelocity;
     private bool jump = false;
     private bool sprintInputPressed = false;
-    private float sprintTime;
-    private bool onSprintCooldown = false;
+    private float stamina;
+    private float staminaRegenerationCooldownTime;
 
     private Transform camTransform;
     private CharacterController characterController;
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         camTransform = Camera.main.transform;
         characterController = GetComponent<CharacterController>();
 
-        sprintTime = sprintTimeMax;
+        stamina = maxStamina;
     }
 
     private void OnEnable()
@@ -88,6 +90,8 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(playerVelocity.normalized * movementSpeed * Time.deltaTime);
 
         jump = false;
+
+        HandleStaminaRegeneration();
     }
 
     private void ApplyDash()
@@ -108,30 +112,51 @@ public class PlayerMovement : MonoBehaviour
     {
         if (sprintInputPressed)
         {
-            if (sprintTime > 0 && (playerVelocity.x != 0 || playerVelocity.z != 0))
+            if (stamina > 0 && (playerVelocity.x != 0 || playerVelocity.z != 0))
             {
                 Vector3 sprintAppliedPlayerVelocity = new Vector3(playerVelocity.x * sprintMultiplier, playerVelocity.y, playerVelocity.z * sprintMultiplier);
                 playerVelocity = sprintAppliedPlayerVelocity;
-                sprintTime -= Time.deltaTime;
-                OnSprintTimeChanged?.Invoke(sprintTime);
+                UseStamina(sprintStaminaCost * Time.deltaTime);
             }
-            else if (!onSprintCooldown)
-            {
-                StartCoroutine(SprintCooldown());
-            }
-        }
-        else if (sprintTime < sprintTimeMax && !onSprintCooldown)
-        {
-            sprintTime += Time.deltaTime * sprintRegenSpeed;
-            OnSprintTimeChanged?.Invoke(sprintTime);
         }
     }
 
-    private IEnumerator SprintCooldown()
+    private void HandleStaminaRegeneration()
     {
-        onSprintCooldown = true;
-        yield return new WaitForSeconds(sprintCooldown);
-        onSprintCooldown = false;
+        if (staminaRegenerationCooldownTime <= 0)
+        {
+            RegenerateStamina(staminaRegenerationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            staminaRegenerationCooldownTime -= Time.deltaTime;
+        }
+    }
+
+    private void UseStamina(float amount)
+    {
+        stamina -= amount;
+        if (stamina <= 0)
+        {
+            stamina = 0;
+        }
+        staminaRegenerationCooldownTime = staminaRegenerationCooldownTimeMax;
+        OnStaminaChanged?.Invoke(stamina);
+    }
+
+    private void RegenerateStamina(float amount)
+    {
+        stamina += amount;
+        if (stamina > maxStamina)
+        {
+            stamina = maxStamina;
+        }
+        OnStaminaChanged?.Invoke(stamina);
+    }
+
+    public float GetMaxStamina()
+    {
+        return maxStamina;
     }
 
     private void GameInput_OnSprintStart()
@@ -181,10 +206,5 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y = -1f;
         }
-    }
-
-    public float GetMaxSprintTime()
-    {
-        return sprintTimeMax;
     }
 }
