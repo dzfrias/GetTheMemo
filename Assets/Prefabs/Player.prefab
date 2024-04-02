@@ -114,9 +114,11 @@ MonoBehaviour:
   jumpEnabled: 0
   jumpPower: 5
   sprintMultiplier: 1.5
-  sprintTimeMax: 4
-  sprintRegenSpeed: 0.5
-  sprintCooldown: 3
+  maxStamina: 25
+  staminaRegenerationSpeed: 3
+  staminaRegenerationCooldownTimeMax: 2
+  dashForce: 0
+  dashDuration: 0
 --- !u!114 &8481031941245057449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +136,8 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 5
   holdTransform: {fileID: 7905994758175564649}
+  clickDistance: 0
+  clickStrength: 10
 --- !u!114 &6591005490235015433
 MonoBehaviour:
   m_ObjectHideFlags: 0
