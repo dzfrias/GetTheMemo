@@ -6,6 +6,8 @@ using MoreMountains.Feedbacks;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] private Settings settings;
+
     private MMF_Player player;
     private bool isOpen;
 
@@ -39,7 +41,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Close()
     {
-        if (player.HasFeedbackStillPlaying()) return;
+        // settings.IsOpen() will emulate a stack-based UI like the user would
+        // expect.
+        if (player.HasFeedbackStillPlaying() || settings.IsOpen()) return;
         GameInput.Instance.SwitchActionMaps(ActionMap.Player);
         player.PlayFeedbacksInReverse();
         Time.timeScale = 1;
