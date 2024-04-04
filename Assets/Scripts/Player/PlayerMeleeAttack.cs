@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMeleeAttack : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [SerializeField] private LayerMask ignoreRaycast;
     [SerializeField] private Camera cam;
     [SerializeField] private Transform head;
@@ -11,13 +12,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private float attackDelay = 0.5f;
     [SerializeField] private float attackDamage = 5f;
     private bool isAttacking = false;
-
-    private Animator animator;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     private void OnEnable()
     {
