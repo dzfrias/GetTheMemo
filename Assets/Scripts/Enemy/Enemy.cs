@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityHFSM;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] protected MMF_Player impactEffects;
     [SerializeField] protected Animator animator;
     [SerializeField] protected float attackCooldown = 3f;
 
@@ -82,6 +84,7 @@ public class Enemy : MonoBehaviour
     private void Health_OnHealthChanged(float health)
     {
         enemyFSM.Trigger(StateEvent.Impact);
+        impactEffects.PlayFeedbacks();
         if (health <= 0)
         {
             Destroy(gameObject);

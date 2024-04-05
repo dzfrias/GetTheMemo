@@ -87,6 +87,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5348278090049791519}
   m_SourcePrefab: {fileID: 100100000, guid: 704e010ec26a60b4a885d7adcda17fa0, type: 3}
+--- !u!114 &3529762371726092297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2231438042409560953, guid: 704e010ec26a60b4a885d7adcda17fa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3317909649450812272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4335057680081147154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1306785798855300706, guid: 704e010ec26a60b4a885d7adcda17fa0,
@@ -111,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7efdbf0a192a4b80b6fab30776a95da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impactEffects: {fileID: 3529762371726092297}
   animator: {fileID: 6994366431050414578}
   attackCooldown: 1
 --- !u!1001 &6675550664140106848
