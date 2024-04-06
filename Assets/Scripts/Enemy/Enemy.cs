@@ -7,6 +7,8 @@ using UnityHFSM;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] protected List<SkinnedMeshRenderer> skinnedMeshRenderers;
+    [SerializeField] protected List<MeshRenderer> meshRenderers;
     [SerializeField] protected MMF_Player impactEffects;
     [SerializeField] protected Animator animator;
     [SerializeField] protected float attackCooldown = 3f;
@@ -85,9 +87,52 @@ public class Enemy : MonoBehaviour
     {
         enemyFSM.Trigger(StateEvent.Impact);
         impactEffects.PlayFeedbacks();
+        StartCoroutine(Flash());
         if (health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator Flash()
+    {
+        List<Color> savedMaterialColors = new();
+        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
+        {
+            foreach (Material material in skinnedMeshRenderer.materials)
+            {
+                savedMaterialColors.Add(material.color);
+                material.color = Color.white;
+            }
+        }
+
+        foreach (MeshRenderer meshRenderer in meshRenderers)
+        {
+            foreach (Material material in meshRenderer.materials)
+            {
+                savedMaterialColors.Add(material.color);
+                material.color = Color.white;
+            }
+        }
+
+        yield return new WaitForSeconds(0.05f);
+        int materialNumber = 0;
+        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
+        {
+            foreach (Material material in skinnedMeshRenderer.materials)
+            {
+                material.color = savedMaterialColors[materialNumber];
+                materialNumber++;
+            }
+        }
+
+        foreach (MeshRenderer meshRenderer in meshRenderers)
+        {
+            foreach (Material material in meshRenderer.materials)
+            {
+                material.color = savedMaterialColors[materialNumber];
+                materialNumber++;
+            }
         }
     }
 
