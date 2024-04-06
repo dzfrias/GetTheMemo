@@ -15,6 +15,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 676919004254080684, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
+      propertyPath: m_Height
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 676919004254080684, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
       propertyPath: m_StoppingDistance
       value: 1
       objectReference: {fileID: 0}
@@ -67,6 +72,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313398842832997419, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_Height
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313398842832997419, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313398842832997419, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7065562202667864304, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
@@ -123,6 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7efdbf0a192a4b80b6fab30776a95da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinnedMeshRenderers: []
+  meshRenderers: []
   impactEffects: {fileID: 3529762371726092297}
   animator: {fileID: 6994366431050414578}
   attackCooldown: 1
@@ -134,6 +156,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4335057680081147154}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 35e69b66f93a4f349a068013a6274ac7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 35e69b66f93a4f349a068013a6274ac7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 35e69b66f93a4f349a068013a6274ac7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 35e69b66f93a4f349a068013a6274ac7,
         type: 3}
       propertyPath: m_LocalPosition.x
