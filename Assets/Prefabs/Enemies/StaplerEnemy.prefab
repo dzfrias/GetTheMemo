@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 676919004254080684, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: m_StoppingDistance
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1306785798855300706, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
@@ -165,7 +165,7 @@ MonoBehaviour:
   impactEffects: {fileID: 3529762371726092297}
   animator: {fileID: 6994366431050414578}
   attackPoint: {fileID: 3002282281658526807}
-  attackDamage: 2
+  attackDamage: 1
   attackDistance: 2
   attackCooldown: 1
 --- !u!1001 &6675550664140106848

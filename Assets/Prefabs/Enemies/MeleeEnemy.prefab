@@ -879,6 +879,11 @@ PrefabInstance:
       propertyPath: managedReferences[6401064376593809408].LevelCurve.Curve.m_Curve.Array.data[2].weightedMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3870238343100744397, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: maxHealth
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7065562202667864304, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: m_Name
@@ -963,7 +968,7 @@ MonoBehaviour:
   attackPoint: {fileID: 1734615137610847461}
   attackDamage: 2
   attackDistance: 2
-  attackCooldown: 5
+  attackCooldown: 2
 --- !u!1001 &6816322851351701176
 PrefabInstance:
   m_ObjectHideFlags: 0
