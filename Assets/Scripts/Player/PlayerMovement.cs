@@ -7,32 +7,24 @@ public class PlayerMovement : MonoBehaviour
 {
     public event Action<float> OnStaminaChanged;
 
-    [Header("Movement Settings")]
-    [SerializeField]
-    private float movementSpeed = 1f;
-    
-    [SerializeField]
-    private bool jumpEnabled = false;
+    [Header("General Settings")]
+    [SerializeField] private float movementSpeed = 1f;
+    [SerializeField] private bool jumpEnabled = false;
+    [SerializeField] private float jumpPower = 1f;
 
-    [SerializeField]
-    private float jumpPower = 1f;
-
-    [SerializeField]
-    private float sprintMultiplier = 1.5f;
-
-    [SerializeField]
-    private float maxStamina = 100f;
-
-    [SerializeField]
-    private float staminaRegenerationSpeed = 3f;
-
+    [Header("Stamina Settings")]
+    [SerializeField] private float maxStamina = 100f;
+    [SerializeField] private float staminaRegenerationSpeed = 3f;
     [SerializeField] private float staminaRegenerationCooldownTimeMax = 1f;
 
+    [Header("Sprint Settings")]
+    [SerializeField] private float sprintMultiplier = 1.5f;
     [SerializeField] private float sprintStaminaCost = 3f;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashForce;
     [SerializeField] private float dashDuration;
+    [SerializeField] private float dashStaminaCost = 20f;
     private bool isDashing = false;
 
     private Vector3 playerVelocity;
@@ -179,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GameInput_OnDash()
     {
-        if (isDashing) return;
+        if (isDashing || stamina <= 0) return;
 
         StartCoroutine(ActivateDashDuration());
     }
@@ -187,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ActivateDashDuration()
     {
         isDashing = true;
+        UseStamina(dashStaminaCost);
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
     }
