@@ -13,14 +13,23 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private float attackDamage = 5f;
     private bool isAttacking = false;
 
+    private AnimationEventProxy animationEventProxy;
+
+    private void Awake()
+    {
+        animator.TryGetComponent(out animationEventProxy);
+    }
+
     private void OnEnable()
     {
         GameInput.Instance.OnAttack += Attack;
+        animationEventProxy.OnAttack += HitObject;
     }
 
     private void OnDisable()
     {
         GameInput.Instance.OnAttack -= Attack;
+        animationEventProxy.OnAttack -= HitObject;
     }
 
     private void Attack()
@@ -29,7 +38,6 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         isAttacking = true;
         animator.SetTrigger("Attack");
-        Invoke(nameof(HitObject), attackDelay);
     }
 
     private void HitObject()

@@ -11,12 +11,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected List<MeshRenderer> meshRenderers;
     [SerializeField] protected MMF_Player impactEffects;
     [SerializeField] protected Animator animator;
+    [SerializeField] protected Transform attackPoint;
+    [SerializeField] protected float attackDamage = 2f;
+    [SerializeField] protected float attackDistance = 2f;
     [SerializeField] protected float attackCooldown = 3f;
 
     protected Transform player;
     protected NavMeshAgent navMeshAgent;
     protected Health health;
     protected StateMachine<EnemyState, StateEvent> enemyFSM;
+    protected AnimationEventProxy animationEventProxy;
 
     protected float lastAttackTime;
 
@@ -25,6 +29,7 @@ public class Enemy : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();
+        animator.TryGetComponent(out animationEventProxy);
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -76,11 +81,13 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         health.OnHealthChanged += Health_OnHealthChanged;
+        animationEventProxy.OnAttack += DealDamage;
     }
 
     private void OnDisable()
     {
         health.OnHealthChanged -= Health_OnHealthChanged;
+        animationEventProxy.OnAttack -= DealDamage;
     }
     
     private void Health_OnHealthChanged(float health)
@@ -140,6 +147,18 @@ public class Enemy : MonoBehaviour
     {
         transform.LookAt(player.transform.position);
         lastAttackTime = Time.time;
+    }
+
+    private void DealDamage()
+    {
+        RaycastHit[] raycastHits = Physics.RaycastAll(attackPoint.position, transform.forward * attackDistance);
+        foreach (RaycastHit raycastHit in raycastHits)
+        {
+            if (raycastHit.collider.CompareTag("Player"))
+            {
+                player.GetComponent<Health>().TakeDamage(attackDamage);
+            }
+        }
     }
 
     public Animator GetAnimator() 
