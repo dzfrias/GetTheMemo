@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
 
     protected float lastAttackTime;
 
-
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();

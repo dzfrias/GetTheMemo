@@ -6,6 +6,8 @@ using UnityHFSM;
 
 public class RangedEnemy : Enemy
 {
+    [SerializeField] private GameObject projectile;
+
     public override void AddStatesToEnemyFSM()
     {
         base.AddStatesToEnemyFSM();
@@ -15,7 +17,7 @@ public class RangedEnemy : Enemy
     public override void OnAttack(State<EnemyState, StateEvent> _)
     {
         base.OnAttack(_);
-        Debug.Log("Shoot Projectile");
+        Instantiate(projectile, transform.position, Quaternion.LookRotation(transform.forward));
     }
 
     public override void AddEnemyStateTransitions()

@@ -107,9 +107,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc916cf7547eb444b903f3d56845f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinnedMeshRenderers: []
+  meshRenderers: []
   impactEffects: {fileID: 5750514695082613134}
   animator: {fileID: 3108254253865634510}
+  attackPoint: {fileID: 0}
+  attackDamage: 2
+  attackDistance: 2
   attackCooldown: 3
+  projectile: {fileID: 1643745817342565188, guid: 38520147a67564507bca911bd4fefc59,
+    type: 3}
 --- !u!114 &5750514695082613134 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2231438042409560953, guid: 704e010ec26a60b4a885d7adcda17fa0,
