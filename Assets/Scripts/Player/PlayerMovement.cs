@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashForce;
     [SerializeField] private float dashDuration;
     [SerializeField] private float dashStaminaCost = 20f;
+    [SerializeField] private MMF_Player dashEffects;
     private bool isDashing = false;
 
     private Vector3 playerVelocity;
@@ -178,6 +180,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator ActivateDashDuration()
     {
+        dashEffects.PlayFeedbacks();
         isDashing = true;
         UseStamina(dashStaminaCost);
         yield return new WaitForSeconds(dashDuration);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class PlayerMeleeAttack : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private float attackDistance = 5f;
     [SerializeField] private float attackDelay = 0.5f;
     [SerializeField] private float attackDamage = 5f;
+    [SerializeField] private MMF_Player effect;
     private bool isAttacking = false;
 
     private AnimationEventProxy animationEventProxy;
@@ -50,6 +52,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             if (raycastHit.collider.TryGetComponent(out Health health))
             {
                 health.TakeDamage(attackDamage);
+                effect.PlayFeedbacks();
             }
             Debug.Log("Hit: " + raycastHit.collider.gameObject.name);
         }

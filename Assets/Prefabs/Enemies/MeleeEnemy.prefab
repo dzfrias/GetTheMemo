@@ -232,7 +232,7 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[1452373626512211969].ParticlesPrefab
       value: 
-      objectReference: {fileID: 3631168039500777239, guid: 244af8a31dab64f2e9c0bfe5903951ac,
+      objectReference: {fileID: 7375673893110396827, guid: 244af8a31dab64f2e9c0bfe5903951ac,
         type: 3}
     - target: {fileID: 2231438042409560953, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
