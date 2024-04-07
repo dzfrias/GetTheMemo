@@ -14,7 +14,8 @@ public class AttackState : EnemyStateBase
 
     public override void OnEnter()
     {
-        Debug.Log("ENTER ATTACK STATE");
+        var name = enemy.gameObject.name;
+        Debug.Log($"{name}: ENTER ATTACK STATE");
         base.OnEnter();
         agent.isStopped = true;
         animator.Play("Attack");

@@ -151,7 +151,7 @@ public class Enemy : MonoBehaviour
 
     private void DealDamage()
     {
-        RaycastHit[] raycastHits = Physics.RaycastAll(attackPoint.position, transform.forward * attackDistance);
+        RaycastHit[] raycastHits = Physics.RaycastAll(attackPoint.position, transform.forward, attackDistance);
         foreach (RaycastHit raycastHit in raycastHits)
         {
             if (raycastHit.collider.CompareTag("Player"))
