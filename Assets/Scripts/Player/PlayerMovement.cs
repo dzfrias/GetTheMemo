@@ -183,7 +183,10 @@ public class PlayerMovement : MonoBehaviour
         dashEffects.PlayFeedbacks();
         isDashing = true;
         UseStamina(dashStaminaCost);
+        LayerMask oldMask = characterController.excludeLayers;
+        characterController.excludeLayers = oldMask | LayerMask.GetMask("Enemy");
         yield return new WaitForSeconds(dashDuration);
+        characterController.excludeLayers = oldMask;
         isDashing = false;
     }
 
