@@ -173,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GameInput_OnDash()
     {
-        if (isDashing || stamina <= 0) return;
+        if (isDashing || stamina <= 0 || GameInput.Instance.GetMovementVectorNormalized() == Vector2.zero) return;
 
         StartCoroutine(ActivateDashDuration());
     }
