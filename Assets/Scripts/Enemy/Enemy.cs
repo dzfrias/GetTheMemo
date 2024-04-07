@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.2f);
         int materialNumber = 0;
         foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
         {
