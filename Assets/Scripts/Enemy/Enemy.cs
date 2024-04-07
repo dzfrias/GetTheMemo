@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    private void Start()
+    public virtual void Start()
     {
         enemyFSM = new StateMachine<EnemyState, StateEvent>();
         AddStatesToEnemyFSM();

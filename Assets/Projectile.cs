@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float speed = 1f;
+    public float speed = 1f;
     [SerializeField] private float damage = 5f;
+    [SerializeField] private float age = 4f;
 
     private void Update()
     {
         transform.position += speed * transform.forward * Time.deltaTime;
+        age -= Time.deltaTime;
+        if (age <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider collider)

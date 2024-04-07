@@ -7,6 +7,17 @@ using UnityHFSM;
 public class RangedEnemy : Enemy
 {
     [SerializeField] private GameObject projectile;
+    [SerializeField] private float shotDelay = 0.1f;
+
+    private float projectileSpeed;
+    private CharacterController playerController;
+
+    public override void Start()
+    {
+        base.Start();
+        playerController = player.gameObject.GetComponent<CharacterController>();
+        projectileSpeed = projectile.GetComponent<Projectile>().speed;
+    }
 
     public override void AddStatesToEnemyFSM()
     {
@@ -17,7 +28,7 @@ public class RangedEnemy : Enemy
     public override void OnAttack(State<EnemyState, StateEvent> _)
     {
         base.OnAttack(_);
-        Instantiate(projectile, transform.position, Quaternion.LookRotation(transform.forward));
+        StartCoroutine(Shoot());
     }
 
     public override void AddEnemyStateTransitions()
@@ -36,5 +47,22 @@ public class RangedEnemy : Enemy
     private bool IsInShootingRange()
     {
         return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+    }
+
+    private IEnumerator Shoot()
+    {
+        Instantiate(projectile, transform.position, Quaternion.LookRotation(transform.forward));
+        yield return new WaitForSeconds(shotDelay);
+        Instantiate(projectile, transform.position, PredictRotation(projectileSpeed));
+        yield return new WaitForSeconds(shotDelay);
+        Instantiate(projectile, transform.position, PredictRotation(projectileSpeed * 2));
+    }
+
+    private Quaternion PredictRotation(float speed)
+    {
+        var expectedTime = Vector3.Distance(transform.position, player.position) / speed;
+        var predictedLocation = player.position + playerController.velocity * expectedTime;
+        var predicted = Quaternion.LookRotation(predictedLocation - transform.position);
+        return predicted;
     }
 }

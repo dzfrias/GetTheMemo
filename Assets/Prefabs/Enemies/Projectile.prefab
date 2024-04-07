@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8906702286629987398}
   - component: {fileID: 5202801904638019646}
   - component: {fileID: 5102512086406047111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 2
+  age: 4
 --- !u!135 &5202801904638019646
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -108,7 +109,7 @@ GameObject:
   - component: {fileID: 8489584066870364690}
   - component: {fileID: 6446910522838996761}
   - component: {fileID: 7051150396132109982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
