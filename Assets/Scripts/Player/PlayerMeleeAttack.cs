@@ -13,25 +13,30 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private float attackDelay = 0.5f;
     [SerializeField] private float attackDamage = 5f;
     [SerializeField] private MMF_Player effect;
+    [SerializeField] private MMF_Player damageEffect;
     private bool isAttacking = false;
 
     private AnimationEventProxy animationEventProxy;
+    private Health health;
 
     private void Awake()
     {
         animator.TryGetComponent(out animationEventProxy);
+        health = GetComponent<Health>();
     }
 
     private void OnEnable()
     {
         GameInput.Instance.OnAttack += Attack;
         animationEventProxy.OnAttack += HitObject;
+        health.OnHealthChanged += Health_OnHealthChanged;
     }
 
     private void OnDisable()
     {
         GameInput.Instance.OnAttack -= Attack;
         animationEventProxy.OnAttack -= HitObject;
+        health.OnHealthChanged -= Health_OnHealthChanged;
     }
 
     private void Attack()
@@ -57,5 +62,10 @@ public class PlayerMeleeAttack : MonoBehaviour
             Debug.Log("Hit: " + raycastHit.collider.gameObject.name);
         }
         isAttacking = false;
+    }
+
+    private void Health_OnHealthChanged(float health)
+    {
+        damageEffect.PlayFeedbacks();
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7905994758175564649}
   - component: {fileID: 8051268983147555044}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HoldLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 6508537860709507327}
   - component: {fileID: 2911652871771769013}
   - component: {fileID: 6727995881879855861}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -113,13 +113,15 @@ MonoBehaviour:
   movementSpeed: 4.5
   jumpEnabled: 0
   jumpPower: 5
-  sprintMultiplier: 1.5
   maxStamina: 25
   staminaRegenerationSpeed: 3
   staminaRegenerationCooldownTimeMax: 2
+  sprintMultiplier: 1.5
   sprintStaminaCost: 3
   dashForce: 0
   dashDuration: 0
+  dashStaminaCost: 20
+  dashEffects: {fileID: 0}
 --- !u!114 &8481031941245057449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8100279821257588198}
   - component: {fileID: 2674006753100387069}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
