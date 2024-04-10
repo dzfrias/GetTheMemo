@@ -55,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
         GameInput.Instance.OnSprintStart += GameInput_OnSprintStart;
         GameInput.Instance.OnSprintStop += GameInput_OnSprintStop;
         GameInput.Instance.OnDash += GameInput_OnDash;
-        PlayerMeleeAttack.OnAttack += OnAttack;
     }
 
     private void OnDisable()
@@ -64,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
         GameInput.Instance.OnSprintStart -= GameInput_OnSprintStart;
         GameInput.Instance.OnSprintStop -= GameInput_OnSprintStop;
         GameInput.Instance.OnDash -= GameInput_OnDash;
-        PlayerMeleeAttack.OnAttack -= OnAttack;
     }
 
     private void Update()
@@ -119,19 +117,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity *= 0.2f;
         }
-    }
-
-    private void OnAttack()
-    {
-        StartCoroutine(_OnAttack());
-    }
-
-    private IEnumerator _OnAttack()
-    {
-        yield return new WaitForSeconds(0.4f);
-        isAttacking = true;
-        yield return new WaitForSeconds(0.1f);
-        isAttacking = false;
     }
 
     private void HandleSprinting()

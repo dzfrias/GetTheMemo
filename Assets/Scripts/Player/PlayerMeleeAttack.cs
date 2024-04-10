@@ -16,7 +16,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private MMF_Player effect;
     [SerializeField] private MMF_Player damageEffect;
     [SerializeField] private MMF_Player attackEffect;
-    public static event Action OnAttack;
     private bool isAttacking = false;
 
     private AnimationEventProxy animationEventProxy;
@@ -46,7 +45,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         if (isAttacking) return;
 
-        OnAttack?.Invoke();
         attackEffect.PlayFeedbacks();
         isAttacking = true;
         animator.SetTrigger("Attack");
