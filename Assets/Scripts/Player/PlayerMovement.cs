@@ -34,14 +34,17 @@ public class PlayerMovement : MonoBehaviour
     private bool sprintInputPressed = false;
     private float stamina;
     private float staminaRegenerationCooldownTime;
+    private bool isAttacking;
 
     private Transform camTransform;
     private CharacterController characterController;
+    private PlayerMeleeAttack melee;
 
     private void Awake()
     {
         camTransform = Camera.main.transform;
         characterController = GetComponent<CharacterController>();
+        melee = GetComponent<PlayerMeleeAttack>();
 
         stamina = maxStamina;
     }
@@ -52,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         GameInput.Instance.OnSprintStart += GameInput_OnSprintStart;
         GameInput.Instance.OnSprintStop += GameInput_OnSprintStop;
         GameInput.Instance.OnDash += GameInput_OnDash;
+        PlayerMeleeAttack.OnAttack += OnAttack;
     }
 
     private void OnDisable()
@@ -60,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         GameInput.Instance.OnSprintStart -= GameInput_OnSprintStart;
         GameInput.Instance.OnSprintStop -= GameInput_OnSprintStop;
         GameInput.Instance.OnDash -= GameInput_OnDash;
+        PlayerMeleeAttack.OnAttack -= OnAttack;
     }
 
     private void Update()
@@ -69,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             ApplyDash();
+            return;
+        }
+        if (isAttacking)
+        {
+            ApplyMeleeDash();
             return;
         }
 
@@ -93,6 +103,11 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(playerVelocity.normalized * dashForce * Time.deltaTime);
     }
 
+    private void ApplyMeleeDash()
+    {
+        characterController.Move(transform.forward * 9 * Time.deltaTime);
+    }
+
     private void ApplyMovement()
     {
         Vector2 movementVectorNormalized = GameInput.Instance.GetMovementVectorNormalized();
@@ -100,6 +115,23 @@ public class PlayerMovement : MonoBehaviour
         movement = camTransform.forward * movement.z + camTransform.right * movement.x;
         playerVelocity.x = movement.x * movementSpeed;
         playerVelocity.z = movement.z * movementSpeed;
+        if (melee != null && melee.IsAttacking())
+        {
+            playerVelocity *= 0.2f;
+        }
+    }
+
+    private void OnAttack()
+    {
+        StartCoroutine(_OnAttack());
+    }
+
+    private IEnumerator _OnAttack()
+    {
+        yield return new WaitForSeconds(0.4f);
+        isAttacking = true;
+        yield return new WaitForSeconds(0.1f);
+        isAttacking = false;
     }
 
     private void HandleSprinting()
