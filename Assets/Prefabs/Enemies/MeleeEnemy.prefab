@@ -959,10 +959,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7efdbf0a192a4b80b6fab30776a95da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinnedMeshRenderers:
-  - {fileID: 2757465922372923277}
-  meshRenderers:
+  renderers:
   - {fileID: 5525230409932228933}
+  - {fileID: 2757465922372923277}
+  - {fileID: 518728029072340506}
   impactEffects: {fileID: 91361436734705851}
   animator: {fileID: 8501006629983951523}
   attackPoint: {fileID: 1734615137610847461}
@@ -1180,6 +1180,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 414846199728132330}
   m_SourcePrefab: {fileID: 100100000, guid: e5b635de65b65b745ac6bf5981b34e64, type: 3}
+--- !u!23 &518728029072340506 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6461141405641674914, guid: e5b635de65b65b745ac6bf5981b34e64,
+    type: 3}
+  m_PrefabInstance: {fileID: 6816322851351701176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &2757465922372923277 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -514521820524033739, guid: e5b635de65b65b745ac6bf5981b34e64,

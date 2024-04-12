@@ -7,8 +7,7 @@ using UnityHFSM;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected List<SkinnedMeshRenderer> skinnedMeshRenderers;
-    [SerializeField] protected List<MeshRenderer> meshRenderers;
+    [SerializeField] protected List<Renderer> renderers;
     [SerializeField] protected MMF_Player impactEffects;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform attackPoint;
@@ -39,6 +38,7 @@ public class Enemy : MonoBehaviour
         AddStatesToEnemyFSM();
         AddEnemyStateTransitions();
         enemyFSM.Init();
+        StartCoroutine(Dissolve(-1f));
     }
 
     public virtual void AddStatesToEnemyFSM()
@@ -96,49 +96,86 @@ public class Enemy : MonoBehaviour
         StartCoroutine(Flash());
         if (health <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(Die());
         }
     }
 
     private IEnumerator Flash()
     {
-        List<Color> savedMaterialColors = new();
-        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
-        {
-            foreach (Material material in skinnedMeshRenderer.materials)
-            {
-                savedMaterialColors.Add(material.color);
-                material.color = Color.white;
-            }
-        }
+        yield return null;
+        // List<Color> savedMaterialColors = new();
+        // foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
+        // {
+        //     foreach (Material material in skinnedMeshRenderer.materials)
+        //     {
+        //         savedMaterialColors.Add(material.color);
+        //         material.color = Color.white;
+        //     }
+        // }
+        //
+        // foreach (MeshRenderer meshRenderer in meshRenderers)
+        // {
+        //     foreach (Material material in meshRenderer.materials)
+        //     {
+        //         savedMaterialColors.Add(material.color);
+        //         material.color = Color.white;
+        //     }
+        // }
+        //
+        // yield return new WaitForSeconds(0.2f);
+        // int materialNumber = 0;
+        // foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
+        // {
+        //     foreach (Material material in skinnedMeshRenderer.materials)
+        //     {
+        //         material.color = savedMaterialColors[materialNumber];
+        //         materialNumber++;
+        //     }
+        // }
+        //
+        // foreach (MeshRenderer meshRenderer in meshRenderers)
+        // {
+        //     foreach (Material material in meshRenderer.materials)
+        //     {
+        //         material.color = savedMaterialColors[materialNumber];
+        //         materialNumber++;
+        //     }
+        // }
+    }
 
-        foreach (MeshRenderer meshRenderer in meshRenderers)
+    private IEnumerator Dissolve(float speed = 1f)
+    {
+        var saved = new List<Material>();
+        foreach (Renderer renderer in renderers)
         {
-            foreach (Material material in meshRenderer.materials)
-            {
-                savedMaterialColors.Add(material.color);
-                material.color = Color.white;
-            }
+            var old = renderer.material;
+            saved.Add(old);
+            var newMat = new Material(Shader.Find("Shader Graphs/Dissolve"));
+            CopyMaterialFloat("_Smoothness", old, newMat);
+            CopyMaterialFloat("_Metallic", old, newMat);
+            newMat.SetFloat("_Speed", speed);
+            newMat.SetFloat("_Start", Time.time);
+            newMat.color = old.color;
+            renderer.material = newMat;
         }
-
-        yield return new WaitForSeconds(0.2f);
-        int materialNumber = 0;
-        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < renderers.Count; i++)
         {
-            foreach (Material material in skinnedMeshRenderer.materials)
-            {
-                material.color = savedMaterialColors[materialNumber];
-                materialNumber++;
-            }
+            renderers[i].material = saved[i];
         }
+    }
 
-        foreach (MeshRenderer meshRenderer in meshRenderers)
+    private IEnumerator Die()
+    {
+        yield return StartCoroutine(Dissolve());
+        Destroy(gameObject);
+    }
+
+    private void CopyMaterialFloat(string name, Material src, Material dst)
+    {
+        if (src.HasFloat(name))
         {
-            foreach (Material material in meshRenderer.materials)
-            {
-                material.color = savedMaterialColors[materialNumber];
-                materialNumber++;
-            }
+            dst.SetFloat(name, src.GetFloat(name));
         }
     }
 
