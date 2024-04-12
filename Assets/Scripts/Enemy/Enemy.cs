@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Die()
     {
-        yield return StartCoroutine(Dissolve());
+        yield return StartCoroutine(Dissolve(0.5f));
         Destroy(gameObject);
     }
 
