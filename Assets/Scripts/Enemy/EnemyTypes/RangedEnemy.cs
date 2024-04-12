@@ -41,7 +41,7 @@ public class RangedEnemy : Enemy
 
     private bool ShouldShoot(Transition<EnemyState> _)
     {
-        return lastAttackTime + attackCooldown < Time.time && IsInShootingRange();
+        return lastAttackTime + enemySO.attackCooldown < Time.time && IsInShootingRange();
     }
 
     private bool IsInShootingRange()

@@ -19,6 +19,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private MMF_Player damageEffect;
     [SerializeField] private MMF_Player attackEffect;
     private bool isAttacking = false;
+    private List<string> swordAnimationPool;
 
     private AnimationEventProxy animationEventProxy;
     private Health health;
@@ -28,6 +29,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         animator.TryGetComponent(out animationEventProxy);
         health = GetComponent<Health>();
         attackDelay = attackDelayMax;
+        swordAnimationPool = swordAnimations;
     }
 
     private void OnEnable()
@@ -64,8 +66,18 @@ public class PlayerMeleeAttack : MonoBehaviour
         attackEffect.PlayFeedbacks();
         isAttacking = true;
 
-        int randomIndex = UnityEngine.Random.Range(0, swordAnimations.Count);
-        string randomAnimation = swordAnimations[randomIndex];
+        PlayRandomAttackAnimation();
+    }
+
+    private void PlayRandomAttackAnimation()
+    {
+        int lastIndex = swordAnimationPool.Count - 1;
+        int randomIndex = UnityEngine.Random.Range(0, lastIndex);
+        string randomAnimation = swordAnimationPool[randomIndex];
+        
+        swordAnimationPool[randomIndex] = swordAnimationPool[lastIndex];
+        swordAnimationPool[lastIndex] = randomAnimation;
+
         animator.Play(randomAnimation, 0, 0);
     }
 
