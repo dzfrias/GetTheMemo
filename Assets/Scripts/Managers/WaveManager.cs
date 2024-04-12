@@ -46,7 +46,7 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
-        int randomSpawnIndex = Random.Range(0, enemySpawnPoints.Count - 1);
+        int randomSpawnIndex = Random.Range(0, enemySpawnPoints.Count);
         Transform randomSpawnPoint = enemySpawnPoints[randomSpawnIndex];
         GameObject enemy = Instantiate(enemiesToSpawn[0], randomSpawnPoint.position, Quaternion.identity);
         enemy.GetComponent<Health>().OnDeath += Enemy_OnDeath;
