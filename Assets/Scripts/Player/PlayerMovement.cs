@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         OnStaminaChanged?.Invoke(stamina);
     }
 
-    private void RegenerateStamina(float amount)
+    public void RegenerateStamina(float amount)
     {
         stamina += amount;
         if (stamina > maxStamina)

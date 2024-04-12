@@ -6,30 +6,40 @@ using MoreMountains.Feedbacks;
 
 public class PlayerMeleeAttack : MonoBehaviour
 {
-    [SerializeField] private List<string> swordAnimations;
-    [SerializeField] private Animator animator;
+    [Header("Player Stats")]
+    [SerializeField] private PlayerCombatSO playerCombatSO;
+    
+    [Header("Damage Layer Mask")]
     [SerializeField] private LayerMask ignoreRaycast;
+
+    [Header("Other Objects")]
     [SerializeField] private Camera cam;
     [SerializeField] private Transform head;
-    [SerializeField] private float attackDistance = 5f;
-    [SerializeField] private float attackDelayMax = 0.75f;
-    private float attackDelay;
-    [SerializeField] private float attackDamage = 5f;
+
+    [Header("Other Components")]
+    [SerializeField] private Animator animator;
+
+    [Header("Effects")]
     [SerializeField] private MMF_Player effect;
     [SerializeField] private MMF_Player damageEffect;
     [SerializeField] private MMF_Player attackEffect;
-    private bool isAttacking = false;
+
     private List<string> swordAnimationPool;
 
     private AnimationEventProxy animationEventProxy;
     private Health health;
+    private PlayerMovement playerMovement;
+
+    private bool isAttacking = false;
+    private float attackDelay;
 
     private void Awake()
     {
         animator.TryGetComponent(out animationEventProxy);
         health = GetComponent<Health>();
-        attackDelay = attackDelayMax;
-        swordAnimationPool = swordAnimations;
+        playerMovement = GetComponent<PlayerMovement>();
+        attackDelay = playerCombatSO.attackDelay;
+        swordAnimationPool = playerCombatSO.swordAnimations;
     }
 
     private void OnEnable()
@@ -54,7 +64,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             if (attackDelay <= 0)
             {
                 isAttacking = false;
-                attackDelay = attackDelayMax;
+                attackDelay = playerCombatSO.attackDelay;
             }
         }
     }
@@ -91,15 +101,25 @@ public class PlayerMeleeAttack : MonoBehaviour
         Vector3 middleOfScreen = new Vector3(0.5f, 0.5f, 0f);
         Ray ray = cam.ViewportPointToRay(middleOfScreen);
         Debug.DrawRay(ray.GetPoint(0), ray.direction, Color.red, 5f);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, attackDistance, ~ignoreRaycast))
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, playerCombatSO.attackDistance, ~ignoreRaycast))
         {
-            if (raycastHit.collider.TryGetComponent(out Health health))
+            if (raycastHit.collider.TryGetComponent(out Health enemyHealth))
             {
-                health.TakeDamage(attackDamage);
+                enemyHealth.TakeDamage(playerCombatSO.damage);
                 effect.PlayFeedbacks();
+                if (enemyHealth.GetHealth() <= 0)
+                {
+                    OnKillEnemy();
+                }
             }
             Debug.Log("Hit: " + raycastHit.collider.gameObject.name);
         }
+    }
+
+    private void OnKillEnemy()
+    {
+        health.Heal(playerCombatSO.healAmountOnKill);
+        playerMovement.RegenerateStamina(playerCombatSO.staminaIncreaseAmountOnKill);
     }
 
     private void Health_OnHealthChanged(float health)

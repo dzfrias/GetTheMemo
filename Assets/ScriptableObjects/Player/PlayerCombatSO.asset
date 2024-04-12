@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea40c1a9292827f478dbf6e4a77bceb5, type: 3}
+  m_Name: PlayerCombatSO
+  m_EditorClassIdentifier: 
+  damage: 3
+  attackDistance: 2
+  attackDelay: 0.6
+  healAmountOnKill: 5
+  staminaIncreaseAmountOnKill: 5
+  swordAnimations:
+  - Attack4
+  - Attack1
+  - Attack2
+  - Attack3
+  - Attack5

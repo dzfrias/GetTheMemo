@@ -17,6 +17,11 @@ public class Health : MonoBehaviour
         health = maxHealth;
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+
     public float GetMaxHealth()
     {
         return maxHealth;
@@ -29,6 +34,16 @@ public class Health : MonoBehaviour
         {
             OnDeath?.Invoke();
             Debug.Log("DEAD");
+        }
+        OnHealthChanged?.Invoke(health);
+    }
+
+    public void Heal(float amount)
+    {
+        health += amount;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
         }
         OnHealthChanged?.Invoke(health);
     }

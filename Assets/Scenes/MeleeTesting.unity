@@ -952,21 +952,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950114ebfb5b043bc956864f51b81673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordAnimations:
-  - Attack1
-  - Attack2
-  - Attack3
-  - Attack4
-  - Attack5
+  playerCombatSO: {fileID: 11400000, guid: b05a3d8b1f0d0604f93ba331f3b11d55, type: 2}
   animator: {fileID: 653621859}
   ignoreRaycast:
     serializedVersion: 2
     m_Bits: 12
   cam: {fileID: 983630018}
   head: {fileID: 256224965}
-  attackDistance: 5
-  attackDelayMax: 0.6
-  attackDamage: 5
   effect: {fileID: 1419068123}
   damageEffect: {fileID: 403735981}
   attackEffect: {fileID: 2110855951}
