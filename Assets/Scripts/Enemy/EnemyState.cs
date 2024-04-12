@@ -9,4 +9,5 @@ public enum EnemyState
     Attack,
     Dodge,
     Impact,
+    Death,
 }

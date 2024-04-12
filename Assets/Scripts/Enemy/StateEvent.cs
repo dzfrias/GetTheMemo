@@ -4,5 +4,6 @@ using UnityEngine;
 
 public enum StateEvent
 {
-    Impact
+    Impact,
+    Death,
 }

@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
         enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player));
 
         enemyFSM.AddState(EnemyState.Impact, new ImpactState(true, this, exitTime: 1.5f));
+        enemyFSM.AddState(EnemyState.Death, new DeathState(false, this));
 
         enemyFSM.SetStartState(EnemyState.Chase);
     }
@@ -60,6 +61,7 @@ public class Enemy : MonoBehaviour
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Idle, IsWithinIdleRange));
 
         enemyFSM.AddTriggerTransitionFromAny(StateEvent.Impact, EnemyState.Impact, forceInstantly: true);
+        enemyFSM.AddTriggerTransitionFromAny(StateEvent.Death, EnemyState.Death, forceInstantly: true);
     }
 
     private bool IsWithinIdleRange(Transition<EnemyState> _)
@@ -97,6 +99,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(Flash());
         if (health <= 0)
         {
+            enemyFSM.Trigger(StateEvent.Death);
             StartCoroutine(Die());
         }
     }
