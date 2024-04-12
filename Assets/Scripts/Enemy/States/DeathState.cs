@@ -17,6 +17,10 @@ public class DeathState : EnemyStateBase
         Debug.Log("ENTER DEATH STATE");
         base.OnEnter();
         agent.isStopped = true;
+        if (agent.TryGetComponent(out Collider collider))
+        {
+            collider.enabled = false;
+        }
         animator.Play("Death");
     }
 }
