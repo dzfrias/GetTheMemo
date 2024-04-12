@@ -7,13 +7,12 @@ using UnityHFSM;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] protected EnemySO enemySO;
+
     [SerializeField] protected List<Renderer> renderers;
     [SerializeField] protected MMF_Player impactEffects;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform attackPoint;
-    [SerializeField] protected float attackDamage = 2f;
-    [SerializeField] protected float attackDistance = 2f;
-    [SerializeField] protected float attackCooldown = 3f;
 
     protected Transform player;
     protected NavMeshAgent navMeshAgent;
@@ -163,12 +162,12 @@ public class Enemy : MonoBehaviour
 
     private void DealDamage()
     {
-        RaycastHit[] raycastHits = Physics.RaycastAll(attackPoint.position, transform.forward, attackDistance);
+        RaycastHit[] raycastHits = Physics.RaycastAll(attackPoint.position, transform.forward, enemySO.attackDistance);
         foreach (RaycastHit raycastHit in raycastHits)
         {
             if (raycastHit.collider.CompareTag("Player"))
             {
-                player.GetComponent<Health>().TakeDamage(attackDamage);
+                player.GetComponent<Health>().TakeDamage(enemySO.attackDamage);
             }
         }
     }

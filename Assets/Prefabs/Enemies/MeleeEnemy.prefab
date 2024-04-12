@@ -959,6 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7efdbf0a192a4b80b6fab30776a95da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 03aed59e890788745b7e4e66516e5b10, type: 2}
   renderers:
   - {fileID: 5525230409932228933}
   - {fileID: 2757465922372923277}
@@ -966,9 +967,6 @@ MonoBehaviour:
   impactEffects: {fileID: 91361436734705851}
   animator: {fileID: 8501006629983951523}
   attackPoint: {fileID: 1734615137610847461}
-  attackDamage: 2
-  attackDistance: 2
-  attackCooldown: 2
 --- !u!1001 &6816322851351701176
 PrefabInstance:
   m_ObjectHideFlags: 0
