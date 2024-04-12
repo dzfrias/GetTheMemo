@@ -103,45 +103,17 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Flash()
     {
-        yield return null;
-        // List<Color> savedMaterialColors = new();
-        // foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
-        // {
-        //     foreach (Material material in skinnedMeshRenderer.materials)
-        //     {
-        //         savedMaterialColors.Add(material.color);
-        //         material.color = Color.white;
-        //     }
-        // }
-        //
-        // foreach (MeshRenderer meshRenderer in meshRenderers)
-        // {
-        //     foreach (Material material in meshRenderer.materials)
-        //     {
-        //         savedMaterialColors.Add(material.color);
-        //         material.color = Color.white;
-        //     }
-        // }
-        //
-        // yield return new WaitForSeconds(0.2f);
-        // int materialNumber = 0;
-        // foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
-        // {
-        //     foreach (Material material in skinnedMeshRenderer.materials)
-        //     {
-        //         material.color = savedMaterialColors[materialNumber];
-        //         materialNumber++;
-        //     }
-        // }
-        //
-        // foreach (MeshRenderer meshRenderer in meshRenderers)
-        // {
-        //     foreach (Material material in meshRenderer.materials)
-        //     {
-        //         material.color = savedMaterialColors[materialNumber];
-        //         materialNumber++;
-        //     }
-        // }
+        var saved = new List<Color>();
+        foreach (var renderer in renderers)
+        {
+            saved.Add(renderer.material.color);
+            renderer.material.color = Color.white;
+        }
+        yield return new WaitForSeconds(0.2f);
+        for (int i = 0; i < renderers.Count; i++)
+        {
+            renderers[i].material.color = saved[i];
+        }
     }
 
     private IEnumerator Dissolve(float speed = 1f)
