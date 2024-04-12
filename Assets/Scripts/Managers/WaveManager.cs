@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField] List<Transform> enemySpawnPoints;
     [SerializeField] List<WaveSO> waves;
+    public static event Action<WaveSO> OnNewWave;
 
     private List<GameObject> enemiesToSpawn;
     private int enemiesRemaining;
@@ -29,6 +31,7 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnWave()
     {
+        OnNewWave?.Invoke(waves[waveIndex]);
         isSpawning = true;
         foreach (GameObject gameObject in waves[waveIndex].enemies)
         {
@@ -46,7 +49,7 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
-        int randomSpawnIndex = Random.Range(0, enemySpawnPoints.Count);
+        int randomSpawnIndex = UnityEngine.Random.Range(0, enemySpawnPoints.Count);
         Transform randomSpawnPoint = enemySpawnPoints[randomSpawnIndex];
         GameObject enemy = Instantiate(enemiesToSpawn[0], randomSpawnPoint.position, Quaternion.identity);
         enemy.GetComponent<Health>().OnDeath += Enemy_OnDeath;

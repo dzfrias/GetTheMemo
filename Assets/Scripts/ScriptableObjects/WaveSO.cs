@@ -8,4 +8,5 @@ public class WaveSO : ScriptableObject
     public List<GameObject> enemies;
     public float prepTime;
     public float spawnDelay;
+    public int lengthHours = 1;
 }

@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 3690608450758025735, guid: 3150e68137e5ea94889cd374beeabbc9, type: 3}
   prepTime: 0
   spawnDelay: 1
+  lengthHours: 1
