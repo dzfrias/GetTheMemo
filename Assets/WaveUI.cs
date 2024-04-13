@@ -36,7 +36,7 @@ public class WaveUI : MonoBehaviour
             meridiem = "pm";
         }
         text.gameObject.SetActive(true);
-        text.text = $"{currentHour}{meridiem}";
+        text.text = $"{(currentHour == 12 ? 1 : currentHour % 12)}{meridiem}";
         currentWave = wave;
     }
 }
