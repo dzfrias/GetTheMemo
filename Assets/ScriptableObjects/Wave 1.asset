@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e, type: 3}
   - {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e, type: 3}
   - {fileID: 3690608450758025735, guid: 3150e68137e5ea94889cd374beeabbc9, type: 3}
+  - {fileID: 6065262269642896141, guid: 55dbf0786165f4fe7b597d836aa66802, type: 3}
   prepTime: 0
   spawnDelay: 1
   lengthHours: 1
