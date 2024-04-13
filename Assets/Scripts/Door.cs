@@ -6,6 +6,8 @@ using MoreMountains.Feedbacks;
 
 public class Door : MonoBehaviour, IInteractable, IRecordMode
 {
+    [SerializeField] private bool openOnRecord = true;
+
     private MMF_Player player;
     private MMF_Rotation openRotation;
     private MMF_Rotation closeRotation;
@@ -43,6 +45,7 @@ public class Door : MonoBehaviour, IInteractable, IRecordMode
 
     public void OnEnterRecordMode()
     {
+        if (!openOnRecord) return;
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 70, transform.rotation.eulerAngles.z);
     }
 
