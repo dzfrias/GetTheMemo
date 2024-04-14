@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea40c1a9292827f478dbf6e4a77bceb5, type: 3}
   m_Name: PlayerCombatSO
   m_EditorClassIdentifier: 
-  damage: 3
-  attackDistance: 2
-  attackDelay: 0.6
+  damage: 6
+  attackDistance: 3
+  attackDelay: 0.5
   healAmountOnKill: 5
   staminaIncreaseAmountOnKill: 5
   swordAnimations:
-  - Attack4
-  - Attack1
   - Attack2
-  - Attack3
   - Attack5
+  - Attack1
+  - Attack3
+  - Attack4
