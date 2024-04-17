@@ -29,6 +29,8 @@ public class GameInput : MonoBehaviour
     public event Action OnAttack;
     public event Action OnClick;
     public event Action OnDash;
+    public event Action OnSuperAttackStart;
+    public event Action OnSuperAttackStop;
     public event Action OnPause;
 
     // UI action map
@@ -138,6 +140,8 @@ public class GameInput : MonoBehaviour
         playerInputActions.PlayerNightTime.Sprint.canceled += PlayerInputActions_OnSprintStop;
         playerInputActions.PlayerNightTime.Attack.performed += PlayerInputActions_OnAttack;
         playerInputActions.PlayerNightTime.Dash.performed += PlayerInputActions_OnDash;
+        playerInputActions.PlayerNightTime.SuperAttack.performed += PlayerInputActions_OnSuperAttackStart;
+        playerInputActions.PlayerNightTime.SuperAttack.canceled += PlayerInputActions_OnSuperAttackStop;
 
         playerInputActions.UI.Close.performed += PlayerInputActions_OnCloseUI;
 
@@ -164,6 +168,8 @@ public class GameInput : MonoBehaviour
         playerInputActions.PlayerNightTime.Sprint.canceled -= PlayerInputActions_OnSprintStop;
         playerInputActions.PlayerNightTime.Attack.performed -= PlayerInputActions_OnAttack;
         playerInputActions.PlayerNightTime.Dash.performed -= PlayerInputActions_OnDash;
+        playerInputActions.PlayerNightTime.SuperAttack.performed -= PlayerInputActions_OnSuperAttackStart;
+        playerInputActions.PlayerNightTime.SuperAttack.canceled -= PlayerInputActions_OnSuperAttackStop;
 
         playerInputActions.UI.Close.performed -= PlayerInputActions_OnCloseUI;
 
@@ -252,6 +258,16 @@ public class GameInput : MonoBehaviour
     private void PlayerInputActions_OnDash(InputAction.CallbackContext _)
     {
         OnDash?.Invoke();
+    }
+
+    private void PlayerInputActions_OnSuperAttackStart(InputAction.CallbackContext _)
+    {
+        OnSuperAttackStart?.Invoke();
+    }
+
+    private void PlayerInputActions_OnSuperAttackStop(InputAction.CallbackContext _)
+    {
+        OnSuperAttackStop?.Invoke();
     }
 
     private void PlayerInputActions_OnCloseUI(InputAction.CallbackContext _)

@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void UseStamina(float amount)
+    public void UseStamina(float amount)
     {
         stamina -= amount;
         if (stamina <= 0)

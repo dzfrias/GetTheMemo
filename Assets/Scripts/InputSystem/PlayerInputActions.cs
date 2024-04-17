@@ -982,7 +982,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""bace0804-b216-49aa-8498-a149d63edb0e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -992,6 +992,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SuperAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7089fc3-7e98-40e4-93f6-218bbb53ce63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.2,pressPoint=0.1)"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -1193,6 +1202,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d79a657-d2ae-4cd2-a89a-aa4aacb9243f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SuperAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1325,6 +1345,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerNightTime_Sprint = m_PlayerNightTime.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerNightTime_Attack = m_PlayerNightTime.FindAction("Attack", throwIfNotFound: true);
         m_PlayerNightTime_Dash = m_PlayerNightTime.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerNightTime_SuperAttack = m_PlayerNightTime.FindAction("SuperAttack", throwIfNotFound: true);
         // OpeningSequence
         m_OpeningSequence = asset.FindActionMap("OpeningSequence", throwIfNotFound: true);
         m_OpeningSequence_Awake = m_OpeningSequence.FindAction("Awake", throwIfNotFound: true);
@@ -1686,6 +1707,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerNightTime_Sprint;
     private readonly InputAction m_PlayerNightTime_Attack;
     private readonly InputAction m_PlayerNightTime_Dash;
+    private readonly InputAction m_PlayerNightTime_SuperAttack;
     public struct PlayerNightTimeActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1697,6 +1719,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_PlayerNightTime_Sprint;
         public InputAction @Attack => m_Wrapper.m_PlayerNightTime_Attack;
         public InputAction @Dash => m_Wrapper.m_PlayerNightTime_Dash;
+        public InputAction @SuperAttack => m_Wrapper.m_PlayerNightTime_SuperAttack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerNightTime; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1727,6 +1750,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @SuperAttack.started += instance.OnSuperAttack;
+            @SuperAttack.performed += instance.OnSuperAttack;
+            @SuperAttack.canceled += instance.OnSuperAttack;
         }
 
         private void UnregisterCallbacks(IPlayerNightTimeActions instance)
@@ -1752,6 +1778,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @SuperAttack.started -= instance.OnSuperAttack;
+            @SuperAttack.performed -= instance.OnSuperAttack;
+            @SuperAttack.canceled -= instance.OnSuperAttack;
         }
 
         public void RemoveCallbacks(IPlayerNightTimeActions instance)
@@ -1900,6 +1929,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnSuperAttack(InputAction.CallbackContext context);
     }
     public interface IOpeningSequenceActions
     {
