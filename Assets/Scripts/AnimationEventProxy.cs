@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class AnimationEventProxy : MonoBehaviour
 {
-    public Action OnAttack;
+    public Action OnNormalAttack;
+    public Action OnSuperAttack;
 
-    public void AttackAnimationEvent()
+    public void NormalAttackAnimationEvent()
     {
-        OnAttack?.Invoke();
+        OnNormalAttack?.Invoke();
+    }
+
+    public void SuperAttackAnimationEvent()
+    {
+        OnSuperAttack?.Invoke();
     }
 }

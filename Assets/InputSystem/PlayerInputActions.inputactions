@@ -960,7 +960,7 @@
                     "id": "bace0804-b216-49aa-8498-a149d63edb0e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 },
                 {
@@ -970,6 +970,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SuperAttack",
+                    "type": "Button",
+                    "id": "a7089fc3-7e98-40e4-93f6-218bbb53ce63",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.2,pressPoint=0.1)",
                     "initialStateCheck": false
                 }
             ],
@@ -1169,6 +1178,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d79a657-d2ae-4cd2-a89a-aa4aacb9243f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SuperAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

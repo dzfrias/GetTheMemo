@@ -12,14 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea40c1a9292827f478dbf6e4a77bceb5, type: 3}
   m_Name: PlayerCombatSO
   m_EditorClassIdentifier: 
-  damage: 6
+  attackBox: {x: 1, y: 1, z: 3}
+  superAttackBox: {x: 4, y: 1, z: 2.5}
+  normalAttackDamage: 5
+  superAttackDamage: 10
   attackDistance: 3
-  attackDelay: 0.5
+  normalAttackDelay: 0.5
+  superAttackDelay: 0.4
+  superAttackStaminaCost: 12
+  minimumSuperAttackWindupTime: 0.6
   healAmountOnKill: 5
   staminaIncreaseAmountOnKill: 5
-  swordAnimations:
+  defaultSwordPositionAnimation: Empty
+  normalSwordAttackAnimations:
+  - Attack4
   - Attack2
   - Attack5
-  - Attack1
   - Attack3
-  - Attack4
+  - Attack1
+  superAttackWindupAnimation: SuperAttackWindup
+  superAttackAnimation: SuperAttack
