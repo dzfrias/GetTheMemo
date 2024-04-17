@@ -23,6 +23,8 @@ public class PlayerInteraction : MonoBehaviour
     private Camera cam;
     private GameObject hoverable;
     private IGrabbable heldObject;
+    private int heldObjectLayer;
+    private GameObject heldGameObject;
     private PlayerHold playerHold;
     private bool firstInteract = true;
 
@@ -70,6 +72,11 @@ public class PlayerInteraction : MonoBehaviour
             {
                 grabbable.Pickup();
                 heldObject = grabbable;
+                heldObjectLayer = detectedObject.layer;
+                heldGameObject = detectedObject;
+                // We put it on the ignore raycast layer so the player can
+                // still interact with things even when holding something
+                detectedObject.layer = LayerMask.NameToLayer("Ignore Raycast");
                 playerHold.CreateAnchorPoint(detectedObject);
             }
         }
@@ -81,6 +88,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             heldObject.Drop();
             playerHold.DestroyAnchorPoint();
+            heldGameObject.layer = heldObjectLayer;
         }
     }
 
