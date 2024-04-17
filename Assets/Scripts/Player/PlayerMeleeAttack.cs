@@ -33,6 +33,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private AttackState attackState = AttackState.None;
     private float attackDelay;
+    private float windupTime;
 
     public enum AttackState
     {
@@ -81,6 +82,11 @@ public class PlayerMeleeAttack : MonoBehaviour
                 SwitchAttackState(AttackState.None);
             }
         }
+
+        if (attackState.Equals(AttackState.SuperAttackWindup))
+        {
+            windupTime += Time.deltaTime;
+        }
     }
 
     private void SwitchAttackState(AttackState attackState)
@@ -88,11 +94,19 @@ public class PlayerMeleeAttack : MonoBehaviour
         this.attackState = attackState;
         switch (attackState)
         {
+            case AttackState.None:
+                animator.Play(playerCombatSO.defaultSwordPositionAnimation, 0, 0);
+                break;
             case AttackState.NormalAttack:
                 attackDelay = playerCombatSO.normalAttackDelay;
+                PlayRandomAttackAnimation();
                 break;
             case AttackState.SuperAttack:
                 attackDelay = playerCombatSO.superAttackDelay;
+                animator.Play(playerCombatSO.superAttackAnimation, 0, 0);
+                break;
+            case AttackState.SuperAttackWindup:
+                animator.Play(playerCombatSO.superAttackWindupAnimation, 0, 0);
                 break;
         }
     }
@@ -103,8 +117,6 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         attackEffect.PlayFeedbacks();
         SwitchAttackState(AttackState.NormalAttack);
-
-        PlayRandomAttackAnimation();
     }
 
     private void SuperAttackWindup()
@@ -112,17 +124,23 @@ public class PlayerMeleeAttack : MonoBehaviour
         if (IsAttacking()) return;
 
         SwitchAttackState(AttackState.SuperAttackWindup);
-        animator.Play(playerCombatSO.superAttackWindupAnimation, 0, 0);
     }
 
     private void SuperAttack()
     {
         if (attackState != AttackState.SuperAttackWindup) return;
 
+        if (windupTime < playerCombatSO.minimumSuperAttackWindupTime)
+        {
+            windupTime = 0;
+            SwitchAttackState(AttackState.None);
+            return;
+        }
+
         attackEffect.PlayFeedbacks();
         SwitchAttackState(AttackState.SuperAttack);
-        animator.Play(playerCombatSO.superAttackAnimation, 0, 0);
         playerMovement.UseStamina(playerCombatSO.superAttackStaminaCost);
+        windupTime = 0;
     }
 
     private void PlayRandomAttackAnimation()
