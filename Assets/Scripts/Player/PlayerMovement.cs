@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     private bool sprintInputPressed = false;
     private float stamina;
     private float staminaRegenerationCooldownTime;
-    private bool isAttacking;
 
     private Transform camTransform;
     private CharacterController characterController;
@@ -74,11 +73,6 @@ public class PlayerMovement : MonoBehaviour
             ApplyDash();
             return;
         }
-        if (isAttacking)
-        {
-            ApplyMeleeDash();
-            return;
-        }
 
         if (jump)
         {
@@ -101,11 +95,6 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(playerVelocity.normalized * dashForce * Time.deltaTime);
     }
 
-    private void ApplyMeleeDash()
-    {
-        characterController.Move(transform.forward * 9 * Time.deltaTime);
-    }
-
     private void ApplyMovement()
     {
         Vector2 movementVectorNormalized = GameInput.Instance.GetMovementVectorNormalized();
@@ -115,20 +104,18 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.z = movement.z * movementSpeed;
         if (melee != null && melee.IsAttacking())
         {
-            playerVelocity *= 0.2f;
+            playerVelocity *= 0.1f;
         }
     }
 
     private void HandleSprinting()
     {
-        if (sprintInputPressed)
+        if (!sprintInputPressed) return;
+        if (stamina > 0 && (playerVelocity.x != 0 || playerVelocity.z != 0))
         {
-            if (stamina > 0 && (playerVelocity.x != 0 || playerVelocity.z != 0))
-            {
-                Vector3 sprintAppliedPlayerVelocity = new Vector3(playerVelocity.x * sprintMultiplier, playerVelocity.y, playerVelocity.z * sprintMultiplier);
-                playerVelocity = sprintAppliedPlayerVelocity;
-                UseStamina(sprintStaminaCost * Time.deltaTime);
-            }
+            Vector3 sprintAppliedPlayerVelocity = new Vector3(playerVelocity.x * sprintMultiplier, playerVelocity.y, playerVelocity.z * sprintMultiplier);
+            playerVelocity = sprintAppliedPlayerVelocity;
+            UseStamina(sprintStaminaCost * Time.deltaTime);
         }
     }
 
@@ -144,8 +131,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void UseStamina(float amount)
+    public bool UseStamina(float amount)
     {
+        if (stamina < amount)
+        {
+            return false;
+        }
+
         stamina -= amount;
         if (stamina <= 0)
         {
@@ -153,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         }
         staminaRegenerationCooldownTime = staminaRegenerationCooldownTimeMax;
         OnStaminaChanged?.Invoke(stamina);
+        return true;
     }
 
     public void RegenerateStamina(float amount)
@@ -197,9 +190,16 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator ActivateDashDuration()
     {
+        if (!UseStamina(dashStaminaCost))
+        {
+            yield break;
+        }
+        if (melee != null)
+        {
+            melee.Cancel();
+        }
         dashEffects.PlayFeedbacks();
         isDashing = true;
-        UseStamina(dashStaminaCost);
         LayerMask oldMask = characterController.excludeLayers;
         characterController.excludeLayers = oldMask | LayerMask.GetMask("Enemy");
         yield return new WaitForSeconds(dashDuration);

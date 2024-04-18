@@ -111,6 +111,11 @@ public class PlayerMeleeAttack : MonoBehaviour
         }
     }
 
+    public void Cancel()
+    {
+        SwitchAttackState(AttackState.None);
+    }
+
     private void Attack()
     {
         if (IsAttacking()) return;
