@@ -45,7 +45,6 @@ public class Enemy : MonoBehaviour
         enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
         enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player));
 
-        enemyFSM.AddState(EnemyState.Impact, new ImpactState(true, this, exitTime: 1.5f));
         enemyFSM.AddState(EnemyState.Death, new DeathState(false, this));
 
         enemyFSM.SetStartState(EnemyState.Chase);
@@ -54,12 +53,9 @@ public class Enemy : MonoBehaviour
     public virtual void AddEnemyStateTransitions()
     {
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase, ShouldChase));
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Chase, ShouldChase));
 
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Idle, IsWithinIdleRange));
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Impact, EnemyState.Idle, IsWithinIdleRange));
 
-        enemyFSM.AddTriggerTransitionFromAny(StateEvent.Impact, EnemyState.Impact, forceInstantly: true);
         enemyFSM.AddTriggerTransitionFromAny(StateEvent.Death, EnemyState.Death, forceInstantly: true);
     }
 
