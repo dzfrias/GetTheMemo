@@ -22,7 +22,7 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-        if (enemiesRemaining <= 0 && !isSpawning)
+        if (enemiesRemaining <= 0 && !isSpawning && waveIndex < waves.Count)
         {
             waveIndex++;
             SpawnWave();
