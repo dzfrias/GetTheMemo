@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.z = movement.z * movementSpeed;
         if (melee != null && melee.IsAttacking())
         {
-            playerVelocity *= 0.1f;
+            playerVelocity *= 0.2f;
         }
     }
 
