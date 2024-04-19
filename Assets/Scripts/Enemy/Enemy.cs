@@ -130,7 +130,10 @@ public class Enemy : MonoBehaviour
             CopyMaterialFloat("_Metallic", old, newMat);
             newMat.SetFloat("_Speed", speed);
             newMat.SetFloat("_Start", Time.time);
-            newMat.color = old.color;
+            Vector4 oldColor = old.color;
+            // This will clamp the vector's magnitude to 10
+            float magnitude = Mathf.Min(oldColor.magnitude, 10f);
+            newMat.color = oldColor.normalized * magnitude;
             renderer.material = newMat;
         }
         yield return new WaitForSeconds(1f);
