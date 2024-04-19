@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float staminaRegenerationSpeed = 3f;
     [SerializeField] private float staminaRegenerationCooldownTimeMax = 1f;
+    [SerializeField] private MMF_Player staminaRegainEffect;
+    [SerializeField] private float staminaRegainEffectCutoff = 4f;
 
     [Header("Sprint Settings")]
     [SerializeField] private float sprintMultiplier = 1.5f;
@@ -156,6 +158,10 @@ public class PlayerMovement : MonoBehaviour
             stamina = maxStamina;
         }
         OnStaminaChanged?.Invoke(stamina);
+        if (amount >= staminaRegainEffectCutoff)
+        {
+            staminaRegainEffect.PlayFeedbacks();
+        }
     }
 
     public float GetMaxStamina()
