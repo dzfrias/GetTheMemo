@@ -17,7 +17,6 @@ public class PlayerCombatSO : ScriptableObject
     public float superAttackStaminaCost;
     public float minimumSuperAttackWindupTime;
     public float healAmountOnKill;
-    public float staminaIncreaseAmountOnKill;
 
     [Header("Animation")]
     public string defaultSwordPositionAnimation;

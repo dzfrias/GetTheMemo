@@ -14,6 +14,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform attackPoint;
 
+    [Header("Death Spawn")]
+    [SerializeField] protected GameObject toSpawn;
+    [SerializeField] [Range(0f, 1f)] protected float probability = 0.5f;
+
     protected Transform player;
     protected NavMeshAgent navMeshAgent;
     protected Health health;
@@ -139,6 +143,10 @@ public class Enemy : MonoBehaviour
     private IEnumerator Die()
     {
         yield return StartCoroutine(Dissolve(0.5f));
+        if (Random.value > probability)
+        {
+            Instantiate(toSpawn, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 

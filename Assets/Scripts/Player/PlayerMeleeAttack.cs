@@ -194,7 +194,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     private void OnKillEnemy()
     {
         health.Heal(playerCombatSO.healAmountOnKill);
-        playerMovement.RegenerateStamina(playerCombatSO.staminaIncreaseAmountOnKill);
     }
 
     private void Health_OnHealthChanged(float health)
