@@ -1104,6 +1104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9bb31e287408b4c9f063a4a756a290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noSpawnRadius: 5
   enemySpawnPoints:
   - {fileID: 266167944}
   - {fileID: 2109848060}
