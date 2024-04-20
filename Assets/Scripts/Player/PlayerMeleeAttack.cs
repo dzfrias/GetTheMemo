@@ -135,7 +135,8 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         if (attackState != AttackState.SuperAttackWindup) return;
 
-        if (windupTime < playerCombatSO.minimumSuperAttackWindupTime)
+        if (windupTime < playerCombatSO.minimumSuperAttackWindupTime ||
+                !playerMovement.UseStamina(playerCombatSO.superAttackStaminaCost))
         {
             windupTime = 0;
             SwitchAttackState(AttackState.None);
@@ -144,7 +145,6 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         attackEffect.PlayFeedbacks();
         SwitchAttackState(AttackState.SuperAttack);
-        playerMovement.UseStamina(playerCombatSO.superAttackStaminaCost);
         windupTime = 0;
     }
 
