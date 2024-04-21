@@ -82,13 +82,13 @@ public class Enemy : MonoBehaviour
     {
         health.OnHealthChanged += Health_OnHealthChanged;
         
-        if (animationEventProxy != null) animationEventProxy.OnNormalAttack += DealDamage;
+        if (animationEventProxy != null) animationEventProxy.OnPrimaryAttack += DealDamage;
     }
 
     private void OnDisable()
     {
         health.OnHealthChanged -= Health_OnHealthChanged;
-        if (animationEventProxy != null) animationEventProxy.OnNormalAttack -= DealDamage;
+        if (animationEventProxy != null) animationEventProxy.OnPrimaryAttack -= DealDamage;
     }
     
     private void Health_OnHealthChanged(float health)
