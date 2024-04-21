@@ -82,13 +82,13 @@ public class Enemy : MonoBehaviour
     {
         health.OnHealthChanged += Health_OnHealthChanged;
         
-        if (animationEventProxy != null) animationEventProxy.OnNormalAttack += DealDamage;
+        if (animationEventProxy != null) animationEventProxy.OnPrimaryAttack += DealDamage;
     }
 
     private void OnDisable()
     {
         health.OnHealthChanged -= Health_OnHealthChanged;
-        if (animationEventProxy != null) animationEventProxy.OnNormalAttack -= DealDamage;
+        if (animationEventProxy != null) animationEventProxy.OnPrimaryAttack -= DealDamage;
     }
     
     private void Health_OnHealthChanged(float health)
@@ -169,10 +169,10 @@ public class Enemy : MonoBehaviour
 
     private void DealDamage()
     {
-        RaycastHit[] raycastHits = Physics.RaycastAll(attackPoint.position, transform.forward, enemySO.attackDistance);
-        foreach (RaycastHit raycastHit in raycastHits)
+        Collider[] hitColliders = Physics.OverlapBox(attackPoint.position, enemySO.attackBox/2, transform.rotation);
+        foreach (Collider hitCollider in hitColliders)
         {
-            if (raycastHit.collider.CompareTag("Player"))
+            if (hitCollider.CompareTag("Player"))
             {
                 player.GetComponent<Health>().TakeDamage(enemySO.attackDamage);
             }

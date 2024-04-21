@@ -57,8 +57,8 @@ public class PlayerMeleeAttack : MonoBehaviour
         GameInput.Instance.OnAttack += Attack;
         GameInput.Instance.OnSuperAttackStart += SuperAttackWindup;
         GameInput.Instance.OnSuperAttackStop += SuperAttack;
-        animationEventProxy.OnNormalAttack += DealNormalAttackDamage;
-        animationEventProxy.OnSuperAttack += DealSuperAttackDamage;
+        animationEventProxy.OnPrimaryAttack += DealNormalAttackDamage;
+        animationEventProxy.OnSecondaryAttack += DealSuperAttackDamage;
         health.OnHealthChanged += Health_OnHealthChanged;
     }
 
@@ -67,8 +67,8 @@ public class PlayerMeleeAttack : MonoBehaviour
         GameInput.Instance.OnAttack -= Attack;
         GameInput.Instance.OnSuperAttackStart -= SuperAttackWindup;
         GameInput.Instance.OnSuperAttackStop -= SuperAttack;
-        animationEventProxy.OnNormalAttack -= DealNormalAttackDamage;
-        animationEventProxy.OnSuperAttack -= DealSuperAttackDamage;
+        animationEventProxy.OnPrimaryAttack -= DealNormalAttackDamage;
+        animationEventProxy.OnSecondaryAttack -= DealSuperAttackDamage;
         health.OnHealthChanged -= Health_OnHealthChanged;
     }
 
