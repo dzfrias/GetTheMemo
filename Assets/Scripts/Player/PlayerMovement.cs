@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashForce;
     [SerializeField] private float dashDuration;
     [SerializeField] private MMF_Player dashEffects;
+    [SerializeField] private GameObject damageBox;
     private bool isDashing = false;
 
     private Vector3 playerVelocity;
@@ -144,9 +145,11 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         LayerMask oldMask = characterController.excludeLayers;
         characterController.excludeLayers = oldMask | LayerMask.GetMask("Enemy");
+        damageBox.SetActive(true);
         yield return new WaitForSeconds(dashDuration);
         characterController.excludeLayers = oldMask;
         isDashing = false;
+        damageBox.SetActive(false);
     }
 
     private void RotateToCamera()
