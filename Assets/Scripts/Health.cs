@@ -7,19 +7,37 @@ public class Health : MonoBehaviour
 {
     public event Action OnDeath;
     public event Action<float> OnHealthChanged;
+    public event Action<float> OnShieldChanged;
 
     [SerializeField] private float maxHealth;
 
     [Header("Shield")]
-    [SerializeField] private float shieldAmount;
-    [SerializeField] private float shieldRegen = 0.2f;
+    [SerializeField] private float maxShield;
+    [SerializeField] private float shieldRegen = 0.5f;
     [SerializeField] private float regenBufferTime = 1f;
 
     private float health;
+    private float shieldAmount;
+    private Coroutine regen;
 
     private void Awake()
     {
         health = maxHealth;
+        shieldAmount = maxShield;
+    }
+
+    private IEnumerator Regen()
+    {
+        yield return new WaitForSeconds(regenBufferTime);
+
+        while (shieldAmount < maxShield)
+        {
+            shieldAmount += shieldRegen * Time.deltaTime;
+            OnShieldChanged?.Invoke(shieldAmount);
+            yield return null;
+        }
+        // Just to make sure we don't go over
+        shieldAmount = maxShield;
     }
 
     public float GetHealth()
@@ -32,9 +50,34 @@ public class Health : MonoBehaviour
         return maxHealth;
     }
 
+    public float GetShield()
+    {
+        return shieldAmount;
+    }
+
+    public float GetMaxShield()
+    {
+        return maxShield;
+    }
+
     public void TakeDamage(float amount)
     {
-        health -= amount;
+        if (regen != null)
+        {
+            StopCoroutine(regen);
+        }
+        regen = StartCoroutine(Regen());
+        var toTake = shieldAmount - amount;
+        shieldAmount = Mathf.Max(0f, toTake);
+        OnShieldChanged?.Invoke(shieldAmount);
+        // If the user still has shield left, take no damage
+        if (toTake >= 0)
+        {
+            return;
+        }
+        // This will be a negative number, so it will subtract what the shield
+        // did not take
+        health += toTake;
         if (health <= 0)
         {
             OnDeath?.Invoke();
