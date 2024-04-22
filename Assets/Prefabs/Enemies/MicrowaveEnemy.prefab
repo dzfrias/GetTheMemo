@@ -126,5 +126,5 @@ MonoBehaviour:
   impactEffects: {fileID: 0}
   animator: {fileID: 5686791801285210692}
   attackPoint: {fileID: 3698258593944298842}
-  toSpawn: {fileID: 1643745817342565188, guid: f4946f23ff86b482c8916e0bbf448459, type: 3}
+  toSpawn: {fileID: 0}
   probability: 0.451

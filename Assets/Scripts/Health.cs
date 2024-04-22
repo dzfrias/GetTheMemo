@@ -10,6 +10,11 @@ public class Health : MonoBehaviour
 
     [SerializeField] private float maxHealth;
 
+    [Header("Shield")]
+    [SerializeField] private float shieldAmount;
+    [SerializeField] private float shieldRegen = 0.2f;
+    [SerializeField] private float regenBufferTime = 1f;
+
     private float health;
 
     private void Awake()

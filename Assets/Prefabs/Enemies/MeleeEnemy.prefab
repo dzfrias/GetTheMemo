@@ -967,7 +967,7 @@ MonoBehaviour:
   impactEffects: {fileID: 91361436734705851}
   animator: {fileID: 8501006629983951523}
   attackPoint: {fileID: 1734615137610847461}
-  toSpawn: {fileID: 1643745817342565188, guid: f4946f23ff86b482c8916e0bbf448459, type: 3}
+  toSpawn: {fileID: 0}
   probability: 0.5
 --- !u!1001 &6816322851351701176
 PrefabInstance:

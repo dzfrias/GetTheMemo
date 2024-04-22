@@ -6,23 +6,13 @@ using MoreMountains.Feedbacks;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public event Action<float> OnStaminaChanged;
-
     [Header("General Settings")]
     [SerializeField] private float movementSpeed = 1f;
     [SerializeField] private bool jumpEnabled = false;
     [SerializeField] private float jumpPower = 1f;
 
-    [Header("Stamina Settings")]
-    [SerializeField] private float maxStamina = 100f;
-    [SerializeField] private float staminaRegenerationSpeed = 3f;
-    [SerializeField] private float staminaRegenerationCooldownTimeMax = 1f;
-    [SerializeField] private MMF_Player staminaRegainEffect;
-    [SerializeField] private float staminaRegainEffectCutoff = 4f;
-
     [Header("Sprint Settings")]
     [SerializeField] private float sprintMultiplier = 1.5f;
-    [SerializeField] private float sprintStaminaCost = 3f;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashForce;
@@ -34,8 +24,6 @@ public class PlayerMovement : MonoBehaviour
     private PlayerCharges charges;
     private bool jump = false;
     private bool sprintInputPressed = false;
-    private float stamina;
-    private float staminaRegenerationCooldownTime;
 
     private Transform camTransform;
     private CharacterController characterController;
@@ -47,8 +35,6 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         charges = GetComponent<PlayerCharges>();
         melee = GetComponent<PlayerMeleeAttack>();
-
-        stamina = maxStamina;
     }
 
     private void OnEnable()
@@ -89,8 +75,6 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(playerVelocity.normalized * movementSpeed * Time.deltaTime);
 
         jump = false;
-
-        HandleStaminaRegeneration();
     }
 
     private void ApplyDash()
@@ -114,60 +98,11 @@ public class PlayerMovement : MonoBehaviour
     private void HandleSprinting()
     {
         if (!sprintInputPressed) return;
-        if (stamina > 0 && (playerVelocity.x != 0 || playerVelocity.z != 0))
+        if (playerVelocity.x != 0 || playerVelocity.z != 0)
         {
             Vector3 sprintAppliedPlayerVelocity = new Vector3(playerVelocity.x * sprintMultiplier, playerVelocity.y, playerVelocity.z * sprintMultiplier);
             playerVelocity = sprintAppliedPlayerVelocity;
-            UseStamina(sprintStaminaCost * Time.deltaTime);
         }
-    }
-
-    private void HandleStaminaRegeneration()
-    {
-        if (staminaRegenerationCooldownTime <= 0)
-        {
-            RegenerateStamina(staminaRegenerationSpeed * Time.deltaTime);
-        }
-        else
-        {
-            staminaRegenerationCooldownTime -= Time.deltaTime;
-        }
-    }
-
-    public bool UseStamina(float amount)
-    {
-        if (stamina < amount)
-        {
-            return false;
-        }
-
-        stamina -= amount;
-        if (stamina <= 0)
-        {
-            stamina = 0;
-        }
-        staminaRegenerationCooldownTime = staminaRegenerationCooldownTimeMax;
-        OnStaminaChanged?.Invoke(stamina);
-        return true;
-    }
-
-    public void RegenerateStamina(float amount)
-    {
-        stamina += amount;
-        if (stamina > maxStamina)
-        {
-            stamina = maxStamina;
-        }
-        OnStaminaChanged?.Invoke(stamina);
-        if (amount >= staminaRegainEffectCutoff)
-        {
-            staminaRegainEffect.PlayFeedbacks();
-        }
-    }
-
-    public float GetMaxStamina()
-    {
-        return maxStamina;
     }
 
     private void GameInput_OnSprintStart()

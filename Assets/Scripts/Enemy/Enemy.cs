@@ -146,7 +146,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator Die()
     {
         yield return StartCoroutine(Dissolve(0.5f));
-        if (Random.value > probability)
+        if (toSpawn != null && Random.value > probability)
         {
             Instantiate(toSpawn, transform.position, Quaternion.identity);
         }
