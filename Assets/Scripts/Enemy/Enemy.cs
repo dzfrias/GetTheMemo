@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     protected float lastAttackTime;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();
@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
         return Vector3.Distance(player.transform.position, transform.position) > navMeshAgent.stoppingDistance;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         enemyFSM.OnLogic();
     }
@@ -82,19 +82,19 @@ public class Enemy : MonoBehaviour
     {
         health.OnHealthChanged += Health_OnHealthChanged;
         
-        if (animationEventProxy != null) animationEventProxy.OnPrimaryAttack += DealDamage;
+        if (animationEventProxy != null) animationEventProxy.OnPrimaryAttack += PrimaryAttack;
     }
 
     private void OnDisable()
     {
         health.OnHealthChanged -= Health_OnHealthChanged;
-        if (animationEventProxy != null) animationEventProxy.OnPrimaryAttack -= DealDamage;
+        if (animationEventProxy != null) animationEventProxy.OnPrimaryAttack -= PrimaryAttack;
     }
     
     private void Health_OnHealthChanged(float health)
     {
         enemyFSM.Trigger(StateEvent.Impact);
-        impactEffects.PlayFeedbacks();
+        impactEffects?.PlayFeedbacks();
         StartCoroutine(Flash());
         if (health <= 0)
         {
@@ -167,7 +167,7 @@ public class Enemy : MonoBehaviour
         lastAttackTime = Time.time;
     }
 
-    private void DealDamage()
+    protected virtual void PrimaryAttack()
     {
         Collider[] hitColliders = Physics.OverlapBox(attackPoint.position, enemySO.attackBox/2, transform.rotation);
         foreach (Collider hitCollider in hitColliders)
