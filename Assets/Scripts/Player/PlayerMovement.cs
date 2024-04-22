@@ -27,11 +27,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dash Settings")]
     [SerializeField] private float dashForce;
     [SerializeField] private float dashDuration;
-    [SerializeField] private float dashStaminaCost = 20f;
     [SerializeField] private MMF_Player dashEffects;
     private bool isDashing = false;
 
     private Vector3 playerVelocity;
+    private PlayerCharges charges;
     private bool jump = false;
     private bool sprintInputPressed = false;
     private float stamina;
@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
         camTransform = Camera.main.transform;
         characterController = GetComponent<CharacterController>();
+        charges = GetComponent<PlayerCharges>();
         melee = GetComponent<PlayerMeleeAttack>();
 
         stamina = maxStamina;
@@ -189,14 +190,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void GameInput_OnDash()
     {
-        if (isDashing || stamina <= 0 || GameInput.Instance.GetMovementVectorNormalized() == Vector2.zero) return;
+        if (isDashing || GameInput.Instance.GetMovementVectorNormalized() == Vector2.zero) return;
 
         StartCoroutine(ActivateDashDuration());
     }
 
     private IEnumerator ActivateDashDuration()
     {
-        if (!UseStamina(dashStaminaCost))
+        if (!charges.UseCharge())
         {
             yield break;
         }

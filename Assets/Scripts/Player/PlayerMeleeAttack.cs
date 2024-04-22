@@ -29,7 +29,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private AnimationEventProxy animationEventProxy;
     private Health health;
-    private PlayerMovement playerMovement;
+    private PlayerCharges charges;
 
     private AttackState attackState = AttackState.None;
     private float attackDelay;
@@ -47,7 +47,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         animator.TryGetComponent(out animationEventProxy);
         health = GetComponent<Health>();
-        playerMovement = GetComponent<PlayerMovement>();
+        charges = GetComponent<PlayerCharges>();
         attackDelay = playerCombatSO.normalAttackDelay;
         swordAnimationPool = playerCombatSO.normalSwordAttackAnimations;
     }
@@ -135,8 +135,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         if (attackState != AttackState.SuperAttackWindup) return;
 
-        if (windupTime < playerCombatSO.minimumSuperAttackWindupTime ||
-                !playerMovement.UseStamina(playerCombatSO.superAttackStaminaCost))
+        if (windupTime < playerCombatSO.minimumSuperAttackWindupTime || !charges.UseCharge())
         {
             windupTime = 0;
             SwitchAttackState(AttackState.None);
@@ -194,6 +193,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private void OnKillEnemy()
     {
         health.Heal(playerCombatSO.healAmountOnKill);
+        charges.GainCharge();
     }
 
     private void Health_OnHealthChanged(float health)

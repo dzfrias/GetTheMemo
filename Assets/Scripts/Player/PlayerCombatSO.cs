@@ -14,7 +14,6 @@ public class PlayerCombatSO : ScriptableObject
     public float attackDistance;
     public float normalAttackDelay;
     public float superAttackDelay;
-    public float superAttackStaminaCost;
     public float minimumSuperAttackWindupTime;
     public float healAmountOnKill;
 
