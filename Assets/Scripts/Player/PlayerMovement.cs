@@ -6,6 +6,12 @@ using MoreMountains.Feedbacks;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private enum DashDirection
+    {
+        Forwards,
+        NotForwards,
+    }
+
     [Header("General Settings")]
     [SerializeField] private float movementSpeed = 1f;
     [SerializeField] private bool jumpEnabled = false;
@@ -19,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration;
     [SerializeField] private MMF_Player dashEffects;
     [SerializeField] private GameObject damageBox;
-    private bool isDashing = false;
+    private DashDirection? dashDirection = null;
 
     private Vector3 playerVelocity;
     private PlayerCharges charges;
@@ -58,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RotateToCamera();
 
-        if (isDashing)
+        if (IsDashing())
         {
             ApplyDash();
             return;
@@ -73,14 +79,26 @@ public class PlayerMovement : MonoBehaviour
         ApplyGravity();
         HandleSprinting();
 
-        characterController.Move(playerVelocity.normalized * movementSpeed * Time.deltaTime);
+        characterController.Move(playerVelocity * Time.deltaTime);
 
         jump = false;
     }
 
     private void ApplyDash()
     {
-        characterController.Move(playerVelocity.normalized * dashForce * Time.deltaTime);
+        Vector3 moveDirection = Vector3.zero;
+        // If the player is dashing forwards, we use the camera's forward
+        // direction (so the player can dash upwards, if needed)
+        switch (dashDirection)
+        {
+            case DashDirection.Forwards:
+                moveDirection = camTransform.forward;
+                break;
+            case DashDirection.NotForwards:
+                moveDirection = playerVelocity.normalized;
+                break;
+        }
+        characterController.Move(moveDirection * dashForce * Time.deltaTime);
     }
 
     private void ApplyMovement()
@@ -92,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.z = movement.z * movementSpeed;
         if (melee != null && melee.IsAttacking())
         {
-            playerVelocity *= 0.2f;
+            playerVelocity *= 0.8f;
         }
     }
 
@@ -126,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GameInput_OnDash()
     {
-        if (isDashing || GameInput.Instance.GetMovementVectorNormalized() == Vector2.zero) return;
+        if (IsDashing() || GameInput.Instance.GetMovementVectorNormalized() == Vector2.zero) return;
 
         StartCoroutine(ActivateDashDuration());
     }
@@ -142,14 +160,27 @@ public class PlayerMovement : MonoBehaviour
             melee.Cancel();
         }
         dashEffects.PlayFeedbacks();
-        isDashing = true;
+        // Player going forwards
+        if (GameInput.Instance.GetMovementVectorNormalized().y == 1)
+        {
+            dashDirection = DashDirection.Forwards;
+        }
+        else
+        {
+            dashDirection = DashDirection.NotForwards;
+        }
         LayerMask oldMask = characterController.excludeLayers;
         characterController.excludeLayers = oldMask | LayerMask.GetMask("Enemy");
         damageBox.SetActive(true);
         yield return new WaitForSeconds(dashDuration);
         characterController.excludeLayers = oldMask;
-        isDashing = false;
+        dashDirection = null;
         damageBox.SetActive(false);
+    }
+
+    private bool IsDashing()
+    {
+        return dashDirection != null;
     }
 
     private void RotateToCamera()
@@ -159,11 +190,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (!characterController.isGrounded)
+        if (!characterController.isGrounded && !IsDashing())
         {
             playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         }
-        else if (playerVelocity.y != -1)
+        else if (playerVelocity.y != -1 && !IsDashing())
         {
             playerVelocity.y = -1f;
         }
