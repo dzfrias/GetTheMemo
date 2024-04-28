@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
 [System.Serializable]
@@ -37,6 +38,11 @@ public class GameManager : MonoBehaviour, IRecordMode
     private void Start()
     {
         NextBeat();
+    }
+
+    public void LoadScene(int level)
+    {
+        SceneManager.LoadScene(level);
     }
 
     public void NextBeat()
