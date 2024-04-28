@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     public event Action<float> OnShieldChanged;
 
     [SerializeField] private float maxHealth;
+    [SerializeField] private float invincibility;
 
     [Header("Shield")]
     [SerializeField] private float maxShield;
@@ -19,6 +20,7 @@ public class Health : MonoBehaviour
     private float health;
     private float shieldAmount;
     private Coroutine regen;
+    private bool invincible;
 
     private void Awake()
     {
@@ -62,6 +64,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        if (invincible) return;
         if (regen != null)
         {
             StopCoroutine(regen);
@@ -75,6 +78,7 @@ public class Health : MonoBehaviour
         {
             return;
         }
+        StartCoroutine(Invincible());
         // This will be a negative number, so it will subtract what the shield
         // did not take
         health += toTake;
@@ -94,5 +98,12 @@ public class Health : MonoBehaviour
             health = maxHealth;
         }
         OnHealthChanged?.Invoke(health);
+    }
+
+    private IEnumerator Invincible()
+    {
+        invincible = true;
+        yield return new WaitForSeconds(invincibility);
+        invincible = false;
     }
 }
