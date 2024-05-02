@@ -14,8 +14,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("General Settings")]
     [SerializeField] private float movementSpeed = 1f;
+    [SerializeField] private float gravityMultiplier = 2f;
+
+    [Header("Jump Settings")]
     [SerializeField] private bool jumpEnabled = false;
-    [SerializeField] private float jumpPower = 1f;
+    [SerializeField] private float jumpPower = 4f;
+    [SerializeField] private MMF_Player jumpEffects;
 
     [Header("Sprint Settings")]
     [SerializeField] private float sprintMultiplier = 1.5f;
@@ -29,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 playerVelocity;
     private PlayerCharges charges;
-    private bool jump = false;
     private bool sprintInputPressed = false;
 
     private Transform camTransform;
@@ -70,18 +73,12 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (jump)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpPower * -1.0f * Physics.gravity.y);
-        }
 
         ApplyMovement();
         ApplyGravity();
         HandleSprinting();
 
         characterController.Move(playerVelocity * Time.deltaTime);
-
-        jump = false;
     }
 
     private void ApplyDash()
@@ -138,7 +135,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpEnabled && characterController.isGrounded)
         {
-            jump = true;
+            playerVelocity.y = Mathf.Sqrt(-jumpPower * Physics.gravity.y);
+            jumpEffects.PlayFeedbacks();
+            if (melee != null)
+            {
+                melee.Cancel();
+            }
         }
     }
 
@@ -192,11 +194,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!characterController.isGrounded && !IsDashing())
         {
-            playerVelocity.y += Physics.gravity.y * Time.deltaTime;
-        }
-        else if (playerVelocity.y != -1 && !IsDashing())
-        {
-            playerVelocity.y = -1f;
+            playerVelocity.y += gravityMultiplier * Physics.gravity.y * Time.deltaTime;
         }
     }
 }

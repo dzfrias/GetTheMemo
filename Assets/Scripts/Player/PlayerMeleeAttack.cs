@@ -24,6 +24,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private MMF_Player effect;
     [SerializeField] private MMF_Player damageEffect;
     [SerializeField] private MMF_Player attackEffect;
+    [SerializeField] private MMF_Player superAttackEffect;
 
     private List<string> swordAnimationPool;
 
@@ -142,7 +143,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             return;
         }
 
-        attackEffect.PlayFeedbacks();
+        superAttackEffect.PlayFeedbacks();
         SwitchAttackState(AttackState.SuperAttack);
         windupTime = 0;
     }
