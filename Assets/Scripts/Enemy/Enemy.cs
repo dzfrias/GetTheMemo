@@ -7,6 +7,8 @@ using UnityHFSM;
 
 public class Enemy : MonoBehaviour
 {
+    public static event System.Action OnEnemyDeath;
+
     [SerializeField] protected EnemySO enemySO;
 
     [SerializeField] protected List<Renderer> renderers;
@@ -145,6 +147,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Die()
     {
+        OnEnemyDeath?.Invoke();
         yield return StartCoroutine(Dissolve(0.5f));
         if (toSpawn != null && Random.value > probability)
         {

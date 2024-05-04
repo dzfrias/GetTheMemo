@@ -127,7 +127,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void SuperAttackWindup()
     {
-        if (IsAttacking()) return;
+        if (IsAttacking() || !charges.CanUseCharge()) return;
 
         SwitchAttackState(AttackState.SuperAttackWindup);
     }
@@ -193,7 +193,6 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void OnKillEnemy()
     {
-        health.Heal(playerCombatSO.healAmountOnKill);
         charges.GainCharge();
     }
 
