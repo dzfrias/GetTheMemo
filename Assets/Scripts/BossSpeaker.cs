@@ -4,42 +4,36 @@ using UnityEngine;
 
 public class BossSpeaker : MonoBehaviour
 {
-    [SerializeField] private AnimationCurve soundProbabilityCurve;
-    [SerializeField] private bool playOnStart;
-
     private AudioSource source;
-    private Coroutine playCoroutine;
 
     private void Start()
     {
         source = GetComponent<AudioSource>();
-        if (playOnStart)
-        {
-            StartPlaying();
-        }
     }
 
-    public void StartPlaying()
+    public void Play(AudioClip clip)
     {
-        if (playCoroutine != null) return;
-        playCoroutine = StartCoroutine(PlayCoroutine());
+        source.clip = clip;
+        source.Play();
     }
 
-    public void StopPlaying()
+    public void Pause()
     {
-        StopCoroutine(playCoroutine);
-        playCoroutine = null;
+        source.Pause();
     }
 
-    private IEnumerator PlayCoroutine()
+    public void Resume()
     {
-        while (true)
-        {
-            float pitch = soundProbabilityCurve.Evaluate(Random.value);
-            float newLength = source.clip.length / System.Math.Abs(pitch);
-            source.pitch = pitch;
-            source.Play();
-            yield return new WaitForSeconds(newLength);
-        }
+        source.Play();
+    }
+
+    public float Time()
+    {
+        return source.time;
+    }
+
+    public bool IsPlaying()
+    {
+        return source.isPlaying;
     }
 }

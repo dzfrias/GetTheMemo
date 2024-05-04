@@ -6,7 +6,6 @@ public class HeadBob : MonoBehaviour
 {
     [SerializeField]
     private float bobbingSpeed = 0.18f;
-
     [SerializeField]
     private float bobbingAmount = 0.2f;
 
@@ -30,9 +29,14 @@ public class HeadBob : MonoBehaviour
             return;
         }
 
+        var pos = Mathf.Sin(Time.time * bobbingSpeed);
+        if (pos > -1 && pos < -0.999)
+        {
+            AudioManager.Instance.PlaySound("footstep");
+        }
         transform.localPosition = new Vector3(
             transform.localPosition.x,
-            startY - Mathf.Sin(Time.time * bobbingSpeed) * bobbingAmount,
+            startY - pos * bobbingAmount,
             transform.localPosition.z
         );
     }

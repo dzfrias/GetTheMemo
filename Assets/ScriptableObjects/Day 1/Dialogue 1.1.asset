@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95e9d53675c94c9b82aeb7a4d004270, type: 3}
   m_Name: Dialogue 1.1
   m_EditorClassIdentifier: 
+  preDelay: 3
+  clip: {fileID: 8300000, guid: f4864c9d4c1f24c11bbf7c2f0a6e7410, type: 3}
   dialogues:
-  - text: psst!%1 Hey bud.%1 Wake up!
-    preDelay: 1
+  - text: It's always a great Monday when we get a new intern!
+    timestamp: 0
+  - text: Welcome to the office, kiddo.
+    timestamp: 3.5
+  - text: "I know it\u2019s hard to believe, but you\u2019re now officially part
+      of the Big Corp family."
+    timestamp: 5.5
+  - text: "Don\u2019t be afraid, I\u2019ll be right here to show you the ropes! "
+    timestamp: 10.4

@@ -130,6 +130,11 @@ public class DialogueBox : MonoBehaviour
 
     public void DisplayText(string msg)
     {
+        DisplayText(msg, stopTime);
+    }
+
+    public void DisplayText(string msg, float overrideStopTime)
+    {
         if (textCoroutine is not null)
         {
             StopCoroutine(textCoroutine);
@@ -145,7 +150,7 @@ public class DialogueBox : MonoBehaviour
         // just go to the TMP text as one contiguous block.
         Tokenizer tokenizer = new Tokenizer(msg);
         List<Token> tokens = tokenizer.Tokenize();
-        textCoroutine = StartCoroutine(TypeText(tokens));
+        textCoroutine = StartCoroutine(TypeText(tokens, overrideStopTime));
         onStart?.Invoke();
     }
 
@@ -154,7 +159,7 @@ public class DialogueBox : MonoBehaviour
         return textCoroutine != null;
     }
 
-    private IEnumerator TypeText(List<Token> tokens)
+    private IEnumerator TypeText(List<Token> tokens, float overrideStopTime)
     {
         var sb = new StringBuilder();
         foreach (var token in tokens)
@@ -176,8 +181,11 @@ public class DialogueBox : MonoBehaviour
             }
         }
         onEnd?.Invoke();
-        yield return new WaitForSeconds(stopTime);
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(overrideStopTime);
+        if (overrideStopTime > 0)
+        {
+            gameObject.SetActive(false);
+        }
         textCoroutine = null;
     }
 }

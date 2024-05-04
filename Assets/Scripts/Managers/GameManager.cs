@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour, IRecordMode
     [SerializeField] private TutorialText tutorialText;
     [SerializeField] private List<StoryBeat> beats;
     [SerializeField] private DialogueBox dialogueBox;
+    [SerializeField] private BossSpeaker speaker;
 
     private int currentBeat;
 
@@ -88,11 +89,30 @@ public class GameManager : MonoBehaviour, IRecordMode
 
     private IEnumerator _PlayDialogueSequence(DialogueSO dialogueList)
     {
+        yield return new WaitForSeconds(dialogueList.preDelay);
+        if (dialogueList.clip != null)
+        {
+            speaker.Play(dialogueList.clip);
+        }
+        int i = 0;
         foreach (var dialogue in dialogueList.dialogues)
         {
-            yield return new WaitWhile(() => dialogueBox.IsPlaying());
-            yield return new WaitForSeconds(dialogue.preDelay);
-            dialogueBox.DisplayText(dialogue.text);
+            yield return new WaitForSeconds(dialogue.timestamp - speaker.Time());
+            if (dialogueBox.IsPlaying())
+            {
+                speaker.Pause();
+                yield return new WaitWhile(() => dialogueBox.IsPlaying());
+                speaker.Resume();
+            }
+            if (i == dialogueList.dialogues.Count - 1)
+            {
+                dialogueBox.DisplayText(dialogue.text);
+            }
+            else
+            {
+                dialogueBox.DisplayText(dialogue.text, -1);
+            }
+            i += 1;
         }
     }
 

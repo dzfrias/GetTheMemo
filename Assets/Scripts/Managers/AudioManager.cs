@@ -8,11 +8,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [SerializeField]
-    private List<Sound> music;
-
-    [SerializeField]
-    private List<Sound> soundEffects;
+    [SerializeField] private List<Sound> music;
+    [SerializeField] private List<Sound> soundEffects;
 
     private AudioSource audioSource;
 
@@ -39,10 +36,15 @@ public class AudioManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySound(string name, Vector3 location)
+    public void PlaySound(string name)
     {
         Sound sound = GetSound(name, soundEffects);
-        AudioSource.PlayClipAtPoint(sound.audioClip, location, sound.volume);
+        GameObject gameObject = new GameObject("Sound");
+        var audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = sound.audioClip;
+        audioSource.volume = sound.volume;
+        audioSource.Play();
+        StartCoroutine(DestroySound(audioSource));
     }
 
     public void SetMusic(string name)
@@ -64,5 +66,11 @@ public class AudioManager : MonoBehaviour
         }
         Debug.LogError($"No Audio Clip Found with Name: '{name}'");
         return soundList[0];
+    }
+
+    private IEnumerator DestroySound(AudioSource audioSource)
+    {
+        yield return new WaitForSeconds(audioSource.clip.length);
+        Destroy(audioSource.gameObject);
     }
 }

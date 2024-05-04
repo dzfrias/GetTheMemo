@@ -6,11 +6,13 @@ using UnityEngine;
 public class Dialogue
 {
     public string text;
-    public float preDelay;
+    public float timestamp;
 }
 
 [CreateAssetMenu(fileName = "DialogueSO")]
 public class DialogueSO : ScriptableObject
 {
+    public float preDelay;
+    public AudioClip clip;
     public List<Dialogue> dialogues;
 }

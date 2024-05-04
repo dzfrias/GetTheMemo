@@ -81,6 +81,11 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(playerVelocity * Time.deltaTime);
     }
 
+    public bool IsWalking()
+    {
+        return characterController.isGrounded && GameInput.Instance.GetMovementVectorNormalized() != Vector2.zero;
+    }
+
     private void ApplyDash()
     {
         Vector3 moveDirection = Vector3.zero;
