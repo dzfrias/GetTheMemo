@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashForce;
     [SerializeField] private float dashDuration;
     [SerializeField] private MMF_Player dashEffects;
-    [SerializeField] private GameObject damageBox;
+    [SerializeField] private DamageBox damageBox;
     private DashDirection? dashDirection = null;
 
     private Vector3 playerVelocity;
@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         GameInput.Instance.OnSprintStart += GameInput_OnSprintStart;
         GameInput.Instance.OnSprintStop += GameInput_OnSprintStop;
         GameInput.Instance.OnDash += GameInput_OnDash;
+        damageBox.OnKill += () => charges.GainCharge();
     }
 
     private void OnDisable()
@@ -178,11 +179,11 @@ public class PlayerMovement : MonoBehaviour
         }
         LayerMask oldMask = characterController.excludeLayers;
         characterController.excludeLayers = oldMask | LayerMask.GetMask("Enemy");
-        damageBox.SetActive(true);
+        damageBox.gameObject.SetActive(true);
         yield return new WaitForSeconds(dashDuration);
         characterController.excludeLayers = oldMask;
         dashDirection = null;
-        damageBox.SetActive(false);
+        damageBox.gameObject.SetActive(false);
     }
 
     private bool IsDashing()

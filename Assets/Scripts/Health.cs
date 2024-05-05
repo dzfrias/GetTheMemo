@@ -90,6 +90,11 @@ public class Health : MonoBehaviour
         OnHealthChanged?.Invoke(health);
     }
 
+    public bool IsDead()
+    {
+        return health <= 0;
+    }
+
     public void Heal(float amount)
     {
         health += amount;
