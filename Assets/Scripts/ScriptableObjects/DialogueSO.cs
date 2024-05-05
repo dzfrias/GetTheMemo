@@ -15,4 +15,5 @@ public class DialogueSO : ScriptableObject
     public float preDelay;
     public AudioClip clip;
     public List<Dialogue> dialogues;
+    public bool autoContinue;
 }

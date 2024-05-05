@@ -45,4 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: []
-  soundEffects: []
+  soundEffects:
+  - name: footstep
+    audioClip: {fileID: 8300000, guid: b04fd3640cd4f44c784a4013a2971d36, type: 3}
+    volume: 0.6
+  - name: static
+    audioClip: {fileID: 8300000, guid: 0794e5a9ffdf44a7e91331966bf79e01, type: 3}
+    volume: 0.1

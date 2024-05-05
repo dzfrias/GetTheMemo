@@ -32,6 +32,11 @@ public class BossSpeaker : MonoBehaviour
         return source.time;
     }
 
+    public float TimeLeft()
+    {
+        return source.clip.length - source.time;
+    }
+
     public bool IsPlaying()
     {
         return source.isPlaying;

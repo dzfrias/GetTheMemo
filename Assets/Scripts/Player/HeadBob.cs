@@ -30,10 +30,6 @@ public class HeadBob : MonoBehaviour
         }
 
         var pos = Mathf.Sin(Time.time * bobbingSpeed);
-        if (pos > -1 && pos < -0.999)
-        {
-            AudioManager.Instance.PlaySound("footstep");
-        }
         transform.localPosition = new Vector3(
             transform.localPosition.x,
             startY - pos * bobbingAmount,

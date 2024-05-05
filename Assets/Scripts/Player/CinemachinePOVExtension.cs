@@ -3,17 +3,11 @@ using UnityEngine;
 
 public class CinemachinePOVExtension : CinemachineExtension
 {
-    [SerializeField]
-    private float xSpeed = 10f;
-
-    [SerializeField]
-    private float ySpeed = 10f;
-
-    [SerializeField]
-    private float clampAngle = 80f;
-
-    [SerializeField]
-    private float smoothTime = 0.1f;
+    [SerializeField] private float xSpeed = 10f;
+    [SerializeField] private float ySpeed = 10f;
+    [SerializeField] private float clampAngle = 80f;
+    [SerializeField] private float smoothTime = 0.1f;
+    [SerializeField] private Vector3 startRot = new Vector3(-90f, 0f, 0f);
 
     private Vector3 targetRot;
     private Transform camTransform;
@@ -22,7 +16,7 @@ public class CinemachinePOVExtension : CinemachineExtension
     {
         base.Awake();
         camTransform = Camera.main.transform;
-        targetRot = camTransform.localRotation.eulerAngles;
+        targetRot = startRot;
     }
 
     protected override void PostPipelineStageCallback(

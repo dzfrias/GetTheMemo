@@ -114,6 +114,10 @@ public class GameManager : MonoBehaviour, IRecordMode
             }
             i += 1;
         }
+        if (dialogueList.autoContinue)
+        {
+            NextBeat();
+        }
     }
 
     private IEnumerator AutoContinue(float time)

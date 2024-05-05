@@ -6,6 +6,7 @@ using MoreMountains.Feedbacks;
 public class ButtonPanel : MonoBehaviour, IInteractable
 {
     [SerializeField] private DialogueBox dialogueBox;
+    [SerializeField] private GameObject openTrigger;
 
     private MMF_Player player;
     private bool didInteract;
@@ -30,6 +31,7 @@ public class ButtonPanel : MonoBehaviour, IInteractable
     private IEnumerator _GoToCombat()
     {
         dialogueBox.DisplayText("Going up.%1 Good luck out there,%0.5 intern.");
+        openTrigger.SetActive(false);
         yield return new WaitWhile(() => dialogueBox.IsPlaying());
         player.PlayFeedbacks();
     }
