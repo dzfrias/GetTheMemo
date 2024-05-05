@@ -30,6 +30,6 @@ public class MeleeEnemy : Enemy
 
     private bool IsInMeleeRange()
     {
-        return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+        return Vector3.Distance(player.transform.position, transform.position) <= navMeshAgent.stoppingDistance;
     }
 }
