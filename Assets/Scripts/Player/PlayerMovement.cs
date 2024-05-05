@@ -53,7 +53,10 @@ public class PlayerMovement : MonoBehaviour
         GameInput.Instance.OnSprintStart += GameInput_OnSprintStart;
         GameInput.Instance.OnSprintStop += GameInput_OnSprintStop;
         GameInput.Instance.OnDash += GameInput_OnDash;
-        damageBox.OnKill += () => charges.GainCharge();
+        if (damageBox != null)
+        {
+            damageBox.OnKill += () => charges.GainCharge();
+        }
     }
 
     private void OnDisable()
