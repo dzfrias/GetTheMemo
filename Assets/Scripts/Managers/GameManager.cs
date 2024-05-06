@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour, IRecordMode
         yield return new WaitForSeconds(dialogueList.preDelay);
         if (dialogueList.clip != null)
         {
-            speaker.Play(dialogueList.clip);
+            speaker.Play(dialogueList.clip, dialogueList.volume);
         }
         int i = 0;
         foreach (var dialogue in dialogueList.dialogues)

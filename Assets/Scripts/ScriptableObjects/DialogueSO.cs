@@ -16,4 +16,5 @@ public class DialogueSO : ScriptableObject
     public AudioClip clip;
     public List<Dialogue> dialogues;
     public bool autoContinue;
+    public float volume = 1f;
 }

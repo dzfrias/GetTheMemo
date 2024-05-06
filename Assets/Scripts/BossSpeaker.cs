@@ -11,9 +11,10 @@ public class BossSpeaker : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
-    public void Play(AudioClip clip)
+    public void Play(AudioClip clip, float volume)
     {
         source.clip = clip;
+        source.volume = volume;
         source.Play();
     }
 

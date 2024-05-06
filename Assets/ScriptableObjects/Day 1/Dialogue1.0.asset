@@ -18,3 +18,4 @@ MonoBehaviour:
   - text: '...   '
     timestamp: 0
   autoContinue: 1
+  volume: 0.5
