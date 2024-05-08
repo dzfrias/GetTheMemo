@@ -56,7 +56,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 90
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -90,6 +90,7 @@ MonoBehaviour:
   ySpeed: 10
   clampAngle: 80
   smoothTime: 0.4
+  startRot: {x: -90, y: 0, z: 0}
 --- !u!114 &3756242320365637310
 MonoBehaviour:
   m_ObjectHideFlags: 0

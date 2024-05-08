@@ -26,7 +26,7 @@ public class OpeningCamera : MonoBehaviour
         if (!canContinue) return;
         gameObject.SetActive(false);
         GameInput.Instance.SwitchActionMaps(ActionMap.Player);
-        GameManager.Instance.NextBeat();
+        OfficeManager.Instance.NextBeat();
     }
 
     public void CanContinue()

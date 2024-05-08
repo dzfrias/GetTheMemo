@@ -12,9 +12,9 @@ public class StoryBeat
     public UnityEvent onEnd;
 }
 
-public class GameManager : MonoBehaviour, IRecordMode
+public class OfficeManager : MonoBehaviour, IRecordMode
 {
-    public static GameManager Instance;
+    public static OfficeManager Instance;
 
     [SerializeField] private bool devMode;
     [SerializeField] private TutorialText tutorialText;
@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour, IRecordMode
 
     public void LoadScene(int level)
     {
+        SaveData.Instance.Save();
         SceneManager.LoadScene(level);
     }
 

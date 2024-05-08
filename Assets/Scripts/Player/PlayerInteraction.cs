@@ -132,7 +132,7 @@ public class PlayerInteraction : MonoBehaviour
             pointer.OnHover();
             if (firstInteract)
             {
-                GameManager.Instance.DisplayTutorial("E to interact");
+                OfficeManager.Instance.DisplayTutorial("E to interact");
             }
         }
         else
@@ -144,7 +144,7 @@ public class PlayerInteraction : MonoBehaviour
                 Destroy(hoverable.GetComponent<Outline>());
                 if (firstInteract)
                 {
-                    GameManager.Instance.HideTutorial();
+                    OfficeManager.Instance.HideTutorial();
                 }
             }
             TryNoHover();
@@ -165,7 +165,7 @@ public class PlayerInteraction : MonoBehaviour
                 interactable.Interact(transform.position);
                 if (firstInteract)
                 {
-                    GameManager.Instance.HideTutorial();
+                    OfficeManager.Instance.HideTutorial();
                     firstInteract = false;
                 }
             }

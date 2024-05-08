@@ -25,7 +25,8 @@ public class ButtonPanel : MonoBehaviour, IInteractable
 
     public void _Finish()
     {
-        GameManager.Instance.LoadScene(1);
+        int nextLevel = SaveData.Instance.data.currentLevel + 1;
+        OfficeManager.Instance.LoadScene(1);
     }
 
     private IEnumerator _GoToCombat()
