@@ -26,17 +26,26 @@ public class WaveUI : MonoBehaviour
         {
             currentHour += wave.lengthHours;
         }
-        string meridiem;
-        if (currentHour >= 12)
+        currentHour %= 24;
+        int display;
+        string designator;
+        if (currentHour == 0)
         {
-            meridiem = "am";
+            designator = "am";
+            display = 12;
+        }
+        else if (currentHour >= 12)
+        {
+            designator = "pm";
+            display = currentHour == 12 ? 12 : currentHour % 12;
         }
         else
         {
-            meridiem = "pm";
+            designator = "am";
+            display = currentHour;
         }
         text.gameObject.SetActive(true);
-        text.text = $"{(currentHour == 12 ? 12 : currentHour % 12)}{meridiem}";
+        text.text = $"{display}{designator}";
         currentWave = wave;
     }
 }
