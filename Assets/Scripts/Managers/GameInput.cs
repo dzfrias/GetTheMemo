@@ -48,6 +48,7 @@ public class GameInput : MonoBehaviour
     public event Action OnAwake;
 
     private PlayerInputActions playerInputActions;
+    private ActionMap currentActionMap;
 
     private void Awake()
     {
@@ -62,6 +63,7 @@ public class GameInput : MonoBehaviour
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        currentActionMap = ActionMap.Player;
         LockCursor();
     }
 
@@ -73,6 +75,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.PlayerNightTime.Disable();
         playerInputActions.UI.Disable();
         playerInputActions.OpeningSequence.Disable();
+        currentActionMap = actionMap;
         switch (actionMap)
         {
             case ActionMap.Player:
@@ -113,6 +116,11 @@ public class GameInput : MonoBehaviour
         }
     }
 
+    public ActionMap CurrentActionMap()
+    {
+        return currentActionMap;
+    }
+
     private void LockCursor()
     {
         Cursor.visible = false;
@@ -142,6 +150,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.PlayerNightTime.Dash.performed += PlayerInputActions_OnDash;
         playerInputActions.PlayerNightTime.SuperAttack.performed += PlayerInputActions_OnSuperAttackStart;
         playerInputActions.PlayerNightTime.SuperAttack.canceled += PlayerInputActions_OnSuperAttackStop;
+        playerInputActions.PlayerNightTime.Pause.performed += PlayerInputActions_OnPause;
 
         playerInputActions.UI.Close.performed += PlayerInputActions_OnCloseUI;
 
@@ -170,6 +179,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.PlayerNightTime.Dash.performed -= PlayerInputActions_OnDash;
         playerInputActions.PlayerNightTime.SuperAttack.performed -= PlayerInputActions_OnSuperAttackStart;
         playerInputActions.PlayerNightTime.SuperAttack.canceled -= PlayerInputActions_OnSuperAttackStop;
+        playerInputActions.PlayerNightTime.Pause.performed -= PlayerInputActions_OnPause;
 
         playerInputActions.UI.Close.performed -= PlayerInputActions_OnCloseUI;
 

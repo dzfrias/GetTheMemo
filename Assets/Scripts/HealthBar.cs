@@ -6,14 +6,13 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private Health health;
-
+    private Health health;
     private MMProgressBar progressBar;
-
     private float maxHealth;
 
-    private void Start()
+    private void Awake()
     {
+        health = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         maxHealth = health.GetMaxHealth();
         progressBar = GetComponent<MMProgressBar>();
     }

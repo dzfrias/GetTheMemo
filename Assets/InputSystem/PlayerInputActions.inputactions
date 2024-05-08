@@ -980,6 +980,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=0.2,pressPoint=0.1)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "4cd92cd5-34cb-444b-938a-3325e0869da0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1189,6 +1198,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SuperAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc276d94-02e5-47fb-9ae9-7ecb6de288cc",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
