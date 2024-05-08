@@ -14,7 +14,6 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     [Header("Other Objects")]
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private Camera cam;
     [SerializeField] private Transform head;
 
     [Header("Other Components")]
@@ -31,6 +30,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private AnimationEventProxy animationEventProxy;
     private Health health;
     private PlayerCharges charges;
+    private Camera cam;
 
     private AttackState attackState = AttackState.None;
     private float attackDelay;
@@ -51,6 +51,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         charges = GetComponent<PlayerCharges>();
         attackDelay = playerCombatSO.normalAttackDelay;
         swordAnimationPool = playerCombatSO.normalSwordAttackAnimations;
+        cam = Camera.main;
     }
 
     private void OnEnable()
