@@ -19,16 +19,14 @@ MonoBehaviour:
   attackDistance: 3
   normalAttackDelay: 0.5
   superAttackDelay: 0.4
-  superAttackStaminaCost: 12
   minimumSuperAttackWindupTime: 0.6
   healAmountOnKill: 0
-  staminaIncreaseAmountOnKill: 0
   defaultSwordPositionAnimation: Empty
   normalSwordAttackAnimations:
-  - Attack3
-  - Attack2
-  - Attack5
   - Attack1
+  - Attack2
   - Attack4
+  - Attack5
+  - Attack3
   superAttackWindupAnimation: SuperAttackWindup
   superAttackAnimation: SuperAttack

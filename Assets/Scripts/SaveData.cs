@@ -10,6 +10,8 @@ public class GameData
     public int currentLevel;
     public float extraMaxHealth;
     public float extraMovementSpeed;
+    public float extraAttackSpeed;
+    public float decreasedAttackDelayAmount;
 }
 
 public class SaveData : MonoBehaviour
