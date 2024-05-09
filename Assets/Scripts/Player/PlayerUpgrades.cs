@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerUpgrades : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject vendingMachineUI;
+    [SerializeField] private VendingMachineUI vendingMachineUI;
     [SerializeField] private GameObject vendingMachineCamera;
 
     private GameObject player;
@@ -33,14 +33,14 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
 
     private void CloseUI()
     {
-        vendingMachineUI.SetActive(false);
+        vendingMachineUI.Hide();
         vendingMachineCamera.SetActive(false);
         GameInput.Instance.SwitchActionMaps(ActionMap.Player);
     }
 
     public void Interact(Vector3 playerPosition)
     {
-        vendingMachineUI.SetActive(true);
+        vendingMachineUI.Show();
         vendingMachineCamera.SetActive(true);
         GameInput.Instance.SwitchActionMaps(ActionMap.UI);
     }
