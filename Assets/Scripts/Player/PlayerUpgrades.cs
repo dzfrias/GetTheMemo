@@ -7,6 +7,20 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
     [SerializeField] private GameObject vendingMachineUI;
     [SerializeField] private GameObject vendingMachineCamera;
 
+    private GameObject player;
+    private Health playerHealth;
+    private PlayerMovement playerMovement;
+
+    private int maxHealthIncreaseAmount = 2;
+    private int movementSpeedIncreaseAmount = 1;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = player.GetComponent<Health>();
+        playerMovement = player.GetComponent<PlayerMovement>();
+    }
+
     private void OnEnable()
     {
         GameInput.Instance.OnCloseUI += CloseUI;
@@ -34,10 +48,15 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
     public void UpgradeHealth()
     {
         Debug.Log("Increase Health");
+        SaveData.Instance.data.extraMaxHealth += maxHealthIncreaseAmount;
+        SaveData.Instance.Save();
     }
 
     public void UpgradeMovementSpeed()
     {
         Debug.Log("Increase Movement Speed");
+        playerMovement.IncreaseMaxSpeed(movementSpeedIncreaseAmount);
+        SaveData.Instance.data.extraMovementSpeed += movementSpeedIncreaseAmount;
+        SaveData.Instance.Save();
     }
 }

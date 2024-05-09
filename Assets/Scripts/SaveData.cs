@@ -8,6 +8,8 @@ using UnityEngine;
 public class GameData
 {
     public int currentLevel;
+    public float extraMaxHealth;
+    public float extraMovementSpeed;
 }
 
 public class SaveData : MonoBehaviour

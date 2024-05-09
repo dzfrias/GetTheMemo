@@ -28,6 +28,20 @@ public class Health : MonoBehaviour
         shieldAmount = maxShield;
     }
 
+    private void Start()
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            maxHealth += SaveData.Instance.data.extraMaxHealth;
+        }
+    }
+
+    private void OnDisable()
+    {
+        SaveData.Instance.data.extraMaxHealth = maxHealth;
+        SaveData.Instance.Save();
+    }
+
     private IEnumerator Regen()
     {
         yield return new WaitForSeconds(regenBufferTime);
@@ -110,5 +124,10 @@ public class Health : MonoBehaviour
         invincible = true;
         yield return new WaitForSeconds(invincibility);
         invincible = false;
+    }
+
+    internal void IncreaseMaxHealth(float amount)
+    {
+        maxHealth += amount;
     }
 }

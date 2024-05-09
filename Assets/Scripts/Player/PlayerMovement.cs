@@ -47,6 +47,11 @@ public class PlayerMovement : MonoBehaviour
         melee = GetComponent<PlayerMeleeAttack>();
     }
 
+    private void Start()
+    {
+        movementSpeed += SaveData.Instance.data.extraMovementSpeed;
+    }
+
     private void OnEnable()
     {
         GameInput.Instance.OnJump += GameInput_OnJump;
@@ -205,5 +210,10 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y += gravityMultiplier * Physics.gravity.y * Time.deltaTime;
         }
+    }
+
+    internal void IncreaseMaxSpeed(int amount)
+    {
+        movementSpeed += amount;
     }
 }
