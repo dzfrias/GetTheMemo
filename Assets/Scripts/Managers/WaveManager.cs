@@ -8,18 +8,26 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float noSpawnRadius = 5f;
     [SerializeField] List<Transform> enemySpawnPoints;
     [SerializeField] List<WaveSO> waves;
+    [SerializeField] private float wavesCompleteteRewardAmount;
     public static event Action<WaveSO> OnNewWave;
 
     private List<GameObject> enemiesToSpawn;
     private int enemiesRemaining;
     private int waveIndex = 0;
     private Transform player;
+    private PlayerBalance playerBalance;
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        playerBalance = player.GetComponent<PlayerBalance>();
         enemiesToSpawn = new();
         SpawnWave();
+    }
+
+    private void LoadScene(int _)
+    {
+        SaveData.Instance.Save();
     }
 
     private void SpawnWave()
@@ -67,10 +75,29 @@ public class WaveManager : MonoBehaviour
     private void Enemy_OnDeath()
     {
         enemiesRemaining--;
+        CheckRemainingEnemies();
+    }
+
+    private void CheckRemainingEnemies()
+    {
         if (enemiesRemaining == 0 && enemiesToSpawn.Count == 0)
         {
-            waveIndex++;
-            SpawnWave();
+            if (AreWavesCompleted())
+            {
+                SaveData.Instance.data.playerBalance += wavesCompleteteRewardAmount;
+            }
+            else
+            {
+                Debug.Log(waveIndex);
+                Debug.Log(waves.Count);
+                waveIndex++;
+                SpawnWave();
+            }
         }
+    }
+
+    private bool AreWavesCompleted()
+    {
+        return waveIndex == waves.Count - 1;
     }
 }

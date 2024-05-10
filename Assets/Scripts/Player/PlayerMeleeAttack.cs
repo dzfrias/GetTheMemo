@@ -34,7 +34,9 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private AttackState attackState = AttackState.None;
     private float attackDelay;
+    private float normalAttackDelay;
     private float windupTime;
+    private float attackSpeed = 1;
 
     public enum AttackState
     {
@@ -52,6 +54,14 @@ public class PlayerMeleeAttack : MonoBehaviour
         attackDelay = playerCombatSO.normalAttackDelay;
         swordAnimationPool = playerCombatSO.normalSwordAttackAnimations;
         cam = Camera.main;
+    }
+
+    private void Start()
+    {
+        attackSpeed += SaveData.Instance.data.extraAttackSpeed;
+        animator.SetFloat("AttackSpeed", attackSpeed);
+
+        normalAttackDelay = playerCombatSO.normalAttackDelay -= SaveData.Instance.data.decreasedAttackDelayAmount;
     }
 
     private void OnEnable()
@@ -100,7 +110,7 @@ public class PlayerMeleeAttack : MonoBehaviour
                 animator.Play(playerCombatSO.defaultSwordPositionAnimation, 0, 0);
                 break;
             case AttackState.NormalAttack:
-                attackDelay = playerCombatSO.normalAttackDelay;
+                attackDelay = normalAttackDelay;
                 PlayRandomAttackAnimation();
                 break;
             case AttackState.SuperAttack:

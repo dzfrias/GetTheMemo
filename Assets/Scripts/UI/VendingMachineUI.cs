@@ -1,41 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
-public class VendingMachineUI : MonoBehaviour, IStationUI<VendingMachineData>
-{
-    [SerializeField] private VendingMachineRows rows;
-    [SerializeField] private VendingMachineCards cards;
+public class VendingMachineUI : MonoBehaviour {
+    [SerializeField] private MMF_Player openFeedbacks;
+    [SerializeField] private MMF_Player closeFeedbacks;
 
-    private VendingMachineData data;
-
-    public void Startup(VendingMachineData data)
+    public void Show()
     {
-        this.data = data;
+        gameObject.SetActive(true);
+        openFeedbacks.PlayFeedbacks();
     }
 
-    public ActionMap PreferredActionMap()
+    public void Hide()
     {
-        return ActionMap.UI;
-    }
-
-    public void OpenCards(int tier)
-    {
-        int tierMax = Enum.GetNames(typeof(AbilityTier)).Length - 1;
-        if (tier > tierMax)
-        {
-            Debug.LogError("invalid card tier!");
-            return;
-        }
-
-        rows.Hide();
-        List<IAbility> abilities = data.GetTier((AbilityTier)tier);
-        cards.Display(abilities);
-    }
-
-    private void OnDisable()
-    {
-        data.Shutdown();
+        closeFeedbacks.PlayFeedbacks();
     }
 }
