@@ -51,7 +51,6 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
     {
         Debug.Log("Increase Health");
         SaveData.Instance.data.extraMaxHealth += maxHealthIncreaseAmount;
-        SaveData.Instance.Save();
     }
 
     public void UpgradeMovementSpeed()
@@ -59,7 +58,6 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
         Debug.Log("Increase Movement Speed");
         playerMovement.IncreaseMaxSpeed(movementSpeedIncreaseAmount);
         SaveData.Instance.data.extraMovementSpeed += movementSpeedIncreaseAmount;
-        SaveData.Instance.Save();
     }
 
     public void UpgradeAttackSpeed()
@@ -67,6 +65,5 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
         Debug.Log("Increase Attack Speed");
         SaveData.Instance.data.extraAttackSpeed += attackSpeedIncreaseAmount;
         SaveData.Instance.data.decreasedAttackDelayAmount += decreaseAttackDelayAmount;
-        SaveData.Instance.Save();
     }
 }

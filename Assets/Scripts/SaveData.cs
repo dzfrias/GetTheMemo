@@ -12,6 +12,7 @@ public class GameData
     public float extraMovementSpeed;
     public float extraAttackSpeed;
     public float decreasedAttackDelayAmount;
+    public float playerBalance;
 }
 
 public class SaveData : MonoBehaviour
