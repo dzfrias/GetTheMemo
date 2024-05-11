@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityHFSM;
@@ -23,6 +22,14 @@ public class ExplosiveEnemy : Enemy
 
     private bool IsInExplosionRange(Transition<EnemyState> _)
     {
-        return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+        return Vector3.Distance(player.position, transform.position) < navMeshAgent.stoppingDistance;
+    }
+
+    protected override void PrimaryAttack()
+    {
+        Debug.Log("ACTIVATE PRIMARY ATTACK");
+        base.PrimaryAttack();
+        Debug.Log("Die.exe");
+        Destroy(gameObject);
     }
 }
