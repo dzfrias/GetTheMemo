@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] List<WaveSO> waves;
     [SerializeField] private float wavesCompleteteRewardAmount;
     public static event Action<WaveSO> OnNewWave;
+    public static event Action OnWavesCompleted;
 
     private List<GameObject> enemiesToSpawn;
     private int enemiesRemaining;
@@ -83,6 +84,7 @@ public class WaveManager : MonoBehaviour
         {
             if (AreWavesCompleted())
             {
+                OnWavesCompleted?.Invoke();
                 SaveData.Instance.data.playerBalance += wavesCompleteteRewardAmount;
             }
             else
