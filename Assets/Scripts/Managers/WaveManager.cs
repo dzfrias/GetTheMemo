@@ -22,7 +22,6 @@ public class WaveManager : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         playerBalance = player.GetComponent<PlayerBalance>();
         enemiesToSpawn = new();
-        SpawnWave();
     }
 
     private void LoadScene(int _)
@@ -99,5 +98,10 @@ public class WaveManager : MonoBehaviour
     private bool AreWavesCompleted()
     {
         return waveIndex == waves.Count - 1;
+    }
+
+    public void StartWaves(int seconds)
+    {
+        Invoke(nameof(SpawnWave), seconds);
     }
 }
