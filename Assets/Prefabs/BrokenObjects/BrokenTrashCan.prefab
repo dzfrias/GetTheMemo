@@ -112,6 +112,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: broken_trash_bin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 596512d13a58d4e4588236e3ca03fc87,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 596512d13a58d4e4588236e3ca03fc87,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7801398696528885363, guid: 596512d13a58d4e4588236e3ca03fc87,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7801398696528885363, guid: 596512d13a58d4e4588236e3ca03fc87,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

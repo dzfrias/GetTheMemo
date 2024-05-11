@@ -154,6 +154,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: broken_storage_container
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1a8d15c98a742849a6a93a8981df136,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
