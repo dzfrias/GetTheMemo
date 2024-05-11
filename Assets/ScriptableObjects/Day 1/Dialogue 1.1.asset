@@ -24,4 +24,5 @@ MonoBehaviour:
     timestamp: 5.5
   - text: "Don\u2019t be afraid, I\u2019ll be right here to show you the ropes! "
     timestamp: 10.4
-  autoContinue: 0
+  autoContinue: 1
+  volume: 1

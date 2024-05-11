@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95e9d53675c94c9b82aeb7a4d004270, type: 3}
-  m_Name: Dialogue 1.2
+  m_Name: Dialogue 1.5
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: e58099864e7784116b3be69e80f6fb53, type: 3}
+  clip: {fileID: 8300000, guid: 249b398d8b30f41418460d24a1bebe87, type: 3}
   dialogues:
-  - text: "Unfortunately I can\u2019t converse with you in-person."
+  - text: Now intern, %0.4go ahead and get yourself familiar with the office!
     timestamp: 0
-  - text: "I\u2019m a little\u2026 %0.7preoccupied on the upper floor."
-    timestamp: 3.5
-  - text: "But, no need to worry, %0.3you\u2019ll hear me through the intercom!"
-    timestamp: 7.3
+  - text: Walk around, get to know the space.
+    timestamp: 5.4
+  - text: "You\u2019re going to be in here for a while so.. %0.4<i>really</i> get
+      to know it."
+    timestamp: 8
   autoContinue: 1
   volume: 1

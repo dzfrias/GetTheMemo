@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95e9d53675c94c9b82aeb7a4d004270, type: 3}
-  m_Name: Dialogue 1.2
+  m_Name: Dialogue 1.8
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: e58099864e7784116b3be69e80f6fb53, type: 3}
+  clip: {fileID: 8300000, guid: 8a60f11dc1f634089ab99fca1e90a73f, type: 3}
   dialogues:
-  - text: "Unfortunately I can\u2019t converse with you in-person."
+  - text: But first!%0.75 You need employee training.
     timestamp: 0
-  - text: "I\u2019m a little\u2026 %0.7preoccupied on the upper floor."
-    timestamp: 3.5
-  - text: "But, no need to worry, %0.3you\u2019ll hear me through the intercom!"
-    timestamp: 7.3
+  - text: Dang, I almost just sent you up there without informing you about the required
+      skill sets.
+    timestamp: 3
+  - text: How about you take the elevator to the employee training room so I can
+      give you a quick run-down?
+    timestamp: 8.6
   autoContinue: 1
   volume: 1
