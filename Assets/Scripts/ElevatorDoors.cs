@@ -15,23 +15,17 @@ public class ElevatorDoors : MonoBehaviour
 
     private void OnEnable()
     {
-        WaveManager.OnWavesCompleted += OpenDoors;
-        WaveManager.OnWavesCompleted += ActivateLeaveLevelTrigger;
+        WaveManager.OnWavesCompleted += OpenToLeave;
     }
 
     private void OnDisable()
     {
-        WaveManager.OnWavesCompleted -= OpenDoors;
-        WaveManager.OnWavesCompleted -= ActivateLeaveLevelTrigger;
+        WaveManager.OnWavesCompleted -= OpenToLeave;
     }
 
-    public void OpenDoors()
+    public void OpenToLeave()
     {
         animator.SetTrigger("OpenDoors");
-    }
-
-    private void ActivateLeaveLevelTrigger()
-    {
         leaveLevelTrigger.SetActive(true);
     }
 }

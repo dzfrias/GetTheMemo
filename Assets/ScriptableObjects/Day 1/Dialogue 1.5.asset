@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue 1.5
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: 249b398d8b30f41418460d24a1bebe87, type: 3}
+  clip: {fileID: 8300000, guid: 4e595fedbb2fb4acaae95f4ae2ab28ff, type: 3}
   dialogues:
   - text: Now intern, %0.4go ahead and get yourself familiar with the office!
     timestamp: 0

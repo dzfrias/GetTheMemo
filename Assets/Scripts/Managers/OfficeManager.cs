@@ -18,6 +18,7 @@ public class OfficeManager : MonoBehaviour, IRecordMode
 
     [SerializeField] private bool devMode;
     [SerializeField] private int startOn;
+    [SerializeField] private bool playOnStart = true;
     [SerializeField] private TutorialText tutorialText;
     [SerializeField] private List<StoryBeat> beats;
     [SerializeField] private DialogueBox dialogueBox;
@@ -40,7 +41,10 @@ public class OfficeManager : MonoBehaviour, IRecordMode
     private void Start()
     {
         currentBeat = startOn;
-        NextBeat();
+        if (playOnStart)
+        {
+            NextBeat();
+        }
     }
 
     public void LoadScene(int level)

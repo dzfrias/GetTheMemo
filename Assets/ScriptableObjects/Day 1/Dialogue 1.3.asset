@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue 1.3
   m_EditorClassIdentifier: 
   preDelay: 2
-  clip: {fileID: 8300000, guid: 1e7f985a176a04c8c8551586cb6c106c, type: 3}
+  clip: {fileID: 8300000, guid: a9d7c6c0228b7451aae9073cf2ae0586, type: 3}
   dialogues:
   - text: ' %0.8Oh, who am I? %0.5Forgetting to exchange pleasantries?'
     timestamp: 0

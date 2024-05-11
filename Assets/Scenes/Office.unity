@@ -29767,6 +29767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   devMode: 0
   startOn: 0
+  playOnStart: 1
   tutorialText: {fileID: 320130161}
   beats:
   - autoContinue: 4

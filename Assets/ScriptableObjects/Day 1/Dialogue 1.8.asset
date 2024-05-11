@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue 1.8
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: 8a60f11dc1f634089ab99fca1e90a73f, type: 3}
+  clip: {fileID: 8300000, guid: 12ac25e7fadf842599eb1b9741ec7361, type: 3}
   dialogues:
   - text: But first!%0.75 You need employee training.
     timestamp: 0

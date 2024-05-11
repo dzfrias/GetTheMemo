@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue 1.7
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: 6cb81b87ed5b244e09b759bb25c5a27c, type: 3}
+  clip: {fileID: 8300000, guid: c7a606e1d66e04ad09e54f86db890f25, type: 3}
   dialogues:
   - text: "So\u2026 %0.8are you prepared for your first task? Great! Because.. you
       know what? I\u2019m glad you\u2019re ready."

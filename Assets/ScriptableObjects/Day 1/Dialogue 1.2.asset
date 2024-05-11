@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue 1.2
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: e58099864e7784116b3be69e80f6fb53, type: 3}
+  clip: {fileID: 8300000, guid: 33e9eabbf3d5743b5b57809bdbf310be, type: 3}
   dialogues:
   - text: "Unfortunately I can\u2019t converse with you in-person."
     timestamp: 0

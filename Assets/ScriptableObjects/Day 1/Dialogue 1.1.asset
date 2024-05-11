@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue 1.1
   m_EditorClassIdentifier: 
   preDelay: 1
-  clip: {fileID: 8300000, guid: f4864c9d4c1f24c11bbf7c2f0a6e7410, type: 3}
+  clip: {fileID: 8300000, guid: 8038adb940aca418cb87293cd76ee14e, type: 3}
   dialogues:
   - text: It's always a great Monday when we get a new intern!
     timestamp: 0
