@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4057283009036447710}
   - component: {fileID: 4830271691005259025}
   - component: {fileID: 855234695308182121}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrokenTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,6 +197,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: broken_table
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3ae6d95b1a5873e459e5db30637921ae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3ae6d95b1a5873e459e5db30637921ae,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

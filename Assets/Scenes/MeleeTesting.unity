@@ -549,7 +549,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.19215685, g: 1, b: 0.92353433, a: 1}
-  m_Intensity: 44.7
+  m_Intensity: 18.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1194,7 +1194,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 1, b: 0.9237678, a: 1}
-  m_Intensity: 51.7
+  m_Intensity: 23.6
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1510,6 +1510,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6869539178277095918, guid: b334bd8c0304f8a41a877df7b8de173e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1606,7 +1611,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.17292474, g: 1, b: 0.1462264, a: 1}
-  m_Intensity: 38.57
+  m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2224,6 +2229,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BrokenStorageContainer (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677514328148099516, guid: 8450628f2cf662849951f8f232dbc615,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5421111372746480601, guid: 8450628f2cf662849951f8f232dbc615,
         type: 3}
@@ -4642,7 +4652,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.08627448, g: 0.9607843, b: 0.8586588, a: 1}
-  m_Intensity: 46.7
+  m_Intensity: 13.7
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5112,6 +5122,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BrokenChair (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9104099621224424839, guid: 393b248b03ff9634c98eb1e380649aa7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5272,11 +5287,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1362948861}
     m_Modifications:
-    - target: {fileID: 2889135742579244899, guid: 93ef5a9f21b22e742a4575140affbbc1,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 6912162718145761656, guid: 93ef5a9f21b22e742a4575140affbbc1,
         type: 3}
       propertyPath: m_Name
@@ -5836,6 +5846,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5609239222689158249, guid: f5f1563152e4a3a4cafe0408a7087551,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609239222689158249, guid: f5f1563152e4a3a4cafe0408a7087551,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5980,11 +5995,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1362948861}
     m_Modifications:
-    - target: {fileID: 378066618140176766, guid: 844e0b9fb63da6b4897d0261db211340,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 1588557865498362756, guid: 844e0b9fb63da6b4897d0261db211340,
         type: 3}
       propertyPath: m_Name
@@ -6233,6 +6243,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1490585299393844576, guid: 6acc999f9f381be45a50bd80e2a7649a,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490585299393844576, guid: 6acc999f9f381be45a50bd80e2a7649a,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -6290,6 +6305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BrokenTrashCan
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370736471967768130, guid: 6acc999f9f381be45a50bd80e2a7649a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8370736471967768130, guid: 6acc999f9f381be45a50bd80e2a7649a,
         type: 3}

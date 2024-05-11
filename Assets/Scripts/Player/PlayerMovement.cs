@@ -186,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
             dashDirection = DashDirection.NotForwards;
         }
         LayerMask oldMask = characterController.excludeLayers;
-        characterController.excludeLayers = oldMask | LayerMask.GetMask("Enemy");
+        characterController.excludeLayers = oldMask | LayerMask.GetMask("DashThrough");
         damageBox.gameObject.SetActive(true);
         yield return new WaitForSeconds(dashDuration);
         characterController.excludeLayers = oldMask;

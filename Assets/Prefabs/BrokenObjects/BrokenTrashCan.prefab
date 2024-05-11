@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6043366877575389906}
   - component: {fileID: -6944864137394102099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrokenTrashCan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
