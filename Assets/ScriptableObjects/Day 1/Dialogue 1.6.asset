@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95e9d53675c94c9b82aeb7a4d004270, type: 3}
-  m_Name: Dialogue 1.2
+  m_Name: Dialogue 1.6
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: e58099864e7784116b3be69e80f6fb53, type: 3}
+  clip: {fileID: 8300000, guid: e0b179b6653604a50bda16101e0c9419, type: 3}
   dialogues:
-  - text: "Unfortunately I can\u2019t converse with you in-person."
+  - text: So, what's the verdict on our little slice of corporate heaven?
     timestamp: 0
-  - text: "I\u2019m a little\u2026 %0.7preoccupied on the upper floor."
-    timestamp: 3.5
-  - text: "But, no need to worry, %0.3you\u2019ll hear me through the intercom!"
-    timestamp: 7.3
+  - text: Pretty epic, huh?
+    timestamp: 4.1
+  - text: Yeah, %0.5the last guy thought so too.
+    timestamp: 5.6
+  - text: Bit of a nuisance, that one. %0.8But you? %0.9I've got a good feeling about
+      you!
+    timestamp: 8.9
   autoContinue: 1
   volume: 1

@@ -159,6 +159,12 @@ public class DialogueBox : MonoBehaviour
         return textCoroutine != null;
     }
 
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+        textCoroutine = null;
+    }
+
     private IEnumerator TypeText(List<Token> tokens, float overrideStopTime)
     {
         var sb = new StringBuilder();

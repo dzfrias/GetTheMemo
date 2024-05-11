@@ -17,6 +17,7 @@ public class OfficeManager : MonoBehaviour, IRecordMode
     public static OfficeManager Instance;
 
     [SerializeField] private bool devMode;
+    [SerializeField] private int startOn;
     [SerializeField] private TutorialText tutorialText;
     [SerializeField] private List<StoryBeat> beats;
     [SerializeField] private DialogueBox dialogueBox;
@@ -38,6 +39,7 @@ public class OfficeManager : MonoBehaviour, IRecordMode
 
     private void Start()
     {
+        currentBeat = startOn;
         NextBeat();
     }
 
@@ -105,16 +107,11 @@ public class OfficeManager : MonoBehaviour, IRecordMode
                 yield return new WaitWhile(() => dialogueBox.IsPlaying());
                 speaker.Resume();
             }
-            if (i == dialogueList.dialogues.Count - 1)
-            {
-                dialogueBox.DisplayText(dialogue.text);
-            }
-            else
-            {
-                dialogueBox.DisplayText(dialogue.text, -1);
-            }
+            dialogueBox.DisplayText(dialogue.text, -1);
             i += 1;
         }
+        yield return new WaitWhile(() => dialogueBox.IsPlaying() || speaker.IsPlaying());
+        dialogueBox.Hide();
         if (dialogueList.autoContinue)
         {
             NextBeat();

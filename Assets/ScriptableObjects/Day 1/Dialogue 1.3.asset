@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95e9d53675c94c9b82aeb7a4d004270, type: 3}
-  m_Name: Dialogue 1.2
+  m_Name: Dialogue 1.3
   m_EditorClassIdentifier: 
-  preDelay: 0
-  clip: {fileID: 8300000, guid: e58099864e7784116b3be69e80f6fb53, type: 3}
+  preDelay: 2
+  clip: {fileID: 8300000, guid: 1e7f985a176a04c8c8551586cb6c106c, type: 3}
   dialogues:
-  - text: "Unfortunately I can\u2019t converse with you in-person."
+  - text: ' %0.8Oh, who am I? %0.5Forgetting to exchange pleasantries?'
     timestamp: 0
-  - text: "I\u2019m a little\u2026 %0.7preoccupied on the upper floor."
-    timestamp: 3.5
-  - text: "But, no need to worry, %0.3you\u2019ll hear me through the intercom!"
-    timestamp: 7.3
+  - text: "My name is Lake Waterson! %0.5That\u2019s Mr. Waterson to you."
+    timestamp: 5
   autoContinue: 1
   volume: 1
