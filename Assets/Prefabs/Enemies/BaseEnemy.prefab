@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: -4837362946607828198}
   m_Layer: 6
   m_Name: BaseEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  invincibility: 0
   maxShield: 0
   shieldRegen: 0.5
   regenBufferTime: 1
@@ -2137,8 +2138,7 @@ PrefabInstance:
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
         already bound by a Humanoid avatar. These transforms can only be changed
         by Humanoid clips.\n\tTransform 'Armature'\n\tTransform 'Armature'\n\tTransform
-        'Armature'\n\tFrom animation clip 'Armature|computer_attack'\n\tFrom animation
-        clip 'Armature|computer_walk'"
+        'Armature'\n\tFrom animation clip 'Armature|computer_walk'"
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 81bb9eea30387e442899949a80011e55,
         type: 3}

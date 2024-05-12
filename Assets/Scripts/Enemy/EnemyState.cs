@@ -6,6 +6,8 @@ public enum EnemyState
 {
     Idle,
     Chase,
+    Follow,
+    Flee,
     Attack,
     Dodge,
     Impact,

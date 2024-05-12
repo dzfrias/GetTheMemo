@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,15 +29,53 @@ public class SupportEnemy : Enemy
 
     public override void AddStatesToEnemyFSM()
     {
-        base.AddStatesToEnemyFSM();
+        enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
+        enemyFSM.AddState(EnemyState.Follow, new FollowState(false, this));
         enemyFSM.AddState(EnemyState.Attack, new AttackState(true, this, OnAttack, 1f));
+        enemyFSM.AddState(EnemyState.Flee, new FleeState(false, this, player));
+        enemyFSM.AddState(EnemyState.Death, new DeathState(false, this));
+
+        enemyFSM.SetStartState(EnemyState.Flee);
     }
 
     public override void AddEnemyStateTransitions()
     {
-        base.AddEnemyStateTransitions();
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Attack, CanAttack));
-        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Attack, CanAttack));
+        enemyFSM.AddTwoWayTransition(EnemyState.Flee, EnemyState.Follow, CanFollow);
+        //enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Follow, EnemyState.Attack, CanAttack));
+        //enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Follow, CanFollow));
+        //enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Follow, EnemyState.Idle, ShouldIdle));
+        //enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Follow, EnemyState.Flee, ShouldFlee));
+        //enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Flee, ShouldFlee));
+
+        enemyFSM.AddTriggerTransitionFromAny(StateEvent.Death, EnemyState.Death, forceInstantly: true);
+    }
+
+    private bool ShouldFlee(Transition<EnemyState> _)
+    {
+        return GetEnemyAmount() == 0;
+    }
+
+    private bool CanFollow(Transition<EnemyState> _)
+    {
+        Debug.Log("CHECKING ENEMY AMOUNT: " + GetEnemyAmount());
+        return GetEnemyAmount() > 0;
+    }
+
+    private bool ShouldIdle(Transition<EnemyState> _)
+    {
+        return GetEnemyAmount() > 0 && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+    }
+
+    private int GetEnemyAmount()
+    {
+        int count = 0;
+        Collider[] hitColliders = Physics.OverlapBox(transform.position, new Vector3(100, 100, 100), Quaternion.identity);
+        foreach (Collider hitCollider in hitColliders)
+        {
+            if (!hitCollider.CompareTag("Enemy") || hitCollider.TryGetComponent(out SupportEnemy _)) continue;
+            count++;
+        }
+        return count;
     }
 
     private bool CanAttack(Transition<EnemyState> _)
