@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue1.0
   m_EditorClassIdentifier: 
   preDelay: 2
-  clip: {fileID: 8300000, guid: 0794e5a9ffdf44a7e91331966bf79e01, type: 3}
+  clip: {fileID: 8300000, guid: 2f08317ed3fda42189da7039c22b6b65, type: 3}
   dialogues:
   - text: '...   '
     timestamp: 0

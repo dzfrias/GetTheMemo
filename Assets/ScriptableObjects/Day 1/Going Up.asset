@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Going Up
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: f089f2069e210452ba4fb661fbcd747f, type: 3}
+  clip: {fileID: 8300000, guid: 72e4aad0a7b86467bbe0ddf36e5afc77, type: 3}
   dialogues:
   - text: Going up. Good luck out there, intern
     timestamp: 0
