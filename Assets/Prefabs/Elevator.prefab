@@ -657,11 +657,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5504665927624382480, guid: 5d1bfda546e7d44658415698816e7bd0,
         type: 3}
-      propertyPath: FeedbacksList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5504665927624382480, guid: 5d1bfda546e7d44658415698816e7bd0,
-        type: 3}
       propertyPath: FeedbacksList.Array.data[0]
       value: 2452032532115619844
       objectReference: {fileID: 0}

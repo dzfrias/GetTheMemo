@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: Dialogue 1.5
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: 4e595fedbb2fb4acaae95f4ae2ab28ff, type: 3}
+  clip: {fileID: 8300000, guid: f783c4e9f3db04c53a4165bccb04d903, type: 3}
   dialogues:
   - text: Now intern, %0.4go ahead and get yourself familiar with the office!
     timestamp: 0
-  - text: Walk around, get to know the space.
-    timestamp: 5.4
   - text: "You\u2019re going to be in here for a while so.. %0.4<i>really</i> get
       to know it."
-    timestamp: 8
+    timestamp: 5.1
   autoContinue: 1
   volume: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue 1.6
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: 933e7f22846f84c7dad807000a1611a0, type: 3}
+  clip: {fileID: 8300000, guid: df6e3f18bc7fe4cfc89fa0eda6314cc9, type: 3}
   dialogues:
   - text: So, what's the verdict on our little slice of corporate heaven?
     timestamp: 0

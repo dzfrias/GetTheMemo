@@ -18,6 +18,6 @@ MonoBehaviour:
   - text: Oh, %0.5who am I? %0.5Forgetting to exchange pleasantries?
     timestamp: 0
   - text: "My name is Lake Waterson! %0.5That\u2019s Mr. Waterson to you."
-    timestamp: 4.4
+    timestamp: 4.3
   autoContinue: 1
   volume: 1

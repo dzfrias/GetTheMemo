@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95e9d53675c94c9b82aeb7a4d004270, type: 3}
   m_Name: Dialogue T.0
   m_EditorClassIdentifier: 
-  preDelay: 1.5
+  preDelay: 3.25
   clip: {fileID: 8300000, guid: e2102e0eb3e404063b78fa2a5a821d5a, type: 3}
   dialogues:
   - text: Meet Bob. %0.75Bob may look cute, %0.5but he took a <b>7 minute</b> bathroom
