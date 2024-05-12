@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue 1.4
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: 71ed3c73450de40d8bbb93d178e950b7, type: 3}
+  clip: {fileID: 8300000, guid: c4a1b8abfd4eb4125ac06113290ce3eb, type: 3}
   dialogues:
   - text: "You don\u2019t mind if I just call you \u201Cintern\u201D, %0.4right?"
     timestamp: 0

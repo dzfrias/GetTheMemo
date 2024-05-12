@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Dialogue 1.1
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: 8038adb940aca418cb87293cd76ee14e, type: 3}
+  clip: {fileID: 8300000, guid: da98636dc50c24656bc530f7b68453bc, type: 3}
   dialogues:
   - text: It's always a great Monday when we get a new intern!
     timestamp: 0
   - text: Welcome to the office, kiddo.
-    timestamp: 3.5
-  - text: "I know it\u2019s hard to believe, but you\u2019re now officially part
+    timestamp: 3.4
+  - text: "I know it\u2019s hard to believe, %0.6but you\u2019re now officially part
       of the Big Corp family."
-    timestamp: 5.5
-  - text: "Don\u2019t be afraid, I\u2019ll be right here to show you the ropes! "
-    timestamp: 10.4
+    timestamp: 5.4
+  - text: "Don\u2019t be afraid, %0.3I\u2019ll be right here to show you the ropes! "
+    timestamp: 10.3
   autoContinue: 1
   volume: 1

@@ -15,7 +15,7 @@ MonoBehaviour:
   preDelay: 0
   clip: {fileID: 8300000, guid: 72e4aad0a7b86467bbe0ddf36e5afc77, type: 3}
   dialogues:
-  - text: Going up. Good luck out there, intern
+  - text: Going up. Good luck out there, intern.
     timestamp: 0
   autoContinue: 0
   volume: 1
