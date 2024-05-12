@@ -37,7 +37,7 @@ public class BossSpeaker : MonoBehaviour
 
     public void Resume()
     {
-        source.Play();
+        source.UnPause();
     }
 
     public float Time()
