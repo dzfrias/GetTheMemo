@@ -27,9 +27,7 @@ public class ExplosiveEnemy : Enemy
 
     protected override void PrimaryAttack()
     {
-        Debug.Log("ACTIVATE PRIMARY ATTACK");
         base.PrimaryAttack();
-        Debug.Log("Die.exe");
         Destroy(gameObject);
     }
 }
