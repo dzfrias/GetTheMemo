@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class StoryBeat
 public class OfficeManager : MonoBehaviour, IRecordMode
 {
     public static OfficeManager Instance;
+    public event Action OnPause;
+    public event Action OnUnPause;
 
     [SerializeField] private bool devMode;
     [SerializeField] private int startOn;
@@ -92,6 +95,18 @@ public class OfficeManager : MonoBehaviour, IRecordMode
     public void OnEnterRecordMode()
     {
         devMode = true;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        OnPause?.Invoke();
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1f;
+        OnUnPause?.Invoke();
     }
 
     private IEnumerator _PlayDialogueSequence(DialogueSO dialogueList)

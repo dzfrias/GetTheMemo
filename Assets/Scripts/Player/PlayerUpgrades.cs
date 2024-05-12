@@ -35,6 +35,7 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
 
     private void CloseUI()
     {
+        if (!vendingMachineUI.activeSelf) return;
         vendingMachineUI.Hide();
         vendingMachineCamera.SetActive(false);
         GameInput.Instance.SwitchActionMaps(ActionMap.Player);

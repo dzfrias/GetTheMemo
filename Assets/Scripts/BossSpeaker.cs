@@ -11,6 +11,18 @@ public class BossSpeaker : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
+    private void OnEnable()
+    {
+        OfficeManager.Instance.OnPause += Pause;
+        OfficeManager.Instance.OnUnPause += Resume;
+    }
+
+    private void OnDisable()
+    {
+        OfficeManager.Instance.OnPause -= Pause;
+        OfficeManager.Instance.OnUnPause -= Resume;
+    }
+
     public void Play(AudioClip clip, float volume)
     {
         source.clip = clip;

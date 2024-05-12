@@ -37,7 +37,7 @@ public class PauseMenu : MonoBehaviour
         oldMap = GameInput.Instance.CurrentActionMap();
         GameInput.Instance.SwitchActionMaps(ActionMap.UI);
         player.PlayFeedbacks();
-        Time.timeScale = 0;
+        OfficeManager.Instance.Pause();
         Display(true);
     }
 
@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         if (player.HasFeedbackStillPlaying() || settings.IsOpen()) return;
         GameInput.Instance.SwitchActionMaps(oldMap);
         player.PlayFeedbacksInReverse();
-        Time.timeScale = 1;
+        OfficeManager.Instance.UnPause();
     }
 
     private void OnPlayerComplete()
