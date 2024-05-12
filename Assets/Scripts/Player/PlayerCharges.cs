@@ -9,6 +9,7 @@ public class PlayerCharges : MonoBehaviour
     public static event Action<int> OnMaxChargesChanged;
 
     [SerializeField] private int maxCharges = 3;
+    [SerializeField] private bool autoRefill;
 
     private int currentCharges;
 
@@ -42,6 +43,17 @@ public class PlayerCharges : MonoBehaviour
 
         currentCharges--;
         OnChargesChanged?.Invoke(currentCharges);
+        if (autoRefill && currentCharges == 0)
+        {
+            StartCoroutine(Refill());
+        }
         return true;
+    }
+
+    private IEnumerator Refill()
+    {
+        yield return new WaitForSeconds(1f);
+        currentCharges = maxCharges;
+        OnChargesChanged?.Invoke(currentCharges);
     }
 }
