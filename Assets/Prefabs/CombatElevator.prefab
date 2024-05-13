@@ -95,6 +95,18 @@ MonoBehaviour:
           m_StringArgument: CloseDoors
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 435221696164852034}
+        m_TargetAssemblyTypeName: ButtonPanel, Assembly-CSharp
+        m_MethodName: GoToOffice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CloseDoors
+          m_BoolArgument: 1
+        m_CallState: 2
   stopTriggered:
     m_PersistentCalls:
       m_Calls: []
@@ -116,7 +128,7 @@ MonoBehaviour:
   SafeMode: 3
   Direction: 0
   AutoChangeDirectionOnEnd: 0
-  AutoPlayOnStart: 0
+  AutoPlayOnStart: 1
   AutoPlayOnEnable: 0
   ForceTimescaleMode: 0
   ForcedTimescaleMode: 1
@@ -682,37 +694,37 @@ PrefabInstance:
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.74
       objectReference: {fileID: 0}
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12.95
       objectReference: {fileID: 0}
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
@@ -722,13 +734,19 @@ PrefabInstance:
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 1889023568345024220, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3248480966941225162, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
+        type: 3}
+      propertyPath: downDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f3bbf9704c6d44f4a1be99914ebe88a,
+        type: 2}
     - target: {fileID: 4036656850885422042, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_Name
@@ -737,7 +755,7 @@ PrefabInstance:
     - target: {fileID: 6570273156323397339, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 3915
+      value: 3921
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -760,6 +778,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 9056168997565073410}
   m_SourcePrefab: {fileID: 100100000, guid: 5e5a7fa0527a22e4298a88f8138e77c1, type: 3}
+--- !u!114 &435221696164852034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3248480966941225162, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3107162590067081608}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3eec8defb4a443a9902828c38616e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1376920528974572114 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4036656850885422042, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
@@ -4269,6 +4299,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ElevatorDoors
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148427729546964663, guid: 8d9a7a030b03a844bb331cbd606ab47d,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 1719
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970007620095183334, guid: 8d9a7a030b03a844bb331cbd606ab47d,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 1719
       objectReference: {fileID: 0}
     - target: {fileID: 5970007620095183334, guid: 8d9a7a030b03a844bb331cbd606ab47d,
         type: 3}

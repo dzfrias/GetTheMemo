@@ -5154,6 +5154,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 435221696164852034, guid: d2dc08fc857e14cce8103a2bacb66da8,
+        type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 1972906493152552050}
     - target: {fileID: 1376920528974572114, guid: d2dc08fc857e14cce8103a2bacb66da8,
         type: 3}
       propertyPath: m_Name
@@ -5239,11 +5244,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 302991318}
-    - target: {fileID: 8084127865259691859, guid: d2dc08fc857e14cce8103a2bacb66da8,
-        type: 3}
-      propertyPath: m_VersionIndex
-      value: 3918
-      objectReference: {fileID: 0}
     - target: {fileID: 8291026496844232021, guid: d2dc08fc857e14cce8103a2bacb66da8,
         type: 3}
       propertyPath: m_Mesh

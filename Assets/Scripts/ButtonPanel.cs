@@ -5,12 +5,19 @@ using MoreMountains.Feedbacks;
 
 public class ButtonPanel : MonoBehaviour, IInteractable
 {
+    private enum Destination
+    {
+        Office,
+        Combat,
+    }
+
     [SerializeField] private DialogueSO dialogue;
-    [SerializeField] private DialogueBox dialogueBox;
+    [SerializeField] private DialogueSO downDialogue;
     [SerializeField] private GameObject openTrigger;
 
     private MMF_Player player;
     private bool didInteract;
+    private Destination dest;
 
     private void Start()
     {
@@ -26,14 +33,22 @@ public class ButtonPanel : MonoBehaviour, IInteractable
 
     public void _Finish()
     {
-        int nextLevel = SaveData.Instance.data.currentLevel + 1;
+        int nextLevel = dest == Destination.Combat ? SaveData.Instance.data.currentLevel + 1 : 0;
         OfficeManager.Instance.LoadScene(nextLevel);
     }
 
-    private void GoToCombat()
+    public void GoToCombat()
     {
         OfficeManager.Instance.PlayDialogueSequence(dialogue);
         openTrigger.SetActive(false);
         player.PlayFeedbacks();
+        dest = Destination.Combat;
+    }
+
+    public void GoToOffice()
+    {
+        OfficeManager.Instance.PlayDialogueSequence(downDialogue);
+        player.PlayFeedbacks();
+        dest = Destination.Office;
     }
 }
