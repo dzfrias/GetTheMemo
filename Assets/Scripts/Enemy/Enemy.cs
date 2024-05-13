@@ -102,8 +102,13 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             enemyFSM.Trigger(StateEvent.Death);
-            StartCoroutine(Die());
+            Die();
         }
+    }
+
+    protected virtual void Die()
+    {
+        StartCoroutine(_Die());
     }
 
     private IEnumerator Flash()
@@ -146,7 +151,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private IEnumerator Die()
+    private IEnumerator _Die()
     {
         OnEnemyDeath?.Invoke();
         yield return StartCoroutine(Dissolve(0.5f));

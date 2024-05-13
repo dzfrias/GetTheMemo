@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: 1306785798855300706, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.44347477
+      value: -0.40330982
       objectReference: {fileID: 0}
     - target: {fileID: 1306785798855300706, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.0000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 1306785798855300706, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.743432
+      value: -5.0139065
       objectReference: {fileID: 0}
     - target: {fileID: 1306785798855300706, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
@@ -167,7 +167,9 @@ MonoBehaviour:
   animator: {fileID: 7211393389721825035}
   attackPoint: {fileID: 3698258593944298842}
   toSpawn: {fileID: 0}
-  probability: 0.451
+  probability: 1
+  explosion: {fileID: 4567913523054408251, guid: cf44c769383c147aeb568157f306da55,
+    type: 3}
 --- !u!65 &5632711101410725320
 BoxCollider:
   m_ObjectHideFlags: 0

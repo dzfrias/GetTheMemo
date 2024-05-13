@@ -8,6 +8,8 @@ using UnityHFSM;
 [RequireComponent(typeof(NavMeshAgent))]
 public class ExplosiveEnemy : Enemy
 {
+    [SerializeField] private GameObject explosion;
+
     public override void AddStatesToEnemyFSM()
     {
         base.AddStatesToEnemyFSM();
@@ -28,6 +30,13 @@ public class ExplosiveEnemy : Enemy
     protected override void PrimaryAttack()
     {
         base.PrimaryAttack();
+        Die();
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
