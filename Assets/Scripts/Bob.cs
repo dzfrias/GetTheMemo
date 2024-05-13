@@ -8,7 +8,6 @@ public class Bob : MonoBehaviour
     [SerializeField] private MMF_Player damageEffect;
 
     private Health health;
-    private bool storyDamage;
 
     private void Awake()
     {
@@ -28,15 +27,5 @@ public class Bob : MonoBehaviour
     private void TakeDamage(float health)
     {
         damageEffect.PlayFeedbacks();
-        if (storyDamage)
-        {
-            OfficeManager.Instance.NextBeat();
-            storyDamage = false;
-        }
-    }
-
-    public void SetStoryDamage()
-    {
-        storyDamage = true;
     }
 }

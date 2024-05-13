@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -310,7 +310,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8652800593928421208, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1891694812}
   m_SourcePrefab: {fileID: 100100000, guid: d5e7c338c0e62428c8a1304f51fe4a9a, type: 3}
 --- !u!4 &184940034 stripped
 Transform:
@@ -1069,9 +1073,9 @@ MonoBehaviour:
             m_StringArgument: Click to swing
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1907052992}
-          m_TargetAssemblyTypeName: Bob, Assembly-CSharp
-          m_MethodName: SetStoryDamage
+        - m_Target: {fileID: 1891694812}
+          m_TargetAssemblyTypeName: TutorialWatcher, Assembly-CSharp
+          m_MethodName: SetMeleeAdvance
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1164,9 +1168,9 @@ MonoBehaviour:
             m_StringArgument: E to dash
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1907052992}
-          m_TargetAssemblyTypeName: Bob, Assembly-CSharp
-          m_MethodName: SetStoryDamage
+        - m_Target: {fileID: 1891694812}
+          m_TargetAssemblyTypeName: TutorialWatcher, Assembly-CSharp
+          m_MethodName: SetDashAdvance
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1231,6 +1235,88 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
+          m_CallState: 2
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  - autoContinue: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 610516239}
+          m_TargetAssemblyTypeName: TutorialText, Assembly-CSharp
+          m_MethodName: Display
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hold for super attack
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1891694812}
+          m_TargetAssemblyTypeName: TutorialWatcher, Assembly-CSharp
+          m_MethodName: SetSuperAdvance
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hold for super attack
+            m_BoolArgument: 0
+          m_CallState: 2
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  - autoContinue: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 610516239}
+          m_TargetAssemblyTypeName: TutorialText, Assembly-CSharp
+          m_MethodName: Hide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hold for super attack
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 777849691}
+          m_TargetAssemblyTypeName: OfficeManager, Assembly-CSharp
+          m_MethodName: PlayDialogueSequence
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 37259819c47dd410e86ff251dde1bd81,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: DialogueSO, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hold for super attack
+            m_BoolArgument: 0
+          m_CallState: 2
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  - autoContinue: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1305967101}
+          m_TargetAssemblyTypeName: ElevatorDoors, Assembly-CSharp
+          m_MethodName: OpenToLeave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
           m_CallState: 2
     onEnd:
       m_PersistentCalls:
@@ -3296,6 +3382,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1305967101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9200843174212184998, guid: d2dc08fc857e14cce8103a2bacb66da8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1799318766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763701310d437442091be4fcb1422c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1315447364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652800593928421208, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
+    type: 3}
+  m_PrefabInstance: {fileID: 184940033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1326711899
 GameObject:
   m_ObjectHideFlags: 0
@@ -4663,12 +4767,25 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 184940033}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1315447364}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 950114ebfb5b043bc956864f51b81673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1891694812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315447364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c1c3e2db0bd41e99c92630850ea9c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDamageBox: {fileID: 2100554769}
 --- !u!4 &1897175002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3542629782621456212, guid: d2dc08fc857e14cce8103a2bacb66da8,
@@ -4681,18 +4798,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3526772691231066343}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1907052992 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8649638543152704951, guid: 0f5e77eeb457b46ce9836a9b4a9158dc,
-    type: 3}
-  m_PrefabInstance: {fileID: 3526772691231066343}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0007f062b060244c891513b464b78259, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1984959733
 GameObject:
   m_ObjectHideFlags: 0
@@ -4822,6 +4927,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2100554769 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 95415673767792569, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
+    type: 3}
+  m_PrefabInstance: {fileID: 184940033}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 130b4c48d97374214b56f7d930997ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2112899061
 PrefabInstance:
   m_ObjectHideFlags: 0

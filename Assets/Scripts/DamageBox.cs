@@ -7,6 +7,7 @@ using UnityEngine;
 public class DamageBox : MonoBehaviour
 {
     public event Action OnKill;
+    public event Action OnHit;
 
     [SerializeField] private float damage = 1.5f;
 
@@ -14,6 +15,7 @@ public class DamageBox : MonoBehaviour
     {
         if (collider.gameObject.TryGetComponent<Health>(out Health health))
         {
+            OnHit?.Invoke();
             health.TakeDamage(damage);
             if (health.IsDead())
             {

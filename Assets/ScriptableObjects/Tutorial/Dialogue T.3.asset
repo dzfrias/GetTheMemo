@@ -19,6 +19,6 @@ MonoBehaviour:
     timestamp: 0
   - text: "It\u2019ll do some damage, %0.5but struggle builds character, %0.5and
       Bob here <i>REALLY</i> needs to build a better character."
-    timestamp: 2.7
+    timestamp: 2.6
   autoContinue: 1
   volume: 1
