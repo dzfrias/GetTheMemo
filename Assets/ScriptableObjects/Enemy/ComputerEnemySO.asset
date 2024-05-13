@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c3f041157676f40a5b1f1972316e4b, type: 3}
   m_Name: ComputerEnemySO
   m_EditorClassIdentifier: 
-  attackBox: {x: 1, y: 1, z: 1}
+  attackBox: {x: 2, y: 2, z: 2}
   attackDamage: 2
   attackCooldown: 1
   maxHealth: 15
