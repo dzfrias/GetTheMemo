@@ -20,6 +20,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected GameObject toSpawn;
     [SerializeField] [Range(0f, 1f)] protected float probability = 0.5f;
 
+    [Header("Stimulation Stats")]
+    [SerializeField] protected float stimulatedSpeedMultiplier = 1.5f;
+    [SerializeField] protected float stimulatedAttackCooldownDivider = 0.5f;
+    [SerializeField] protected float stimulatedSizeMultiplier = 1.25f;
+
     protected Transform player;
     protected NavMeshAgent navMeshAgent;
     protected Health health;
@@ -27,12 +32,16 @@ public class Enemy : MonoBehaviour
     protected AnimationEventProxy animationEventProxy;
 
     protected float lastAttackTime;
+    protected float attackCooldown;
+    protected bool isStimulated;
 
     protected virtual void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();
         animator.TryGetComponent(out animationEventProxy);
+
+        attackCooldown = enemySO.attackCooldown;
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -181,6 +190,32 @@ public class Enemy : MonoBehaviour
                 player.GetComponent<Health>().TakeDamage(enemySO.attackDamage);
             }
         }
+    }
+
+    public IEnumerator Stimulate(float stimulateTime)
+    {
+        isStimulated = true;
+
+        float normalSpeed = navMeshAgent.speed;
+        float normalAttackCooldown = enemySO.attackCooldown;
+        Vector3 normalScale = gameObject.transform.localScale;
+
+        navMeshAgent.speed *= stimulatedSpeedMultiplier;
+        attackCooldown /= stimulatedAttackCooldownDivider;
+        transform.localScale *= stimulatedSizeMultiplier;
+
+        yield return new WaitForSeconds(stimulateTime);
+
+        navMeshAgent.speed = normalSpeed;
+        attackCooldown = normalAttackCooldown;
+        transform.localScale = normalScale;
+
+        isStimulated = false;
+    }
+
+    public bool IsStimulated()
+    {
+        return isStimulated;
     }
 
     public Animator GetAnimator() 
