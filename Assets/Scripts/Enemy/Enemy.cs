@@ -168,6 +168,7 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(toSpawn, transform.position, Quaternion.identity);
         }
+        StopAllCoroutines();
         Destroy(gameObject);
     }
 
