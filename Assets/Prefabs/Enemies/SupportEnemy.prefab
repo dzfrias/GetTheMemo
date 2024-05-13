@@ -73,6 +73,12 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2231438042409560953, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: managedReferences[1452373626512211969].ParticlesPrefab
+      value: 
+      objectReference: {fileID: 7375673893110396827, guid: 244af8a31dab64f2e9c0bfe5903951ac,
+        type: 3}
     - target: {fileID: 3870238343100744397, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: maxHealth
@@ -125,16 +131,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySO: {fileID: 11400000, guid: df5737ca1642d4ca894472f7f899d6b9, type: 2}
-  renderers: []
-  impactEffects: {fileID: 0}
+  renderers:
+  - {fileID: 3780865564225143319}
+  - {fileID: 6634496300610754433}
+  impactEffects: {fileID: 6629705777786268089}
   animator: {fileID: 2492485834058139593}
   attackPoint: {fileID: 4996587379423489511}
   toSpawn: {fileID: 0}
   probability: 0.5
+  stimulatedSpeedMultiplier: 1.5
+  stimulatedAttackCooldownDivider: 0.5
+  stimulatedSizeMultiplier: 1.25
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   stimulateTimerMax: 5
+  stimDistance: 4
+  stimulateTime: 5
 --- !u!4 &4996587379423489511 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 549908557251735335, guid: 704e010ec26a60b4a885d7adcda17fa0,
@@ -147,6 +160,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4825285207992255168}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6629705777786268089 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2231438042409560953, guid: 704e010ec26a60b4a885d7adcda17fa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4825285207992255168}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4998423111623422317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -239,6 +264,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2492485834058139593}
   m_SourcePrefab: {fileID: 100100000, guid: cc26adaa61a6847329e8bf8b19435387, type: 3}
+--- !u!137 &3780865564225143319 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8153101253863224186, guid: cc26adaa61a6847329e8bf8b19435387,
+    type: 3}
+  m_PrefabInstance: {fileID: 4998423111623422317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4816404273822160518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cc26adaa61a6847329e8bf8b19435387,
@@ -272,3 +303,9 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!137 &6634496300610754433 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1823817582581819116, guid: cc26adaa61a6847329e8bf8b19435387,
+    type: 3}
+  m_PrefabInstance: {fileID: 4998423111623422317}
+  m_PrefabAsset: {fileID: 0}
