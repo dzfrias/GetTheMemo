@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4660,6 +4660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CombatElevator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654077209909604468, guid: d2dc08fc857e14cce8103a2bacb66da8,
+        type: 3}
+      propertyPath: triggered.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: GoToCombat
       objectReference: {fileID: 0}
     - target: {fileID: 1886796034383896829, guid: d2dc08fc857e14cce8103a2bacb66da8,
         type: 3}
