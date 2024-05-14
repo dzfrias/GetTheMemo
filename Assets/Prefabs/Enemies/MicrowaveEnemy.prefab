@@ -93,6 +93,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.6861211
       objectReference: {fileID: 0}
+    - target: {fileID: 3506267631437582499, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.986
+      objectReference: {fileID: 0}
     - target: {fileID: 3870238343100744397, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: maxHealth
@@ -131,6 +136,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5632711101410725320}
   m_SourcePrefab: {fileID: 100100000, guid: 704e010ec26a60b4a885d7adcda17fa0, type: 3}
+--- !u!4 &314042128692124382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3506267631437582499, guid: 704e010ec26a60b4a885d7adcda17fa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3815516950792637053}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2797248501966281759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1306785798855300706, guid: 704e010ec26a60b4a885d7adcda17fa0,
@@ -166,6 +177,7 @@ MonoBehaviour:
   impactEffects: {fileID: 0}
   animator: {fileID: 7211393389721825035}
   attackPoint: {fileID: 3698258593944298842}
+  stimulationEffectPoint: {fileID: 314042128692124382}
   toSpawn: {fileID: 0}
   probability: 1
   stimulatedSpeedMultiplier: 1.5

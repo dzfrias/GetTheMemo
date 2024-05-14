@@ -879,6 +879,11 @@ PrefabInstance:
       propertyPath: managedReferences[6401064376593809408].LevelCurve.Curve.m_Curve.Array.data[2].weightedMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3506267631437582499, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.382
+      objectReference: {fileID: 0}
     - target: {fileID: 3870238343100744397, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: maxHealth
@@ -941,6 +946,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2284237252175379394}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &3394586539226377057 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3506267631437582499, guid: 704e010ec26a60b4a885d7adcda17fa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2284237252175379394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9060915683836128050 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7065562202667864304, guid: 704e010ec26a60b4a885d7adcda17fa0,
@@ -967,6 +978,7 @@ MonoBehaviour:
   impactEffects: {fileID: 91361436734705851}
   animator: {fileID: 8501006629983951523}
   attackPoint: {fileID: 1734615137610847461}
+  stimulationEffectPoint: {fileID: 3394586539226377057}
   toSpawn: {fileID: 0}
   probability: 0.5
   stimulatedSpeedMultiplier: 1.5

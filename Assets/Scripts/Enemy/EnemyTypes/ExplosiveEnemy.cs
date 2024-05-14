@@ -36,8 +36,8 @@ public class ExplosiveEnemy : Enemy
     private void Explode()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
-        health.TakeDamage(Mathf.Infinity);
         StopAllCoroutines();
+        health.TakeDamage(Mathf.Infinity);
         Destroy(gameObject);
     }
 }

@@ -10,19 +10,35 @@ using UnityHFSM;
 [RequireComponent(typeof(NavMeshAgent))]
 public class SupportEnemy : Enemy
 {
+    [SerializeField] private GameObject stimulationLinePrefab;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private float stimulateTimerMax;
     [SerializeField] private float stimDistance = 4f;
     [SerializeField] private float stimulateTime = 5f;
 
+    private List<LineRenderer> stimulationLineVisuals;
+    private List<Enemy> stimulatedEnemies;
+
     protected override void Awake()
     {
         base.Awake();
+
+        stimulatedEnemies = new();
+        stimulationLineVisuals = new();
     }
 
     protected override void Update()
     {   
         base.Update();
+        if (stimulatedEnemies.Count != 0)
+        {
+            for (int i = 0; i < stimulatedEnemies.Count; i++)
+            {
+                LineRenderer lineRenderer = stimulationLineVisuals[i];
+                lineRenderer.SetPosition(0, GetsStimulationEffectPoint());
+                lineRenderer.SetPosition(1, stimulatedEnemies[i].GetsStimulationEffectPoint());
+            }
+        }
     }
 
     public override void AddStatesToEnemyFSM()
@@ -141,9 +157,25 @@ public class SupportEnemy : Enemy
                 Enemy enemy = collider.GetComponent<Enemy>();
                 if (!enemy.IsStimulated())
                 {
+                    LineRenderer lineRenderer = Instantiate(stimulationLinePrefab).GetComponent<LineRenderer>();
+                    stimulationLineVisuals.Add(lineRenderer);
+                    stimulatedEnemies.Add(enemy);
                     StartCoroutine(enemy.Stimulate(stimulateTime));
+                    StartCoroutine(EndStimulationEffects(stimulateTime));
                 }
             }
         }
+    }
+
+    private IEnumerator EndStimulationEffects(float stimulateTime)
+    {
+        yield return new WaitForSeconds(stimulateTime);
+        for (int i = 0; i < stimulationLineVisuals.Count; i++)
+        {
+            LineRenderer lineRenderer = stimulationLineVisuals[i];
+            stimulationLineVisuals.RemoveAt(i);
+            Destroy(lineRenderer.gameObject);
+        }
+        stimulatedEnemies.Clear();
     }
 }

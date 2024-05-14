@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected MMF_Player impactEffects;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform attackPoint;
+    [SerializeField] protected Transform stimulationEffectPoint;
 
     [Header("Death Spawn")]
     [SerializeField] protected GameObject toSpawn;
@@ -227,5 +228,10 @@ public class Enemy : MonoBehaviour
     public Animator GetAnimator() 
     {
         return animator;
+    }
+
+    public Vector3 GetsStimulationEffectPoint()
+    {
+        return stimulationEffectPoint.position;
     }
 }

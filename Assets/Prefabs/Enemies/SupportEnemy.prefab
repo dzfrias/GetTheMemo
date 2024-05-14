@@ -137,11 +137,14 @@ MonoBehaviour:
   impactEffects: {fileID: 6629705777786268089}
   animator: {fileID: 2492485834058139593}
   attackPoint: {fileID: 4996587379423489511}
+  stimulationEffectPoint: {fileID: 8241051313569976931}
   toSpawn: {fileID: 0}
   probability: 0.5
   stimulatedSpeedMultiplier: 1.5
   stimulatedAttackCooldownDivider: 0.5
   stimulatedSizeMultiplier: 1.25
+  stimulationLinePrefab: {fileID: 1122038730056743137, guid: bca37ab973d455a4388c91cc4e06aa24,
+    type: 3}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -172,6 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8241051313569976931 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3506267631437582499, guid: 704e010ec26a60b4a885d7adcda17fa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4825285207992255168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4998423111623422317
 PrefabInstance:
   m_ObjectHideFlags: 0
