@@ -13,15 +13,12 @@ MonoBehaviour:
   m_Name: Dialogue 1.8
   m_EditorClassIdentifier: 
   preDelay: 0
-  clip: {fileID: 8300000, guid: 12ac25e7fadf842599eb1b9741ec7361, type: 3}
+  clip: {fileID: 8300000, guid: 1efe7d97d0d7940df939bfd2bf206e37, type: 3}
   dialogues:
   - text: But first!%0.75 You need employee training.
     timestamp: 0
-  - text: Dang, I almost just sent you up there without informing you about the required
-      skill sets.
-    timestamp: 3
   - text: How about you take the elevator to the employee training room so I can
       give you a quick run-down?
-    timestamp: 8.6
+    timestamp: 3.3
   autoContinue: 1
   volume: 1
