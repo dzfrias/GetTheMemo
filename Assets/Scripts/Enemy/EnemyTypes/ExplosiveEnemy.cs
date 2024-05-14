@@ -30,13 +30,14 @@ public class ExplosiveEnemy : Enemy
     protected override void PrimaryAttack()
     {
         base.PrimaryAttack();
-        Die();
+        Explode();
     }
 
-    protected override void Die()
+    private void Explode()
     {
-        base.Die();
         Instantiate(explosion, transform.position, Quaternion.identity);
+        health.TakeDamage(Mathf.Infinity);
+        StopAllCoroutines();
         Destroy(gameObject);
     }
 }

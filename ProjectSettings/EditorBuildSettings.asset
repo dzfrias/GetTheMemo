@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: f08842b26848c4806b2d2165f25c1238
   - enabled: 1
-    path: Assets/Scenes/MeleeTesting.unity
+    path: Assets/Scenes/CombatLevel1.unity
     guid: b8e275f1ad10348d39182e37ff918121
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9564f4a75d2984a1393bec1e4ee2b8d1,
