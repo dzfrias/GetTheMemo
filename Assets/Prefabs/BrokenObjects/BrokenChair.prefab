@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1563882496927511040}
   - component: {fileID: 808509924359952193}
   - component: {fileID: 1474640466174414676}
-  - component: {fileID: -6739226447249919681}
   m_Layer: 6
   m_Name: BrokenChair
   m_TagString: Untagged
@@ -77,22 +76,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.08}
   m_Center: {x: 0, y: 1.04, z: -0.42}
---- !u!208 &-6739226447249919681
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2768612634656125041}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.74, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.75, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &8257679286397606102
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5421111372746480601}
   - component: {fileID: 7681765916293316865}
-  - component: {fileID: -2550782999542308820}
   m_Layer: 6
   m_Name: BrokenStorageContainer
   m_TagString: Untagged
@@ -55,22 +54,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7664219, y: 3.210599, z: 1.0830936}
   m_Center: {x: -0.010122612, y: 1.6119974, z: 0.53697395}
---- !u!208 &-2550782999542308820
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583681807723405848}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.38321096, y: 1.6052995, z: 0.541547}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.01012261, y: 1.611997, z: 0.536974}
-  m_TimeToStationary: 0.5
 --- !u!1001 &3019972279082974445
 PrefabInstance:
   m_ObjectHideFlags: 0

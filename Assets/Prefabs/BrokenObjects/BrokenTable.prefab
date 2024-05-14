@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9061653444059835083}
   - component: {fileID: 4057283009036447710}
   - component: {fileID: 4830271691005259025}
-  - component: {fileID: 855234695308182121}
   m_Layer: 6
   m_Name: BrokenTable
   m_TagString: Untagged
@@ -99,22 +98,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.12135488, y: 1, z: 1.0266508}
   m_Center: {x: -1.0349361, y: 0, z: 0.50861734}
---- !u!208 &855234695308182121
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588557865498362756}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.1747144, y: 0.589537, z: 0.57}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: -0.023957014, y: 0.0100136995, z: 0.61}
-  m_TimeToStationary: 0.5
 --- !u!1001 &720083668132989999
 PrefabInstance:
   m_ObjectHideFlags: 0
