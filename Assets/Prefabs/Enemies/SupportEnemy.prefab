@@ -79,6 +79,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7375673893110396827, guid: 244af8a31dab64f2e9c0bfe5903951ac,
         type: 3}
+    - target: {fileID: 3013195899942055874, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.24
+      objectReference: {fileID: 0}
     - target: {fileID: 3870238343100744397, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: maxHealth

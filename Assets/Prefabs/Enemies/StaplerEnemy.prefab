@@ -111,12 +111,12 @@ PrefabInstance:
     - target: {fileID: 1313398842832997419, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: m_Radius
-      value: 0.6
+      value: 0.41
       objectReference: {fileID: 0}
     - target: {fileID: 1313398842832997419, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.5
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 2231438042409560953, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
@@ -1208,6 +1208,21 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[2452032037300994059].AnimateRotationTweenZ.Curve.m_Curve.Array.data[2].weightedMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013195899942055874, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013195899942055874, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013195899942055874, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: 3506267631437582499, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
