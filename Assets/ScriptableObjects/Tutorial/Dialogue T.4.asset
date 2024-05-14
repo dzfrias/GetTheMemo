@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95e9d53675c94c9b82aeb7a4d004270, type: 3}
-  m_Name: Dialogue T.0
+  m_Name: Dialogue T.4
   m_EditorClassIdentifier: 
-  preDelay: 3.25
-  clip: {fileID: 8300000, guid: e2102e0eb3e404063b78fa2a5a821d5a, type: 3}
+  preDelay: 1
+  clip: {fileID: 8300000, guid: 576fecfec6421473c87663576a3062cc, type: 3}
   dialogues:
-  - text: Meet Bob. %0.75Bob may look cute, %0.5but he took a <b>7 minute</b> bathroom
-      break, %0.5the other day!
+  - text: "Wonderful. %0.75For this next trick, %0.4I brought in Bob\u2019s friends."
     timestamp: 0
-  - text: So we need to teach Bob...%0.75 a lesson.
-    timestamp: 7.3
+  - text: "To deal with all 3 of these buggers at once,%0.5 you can do what I like
+      to call a \u201Csuper attack\u201D."
+    timestamp: 5
+  - text: How about you give it a go to really <i>enforce</i> the message.
+    timestamp: 12
   autoContinue: 1
   volume: 1

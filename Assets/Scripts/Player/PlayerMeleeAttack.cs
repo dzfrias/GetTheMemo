@@ -6,6 +6,9 @@ using MoreMountains.Feedbacks;
 
 public class PlayerMeleeAttack : MonoBehaviour
 {
+    public event Action OnHit;
+    public event Action OnSuperHit;
+
     [Header("Player Stats")]
     [SerializeField] private PlayerCombatSO playerCombatSO;
     
@@ -173,20 +176,30 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void DealNormalAttackDamage()
     {
-        DealDamage(playerCombatSO.normalAttackDamage, playerCombatSO.attackBox);
+        bool didHit = DealDamage(playerCombatSO.normalAttackDamage, playerCombatSO.attackBox);
+        if (didHit)
+        {
+            OnHit?.Invoke();
+        }
     }
 
     private void DealSuperAttackDamage()
     {
-        DealDamage(playerCombatSO.superAttackDamage, playerCombatSO.superAttackBox);
+        bool didHit = DealDamage(playerCombatSO.superAttackDamage, playerCombatSO.superAttackBox);
+        if (didHit)
+        {
+            OnSuperHit?.Invoke();
+        }
     }
 
-    private void DealDamage(float damage, Vector3 attackBox)
+    private bool DealDamage(float damage, Vector3 attackBox)
     {
+        bool didHit = false;
         foreach (Collider collider in Physics.OverlapBox(attackPoint.position, attackBox/2, attackPoint.rotation, ~ignoreRaycast))
         {
             if (collider.TryGetComponent(out Health enemyHealth))
             {
+                didHit = true;
                 enemyHealth.TakeDamage(damage);
                 effect.PlayFeedbacks();
                 if (enemyHealth.GetHealth() <= 0)
@@ -195,6 +208,7 @@ public class PlayerMeleeAttack : MonoBehaviour
                 }
             }
         }
+        return didHit;
     }
 
     public bool IsAttacking()

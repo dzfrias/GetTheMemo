@@ -40,7 +40,10 @@ public class ButtonPanel : MonoBehaviour, IInteractable
     public void GoToCombat()
     {
         OfficeManager.Instance.PlayDialogueSequence(dialogue);
-        openTrigger.SetActive(false);
+        if (openTrigger != null)
+        {
+            openTrigger.SetActive(false);
+        }
         player.PlayFeedbacks();
         dest = Destination.Combat;
     }

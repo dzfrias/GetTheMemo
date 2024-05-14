@@ -168,6 +168,9 @@ MonoBehaviour:
   attackPoint: {fileID: 3698258593944298842}
   toSpawn: {fileID: 0}
   probability: 1
+  stimulatedSpeedMultiplier: 1.5
+  stimulatedAttackCooldownDivider: 0.5
+  stimulatedSizeMultiplier: 1.25
   explosion: {fileID: 4567913523054408251, guid: cf44c769383c147aeb568157f306da55,
     type: 3}
 --- !u!65 &5632711101410725320
@@ -199,6 +202,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2797248501966281759}
     m_Modifications:
+    - target: {fileID: -9120860547613135470, guid: 8bf6553ceae14437b809f887e931dfae,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 341f7251daf8840b68e77be56ce1adbc, type: 2}
+    - target: {fileID: -9120860547613135470, guid: 8bf6553ceae14437b809f887e931dfae,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e21ba8b6f02a5462cae4ff74ef243019, type: 2}
+    - target: {fileID: -9120860547613135470, guid: 8bf6553ceae14437b809f887e931dfae,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7c204f213001d4c7fb34a424f68e4448, type: 2}
+    - target: {fileID: -9120860547613135470, guid: 8bf6553ceae14437b809f887e931dfae,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: bd7dcbf3052064565980dc5c3e8d62d9, type: 2}
     - target: {fileID: -8679921383154817045, guid: 8bf6553ceae14437b809f887e931dfae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -334,6 +357,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -178.79996
       objectReference: {fileID: 0}
+    - target: {fileID: 5074512353664290214, guid: 8bf6553ceae14437b809f887e931dfae,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a4cda6ea66964d86a7b6ce047f170f5, type: 2}
     - target: {fileID: 7466719850882162808, guid: 8bf6553ceae14437b809f887e931dfae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
