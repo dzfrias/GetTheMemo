@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine.Utility;
 using UnityEngine;
 
 public class Firefly : MonoBehaviour
@@ -22,7 +23,8 @@ public class Firefly : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, currentSpeed * Time.deltaTime);
+        Vector3 newPosition = Vector3.MoveTowards(transform.position, target, currentSpeed * Time.deltaTime);
+        if (!newPosition.IsNaN()) transform.position = newPosition;
         currentSpeed *= speedMultiplier;
     }
 
