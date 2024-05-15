@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform attackPoint;
     [SerializeField] protected Transform stimulationEffectPoint;
+    [SerializeField] protected float initialAttackWaitTimeMax = 1;
+    protected float initialAttackWaitTime;
 
     [Header("Death Spawn")]
     [SerializeField] protected GameObject toSpawn;
@@ -35,6 +37,7 @@ public class Enemy : MonoBehaviour
     protected float lastAttackTime;
     protected float attackCooldown;
     protected bool isStimulated;
+    protected bool isInitialAttack;
 
     protected virtual void Awake()
     {
@@ -45,6 +48,8 @@ public class Enemy : MonoBehaviour
         attackCooldown = enemySO.attackCooldown;
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        initialAttackWaitTime = initialAttackWaitTimeMax;
     }
 
     public virtual void Start()
@@ -59,16 +64,22 @@ public class Enemy : MonoBehaviour
     public virtual void AddStatesToEnemyFSM()
     {
         enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
-        enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player));
+        enemyFSM.AddState(EnemyState.Chase, new ChaseState(false, this, player, OnChase));
 
         enemyFSM.AddState(EnemyState.Death, new DeathState(false, this));
 
         enemyFSM.SetStartState(EnemyState.Chase);
     }
 
+    private void OnChase(State<EnemyState, StateEvent> state)
+    {
+        isInitialAttack = true;
+    }
+
     public virtual void AddEnemyStateTransitions()
     {
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase, ShouldChase));
+        enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Idle, IsWithinIdleRange));
 
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Idle, IsWithinIdleRange));
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Chase, ShouldChase));
@@ -78,7 +89,7 @@ public class Enemy : MonoBehaviour
 
     private bool IsWithinIdleRange(Transition<EnemyState> _)
     {
-        return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+        return Vector3.Distance(player.transform.position, transform.position) <= navMeshAgent.stoppingDistance;
     }
 
     private bool ShouldChase(Transition<EnemyState> transition)
@@ -89,6 +100,11 @@ public class Enemy : MonoBehaviour
     protected virtual void Update()
     {
         enemyFSM.OnLogic();
+
+        if (!isInitialAttack)
+        {
+            initialAttackWaitTime = initialAttackWaitTimeMax;
+        }
     }
 
     private void OnEnable()
@@ -185,6 +201,7 @@ public class Enemy : MonoBehaviour
     {
         transform.LookAt(player.transform.position);
         lastAttackTime = Time.time;
+        isInitialAttack = false;
     }
 
     protected virtual void PrimaryAttack()

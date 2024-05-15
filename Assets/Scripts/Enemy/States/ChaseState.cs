@@ -17,7 +17,7 @@ public class ChaseState : EnemyStateBase
     private int destinationIndex;
     private float playerDetectionDistance = 6f;
 
-    public ChaseState(bool needsExitTime, Enemy enemy, Transform target) : base(needsExitTime, enemy) 
+    public ChaseState(bool needsExitTime, Enemy enemy, Transform target, Action<State<EnemyState, StateEvent>> onEnter = null) : base(needsExitTime, enemy, onEnter: onEnter) 
     {;
         this.enemy = enemy.transform;
         this.target = target;

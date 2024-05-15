@@ -25,7 +25,15 @@ public class MeleeEnemy : Enemy
 
     private bool ShouldMelee(Transition<EnemyState> _)
     {
-        return lastAttackTime + enemySO.attackCooldown < Time.time && IsInMeleeRange();
+        if (!IsInMeleeRange()) return false;
+
+        if (isInitialAttack && initialAttackWaitTime > 0)
+        {
+            initialAttackWaitTime -= Time.deltaTime;
+            return false;
+        }
+
+        return lastAttackTime + enemySO.attackCooldown < Time.time;
     }
 
     private bool IsInMeleeRange()

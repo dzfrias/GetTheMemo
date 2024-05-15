@@ -989,6 +989,7 @@ MonoBehaviour:
   animator: {fileID: 8501006629983951523}
   attackPoint: {fileID: 1734615137610847461}
   stimulationEffectPoint: {fileID: 3394586539226377057}
+  initialAttackWaitTimeMax: 0.5
   toSpawn: {fileID: 0}
   probability: 0.5
   stimulatedSpeedMultiplier: 1.5
