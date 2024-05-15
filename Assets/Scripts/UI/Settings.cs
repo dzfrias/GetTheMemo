@@ -13,6 +13,7 @@ public class Settings : MonoBehaviour
     [SerializeField] private TMP_Dropdown resolutionsDropdown;
 
     private MMF_Player player;
+    private CinemachinePOVExtension playerCameraSettings;
     private bool closing;
     private Resolution[] resolutions;
 
@@ -35,6 +36,9 @@ public class Settings : MonoBehaviour
         resolutionsDropdown.AddOptions(options);
         resolutionsDropdown.value = current;
         resolutionsDropdown.RefreshShownValue();
+
+        GameObject playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
+        playerCameraSettings = playerCamera.GetComponent<CinemachinePOVExtension>();
     }
 
     private void OnEnable()
@@ -65,6 +69,11 @@ public class Settings : MonoBehaviour
     {
         // Volume is not linear, so we use this formula to set the parameter
         mixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
+    }
+
+    public void SetSensitivity(float sensitivity)
+    {
+        playerCameraSettings.SetSensitivity(sensitivity);
     }
 
     public void SetQuality(int quality)

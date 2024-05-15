@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class CinemachinePOVExtension : CinemachineExtension
 {
-    [SerializeField] private float xSpeed = 10f;
-    [SerializeField] private float ySpeed = 10f;
+    [SerializeField] private float sensitivity = 10f;
     [SerializeField] private float clampAngle = 80f;
     [SerializeField] private float smoothTime = 0.1f;
     [SerializeField] private Vector3 startRot = new Vector3(-90f, 0f, 0f);
@@ -30,13 +29,18 @@ public class CinemachinePOVExtension : CinemachineExtension
             return;
 
         Vector2 deltaInput = GameInput.Instance.GetMouseMovement();
-        targetRot.x += deltaInput.x * ySpeed * Time.deltaTime;
-        targetRot.y += deltaInput.y * xSpeed * Time.deltaTime;
+        targetRot.x += deltaInput.x * sensitivity * Time.deltaTime;
+        targetRot.y += deltaInput.y * sensitivity * Time.deltaTime;
         targetRot.y = Mathf.Clamp(targetRot.y, -clampAngle, clampAngle);
         // Wrap at 360 degrees in order to prevent floating point imprecision
         targetRot.x %= 360f;
 
         Quaternion finalRot = Quaternion.Euler(-targetRot.y, targetRot.x, 0f);
         state.RawOrientation = Quaternion.Slerp(camTransform.localRotation, finalRot, smoothTime);
+    }
+
+    public void SetSensitivity(float sensitivity)
+    {
+        this.sensitivity = sensitivity;
     }
 }
