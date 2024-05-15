@@ -93,6 +93,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.6861211
       objectReference: {fileID: 0}
+    - target: {fileID: 1983141294320900695, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.54
+      objectReference: {fileID: 0}
     - target: {fileID: 3013195899942055874, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: m_Size.x
@@ -117,6 +122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHealth
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971557659657418175, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.629
       objectReference: {fileID: 0}
     - target: {fileID: 7065562202667864304, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}

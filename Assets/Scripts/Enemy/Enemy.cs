@@ -32,8 +32,6 @@ public class Enemy : MonoBehaviour
     protected StateMachine<EnemyState, StateEvent> enemyFSM;
     protected AnimationEventProxy animationEventProxy;
 
-    protected float headSlideForce = 0.05f;
-
     protected float lastAttackTime;
     protected float attackCooldown;
     protected bool isStimulated;
@@ -235,12 +233,5 @@ public class Enemy : MonoBehaviour
     public Vector3 GetsStimulationEffectPoint()
     {
         return stimulationEffectPoint.position;
-    }
-
-    protected void OnTriggerStay(Collider collider)
-    {
-        if (collider.transform != player) return;
-
-        player.GetComponent<CharacterController>().Move(player.transform.forward * headSlideForce);
     }
 }

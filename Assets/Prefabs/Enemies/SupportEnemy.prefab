@@ -73,6 +73,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1983141294320900695, guid: 704e010ec26a60b4a885d7adcda17fa0,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.16
+      objectReference: {fileID: 0}
     - target: {fileID: 2231438042409560953, guid: 704e010ec26a60b4a885d7adcda17fa0,
         type: 3}
       propertyPath: managedReferences[1452373626512211969].ParticlesPrefab
