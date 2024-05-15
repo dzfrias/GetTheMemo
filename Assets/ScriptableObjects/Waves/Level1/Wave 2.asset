@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8bfce56a2fa8824f8e4c785e6d179cb, type: 3}
-  m_Name: Wave 1
+  m_Name: Wave 2
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 2376546243936686640, guid: a6e753de8c44b4c6cb9423be0b338ead, type: 3}
   - {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2, type: 3}
   - {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2, type: 3}
   - {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2, type: 3}
-  prepTime: 0
-  spawnDelay: 4
-  lengthHours: 1
+  - {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2, type: 3}
+  - {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2, type: 3}
+  prepTime: 3
+  spawnDelay: 3
+  lengthHours: 2

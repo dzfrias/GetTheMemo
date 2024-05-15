@@ -819,6 +819,12 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: 3c0ecb9db1b155f499f8c31f1d9e9d2e, type: 2}
   - {fileID: 11400000, guid: b7a59f426b92074409a88a1f2596a1f7, type: 2}
+  - {fileID: 11400000, guid: 95a1d7ebcf2c2c44881aaa8454651849, type: 2}
+  - {fileID: 11400000, guid: 479f30992d682be4f99bdf5933264127, type: 2}
+  - {fileID: 11400000, guid: b52709cf758a1fe4db25e0dc9c900566, type: 2}
+  - {fileID: 11400000, guid: 5ebc39e64f1e1734a877b4d3425d22c3, type: 2}
+  - {fileID: 11400000, guid: df15ae65f176b426095b00abc62b8bd3, type: 2}
+  - {fileID: 11400000, guid: 3ef0f12577c7a47a294d219dd934ec67, type: 2}
   wavesCompleteteRewardAmount: 10
 --- !u!4 &393909481
 Transform:
@@ -5500,6 +5506,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853695060666725233, guid: fe47867cb0b2f4ff3b2e8191ac20e3cb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 61.690063
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853695060666725233, guid: fe47867cb0b2f4ff3b2e8191ac20e3cb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 92.20001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

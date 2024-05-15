@@ -68,8 +68,8 @@ public class WaveManager : MonoBehaviour
         GameObject enemy = Instantiate(enemiesToSpawn[0], randomSpawnPoint.position, Quaternion.identity);
         enemy.GetComponent<Health>().OnDeath += Enemy_OnDeath;
 
-        enemiesToSpawn.RemoveAt(0);
         enemiesRemaining++;
+        enemiesToSpawn.RemoveAt(0);
     }
 
     private void Enemy_OnDeath()
@@ -89,8 +89,6 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
-                Debug.Log(waveIndex);
-                Debug.Log(waves.Count);
                 waveIndex++;
                 SpawnWave();
             }
