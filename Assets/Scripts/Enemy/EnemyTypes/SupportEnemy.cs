@@ -15,6 +15,7 @@ public class SupportEnemy : Enemy
     [SerializeField] private float stimulateTimerMax;
     [SerializeField] private float stimDistance = 4f;
     [SerializeField] private float stimulateTime = 5f;
+    [SerializeField] private List<Transform> fleePositions;
 
     private List<LineRenderer> stimulationLineVisuals;
     private List<Enemy> stimulatedEnemies;
@@ -46,7 +47,7 @@ public class SupportEnemy : Enemy
         enemyFSM.AddState(EnemyState.Idle, new IdleState(false, this));
         enemyFSM.AddState(EnemyState.Follow, new FollowState(false, this));
         enemyFSM.AddState(EnemyState.Attack, new AttackState(true, this, OnAttack, 1f));
-        enemyFSM.AddState(EnemyState.Flee, new FleeState(false, this, player));
+        enemyFSM.AddState(EnemyState.Flee, new FleeState(false, this, player, fleePositions));
         enemyFSM.AddState(EnemyState.Death, new DeathState(false, this));
 
         enemyFSM.SetStartState(EnemyState.Flee);
