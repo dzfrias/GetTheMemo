@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
+    [SerializeField] private Transform canvas;
+    [SerializeField] private GameObject damageIndicatorObject;
     [SerializeField] private GameObject deathScreenUI;
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject playerCamera;
@@ -19,11 +21,13 @@ public class PlayerDeath : MonoBehaviour
 
     private void OnEnable()
     {
+        health.OnDamagedTaken += OnDamageTaken;
         health.OnDeath += Health_OnDeath;
     }
 
     private void OnDisable()
     {
+        health.OnDamagedTaken -= OnDamageTaken;
         health.OnDeath -= Health_OnDeath;
     }
 
@@ -35,5 +39,11 @@ public class PlayerDeath : MonoBehaviour
         mainCamera.GetComponent<Animator>().SetTrigger("Death");
         deathScreenUI.SetActive(true);
         GameInput.Instance.SwitchActionMaps(ActionMap.UI);
+    }
+
+    private void OnDamageTaken(Vector3 location)
+    {
+        DamageIndicatorUI damageIndicatorUI = Instantiate(damageIndicatorObject, canvas).GetComponent<DamageIndicatorUI>();
+        damageIndicatorUI.Setup(location, transform);
     }
 }

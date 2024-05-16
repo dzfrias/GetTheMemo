@@ -16,7 +16,7 @@ public class DamageBox : MonoBehaviour
         if (collider.gameObject.TryGetComponent<Health>(out Health health))
         {
             OnHit?.Invoke();
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, transform.position);
             if (health.IsDead())
             {
                 OnKill?.Invoke();

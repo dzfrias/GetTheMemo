@@ -109,7 +109,7 @@ public class GroundShockAttack : StateMachineBehaviour
     private void ShockHitboxCube_OnHit(Health health)
     {
         DestroyHitboxes();
-        health.TakeDamage(damage);
+        health.TakeDamage(damage, transform.position);
     }
 
     private void DestroyHitboxes()

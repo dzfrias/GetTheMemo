@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public event Action OnDeath;
     public event Action<float> OnHealthChanged;
     public event Action<float> OnShieldChanged;
+    public event Action<Vector3> OnDamagedTaken;
 
     [SerializeField] private float maxHealth;
     [SerializeField] private float invincibility;
@@ -76,7 +77,7 @@ public class Health : MonoBehaviour
         return maxShield;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Vector3 location)
     {
         if (invincible) return;
         if (regen != null)
@@ -87,6 +88,7 @@ public class Health : MonoBehaviour
         var toTake = shieldAmount - amount;
         shieldAmount = Mathf.Max(0f, toTake);
         OnShieldChanged?.Invoke(shieldAmount);
+        OnDamagedTaken?.Invoke(location);
         // If the user still has shield left, take no damage
         if (toTake >= 0)
         {

@@ -211,7 +211,7 @@ public class Enemy : MonoBehaviour
         {
             if (hitCollider.CompareTag("Player"))
             {
-                player.GetComponent<Health>().TakeDamage(enemySO.attackDamage);
+                player.GetComponent<Health>().TakeDamage(enemySO.attackDamage, transform.position);
             }
         }
     }

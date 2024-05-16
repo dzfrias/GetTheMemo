@@ -27,7 +27,7 @@ public class PaperProjectile : MonoBehaviour
         GameObject hitGameObject = collider.gameObject;
         if (hitGameObject.TryGetComponent(out Health health) && hitGameObject.CompareTag("Player"))
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, transform.position);
             Destroy(gameObject);
         }
     }

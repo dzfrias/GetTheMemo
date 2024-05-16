@@ -82,7 +82,7 @@ public class ChompAttack : StateMachineBehaviour
             if (IsDamageableObject(hitGameObject))
             {
                 Health hitObjectHealth = hitGameObject.GetComponent<Health>();
-                hitObjectHealth.TakeDamage(damage);
+                hitObjectHealth.TakeDamage(damage, transform.position);
                 hitGameObjects.Add(hitGameObject);
             }
         }

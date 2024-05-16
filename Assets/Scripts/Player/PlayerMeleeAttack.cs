@@ -200,7 +200,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             if (collider.TryGetComponent(out Health enemyHealth))
             {
                 didHit = true;
-                enemyHealth.TakeDamage(damage);
+                enemyHealth.TakeDamage(damage, transform.position);
                 effect.PlayFeedbacks();
                 if (enemyHealth.GetHealth() <= 0)
                 {
