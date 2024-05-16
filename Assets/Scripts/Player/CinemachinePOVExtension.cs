@@ -15,9 +15,10 @@ public class CinemachinePOVExtension : CinemachineExtension
     {
         base.Awake();
         camTransform = Camera.main.transform;
-        targetRot = startRot;
+        Vector3 playerRot = GameObject.FindWithTag("Player").transform.rotation.eulerAngles;
+        targetRot = new Vector3(playerRot.y, -playerRot.x, 0f);
     }
-
+    
     protected override void PostPipelineStageCallback(
         CinemachineVirtualCameraBase vcam,
         CinemachineCore.Stage stage,

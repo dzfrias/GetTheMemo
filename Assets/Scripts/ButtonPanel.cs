@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using MoreMountains.Feedbacks;
 
 public class ButtonPanel : MonoBehaviour, IInteractable
@@ -13,7 +14,7 @@ public class ButtonPanel : MonoBehaviour, IInteractable
 
     [SerializeField] private DialogueSO dialogue;
     [SerializeField] private DialogueSO downDialogue;
-    [SerializeField] private GameObject openTrigger;
+    [SerializeField] private UnityEvent onTrigger;
 
     private MMF_Player player;
     private bool didInteract;
@@ -40,10 +41,7 @@ public class ButtonPanel : MonoBehaviour, IInteractable
     public void GoToCombat()
     {
         OfficeManager.Instance.PlayDialogueSequence(dialogue);
-        if (openTrigger != null)
-        {
-            openTrigger.SetActive(false);
-        }
+        onTrigger?.Invoke();
         player.PlayFeedbacks();
         dest = Destination.Combat;
     }

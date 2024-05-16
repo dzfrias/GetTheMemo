@@ -13,6 +13,12 @@ public class StoryBeat
     public UnityEvent onEnd;
 }
 
+[System.Serializable]
+public class LevelBeats
+{
+    public List<StoryBeat> content;
+}
+
 public class OfficeManager : MonoBehaviour, IRecordMode
 {
     public static OfficeManager Instance;
@@ -24,10 +30,12 @@ public class OfficeManager : MonoBehaviour, IRecordMode
     [SerializeField] private bool playOnStart = true;
     [SerializeField] private TutorialText tutorialText;
     [SerializeField] private List<StoryBeat> beats;
+    [SerializeField] private List<LevelBeats> perLevelBeats;
     [SerializeField] private DialogueBox dialogueBox;
     [SerializeField] private BossSpeaker speaker;
 
     private int currentBeat;
+    private List<StoryBeat> currentBeats;
 
     private void Awake()
     {
@@ -43,6 +51,15 @@ public class OfficeManager : MonoBehaviour, IRecordMode
 
     private void Start()
     {
+        int level = SaveData.Instance.data.currentLevel;
+        if (level == 0 || perLevelBeats.Count == 0)
+        {
+            currentBeats = beats;
+        }
+        else
+        {
+            currentBeats = perLevelBeats[level - 1].content;
+        }
         currentBeat = startOn;
         if (playOnStart)
         {
@@ -61,14 +78,14 @@ public class OfficeManager : MonoBehaviour, IRecordMode
         if (devMode) return;
         if (currentBeat != 0)
         {
-            beats[currentBeat - 1].onEnd?.Invoke();
+            currentBeats[currentBeat - 1].onEnd?.Invoke();
         }
-        if (currentBeat >= beats.Count)
+        if (currentBeat >= currentBeats.Count)
         {
             Debug.LogWarning("Attempting to go to story beat that does not exist");
             return;
         }
-        var current = beats[currentBeat];
+        var current = currentBeats[currentBeat];
         current.onStart?.Invoke();
         currentBeat += 1;
         if (current.autoContinue > 0)
