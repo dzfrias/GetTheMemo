@@ -109,6 +109,11 @@ public class OfficeManager : MonoBehaviour, IRecordMode
         OnUnPause?.Invoke();
     }
 
+    public void CompleteLevel()
+    {
+        SaveData.Instance.data.currentLevel += 1;
+    }
+
     private IEnumerator _PlayDialogueSequence(DialogueSO dialogueList)
     {
         yield return new WaitForSeconds(dialogueList.preDelay);

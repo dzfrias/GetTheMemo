@@ -25,11 +25,6 @@ public class WaveManager : MonoBehaviour
         enemiesToSpawn = new();
     }
 
-    private void LoadScene(int _)
-    {
-        SaveData.Instance.Save();
-    }
-
     private void SpawnWave()
     {
         OnNewWave?.Invoke(waves[waveIndex]);
