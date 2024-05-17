@@ -98,7 +98,7 @@ public class WaveManager : MonoBehaviour
         return waveIndex == waves.Count - 1;
     }
 
-    public void StartWaves(int seconds)
+    public void StartWaves(float seconds)
     {
         Invoke(nameof(SpawnWave), seconds);
     }

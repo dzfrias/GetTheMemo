@@ -44,7 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d37392c9a568647ad67ca8bf6acee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: []
+  music:
+  - name: Unknown Upstairs
+    audioClip: {fileID: 8300000, guid: 2a0f3767152344c78b99cecbd6f00ee3, type: 3}
+    volume: 1
+  - name: Upstairs Loop
+    audioClip: {fileID: 8300000, guid: a5df544cc5870453bafb681f73cdb5ae, type: 3}
+    volume: 1
   soundEffects:
   - name: footstep
     audioClip: {fileID: 8300000, guid: b04fd3640cd4f44c784a4013a2971d36, type: 3}
