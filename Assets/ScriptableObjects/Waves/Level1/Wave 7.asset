@@ -53,4 +53,4 @@ MonoBehaviour:
       type: 3}
     delay: 0
   prepTime: 3
-  lengthHours: 3
+  waveNumber: 7

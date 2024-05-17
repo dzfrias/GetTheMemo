@@ -8,7 +8,7 @@ public class WaveSO : ScriptableObject
 {
     public List<EnemySpawn> enemies;
     public float prepTime;
-    public int lengthHours = 1;
+    public int waveNumber = 1;
 }
 
 [Serializable]
