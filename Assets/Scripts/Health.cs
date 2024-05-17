@@ -37,12 +37,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        SaveData.Instance.data.extraMaxHealth = maxHealth;
-        SaveData.Instance.Save();
-    }
-
     private IEnumerator Regen()
     {
         yield return new WaitForSeconds(regenBufferTime);

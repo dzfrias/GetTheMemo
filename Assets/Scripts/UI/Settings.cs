@@ -11,11 +11,14 @@ public class Settings : MonoBehaviour
 {
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private TMP_Dropdown resolutionsDropdown;
+    [SerializeField] private GameObject noBloomPrefab;
+    [SerializeField] private Toggle lightsToggle;
 
     private MMF_Player player;
     private CinemachinePOVExtension playerCameraSettings;
     private bool closing;
     private Resolution[] resolutions;
+    private GameObject noBloom;
 
     private void Awake()
     {
@@ -41,6 +44,13 @@ public class Settings : MonoBehaviour
         playerCameraSettings = playerCamera.GetComponent<CinemachinePOVExtension>();
     }
 
+    private void Start()
+    {
+        noBloom = Instantiate(noBloomPrefab);
+        lightsToggle.isOn = SaveData.Instance.data.lightsMode;
+        noBloom.SetActive(!SaveData.Instance.data.lightsMode);
+    }
+
     private void OnEnable()
     {
         GameInput.Instance.OnCloseUI += Close;
@@ -55,14 +65,14 @@ public class Settings : MonoBehaviour
 
     public void Close()
     {
-        if (player.HasFeedbackStillPlaying()) return;
+        if (player.HasFeedbackStillPlaying() || !IsOpen()) return;
         player.PlayFeedbacksInReverse();
         closing = true;
     }
 
     public bool IsOpen()
     {
-        return gameObject.activeSelf;
+        return transform.GetChild(0).gameObject.activeSelf;
     }
 
     public void SetVolume(float volume)
@@ -87,13 +97,32 @@ public class Settings : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, false);
     }
 
+    public void ToggleLights(bool on)
+    {
+        SaveData.Instance.data.lightsMode = on;
+        SaveData.Instance.Save();
+        noBloom.SetActive(!on);
+    }
+
     private void OnPlayerComplete()
     {
         if (closing)
         {
-            gameObject.SetActive(false);
+            Toggle(false);
             closing = false;
             player.SetDirectionTopToBottom();
+        }
+    }
+
+    public void Toggle(bool yes)
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(yes);
+            if (yes)
+            {
+                player.PlayFeedbacks();
+            }
         }
     }
 }

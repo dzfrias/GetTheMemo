@@ -36,7 +36,7 @@ public class Panic : MonoBehaviour
             inPanic = true;
             OnPanicStart?.Invoke();
         }
-        else if (inPanic)
+        if (currentHealth / health.GetMaxHealth() > panicThreshold && inPanic)
         {
             inPanic = false;
             OnPanicEnd?.Invoke();

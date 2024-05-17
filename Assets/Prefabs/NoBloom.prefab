@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &967318134681405831
+--- !u!1 &2197122603003417872
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1015981406809543410}
-  - component: {fileID: 763453658486588267}
+  - component: {fileID: 4347375745789478131}
+  - component: {fileID: 7717647919971215106}
   m_Layer: 0
-  m_Name: SaveDataManager
+  m_Name: NoBloom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1015981406809543410
+  m_IsActive: 0
+--- !u!4 &4347375745789478131
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967318134681405831}
+  m_GameObject: {fileID: 2197122603003417872}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.114644, y: 2.8800678, z: 18.949762}
+  m_LocalPosition: {x: -18.655548, y: -26.620323, z: -36.111004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &763453658486588267
+--- !u!114 &7717647919971215106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967318134681405831}
+  m_GameObject: {fileID: 2197122603003417872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cc25d32508f54c5f9fbdc292c6277ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    currentLevel: 0
-    extraMaxHealth: 0
-    extraMovementSpeed: 0
-    extraAttackSpeed: 0
-    decreasedAttackDelayAmount: 0
-    playerBalance: 0
-    lightsMode: 1
+  m_IsGlobal: 1
+  priority: 100
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: b20c72146595f47fa9b8602c7b261112, type: 2}

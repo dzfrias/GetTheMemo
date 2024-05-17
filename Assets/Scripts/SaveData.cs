@@ -13,6 +13,7 @@ public class GameData
     public float extraAttackSpeed;
     public float decreasedAttackDelayAmount;
     public float playerBalance;
+    public bool lightsMode = true;
 }
 
 public class SaveData : MonoBehaviour
@@ -42,14 +43,9 @@ public class SaveData : MonoBehaviour
         }
         try
         {
-            using (StreamReader reader = new StreamReader(path))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    Console.WriteLine(line);
-                }
-            }
+            using StreamReader reader = new(path);
+            string text = reader.ReadToEnd();
+            data = JsonUtility.FromJson<GameData>(text);
         }
         catch (Exception e)
         {
