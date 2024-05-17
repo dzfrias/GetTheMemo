@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class HeadBob : MonoBehaviour
 {
-    [SerializeField]
-    private float bobbingSpeed = 0.18f;
-    [SerializeField]
-    private float bobbingAmount = 0.2f;
+    [SerializeField] private float bobbingSpeed = 0.18f;
+    [SerializeField] private float bobbingAmount = 0.2f;
 
     private float startY;
+    private AudioSource footstep;
 
     private void Start()
     {
         startY = transform.localPosition.y;
+        footstep = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -30,6 +30,10 @@ public class HeadBob : MonoBehaviour
         }
 
         var pos = Mathf.Sin(Time.time * bobbingSpeed);
+        if (pos > 0.99 && footstep != null)
+        {
+            footstep.Play();
+        }
         transform.localPosition = new Vector3(
             transform.localPosition.x,
             startY - pos * bobbingAmount,
