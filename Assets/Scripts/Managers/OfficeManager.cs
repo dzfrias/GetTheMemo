@@ -67,6 +67,11 @@ public class OfficeManager : MonoBehaviour, IRecordMode
         }
     }
 
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void LoadScene(int level)
     {
         SaveData.Instance.Save();
