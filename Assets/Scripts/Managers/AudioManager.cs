@@ -11,7 +11,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<Sound> music;
     [SerializeField] private List<Sound> soundEffects;
 
-    private AudioSource audioSource;
+    private AudioSource musicAudioSource;
+
+    private bool isPlayingCombatMusic = false;
 
     [Serializable]
     public struct Sound
@@ -31,9 +33,21 @@ public class AudioManager : MonoBehaviour
         else
         {
             Debug.LogError("There is more than 1 sound manager in the scene!");
+            Destroy(gameObject);
         }
 
-        audioSource = GetComponent<AudioSource>();
+        musicAudioSource = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (isPlayingCombatMusic)
+        {
+            if (!musicAudioSource.isPlaying)
+            {
+                SetMusic("Upstairs Loop");
+            }
+        }
     }
 
     public void PlaySound(string name)
@@ -47,12 +61,18 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(DestroySound(audioSource));
     }
 
+    public void PlayCombatMusic()
+    {
+        SetMusic("Unknown Upstairs");
+        isPlayingCombatMusic = true;
+    }
+
     public void SetMusic(string name)
     {
         Sound sound = GetSound(name, music);
-        audioSource.clip = sound.audioClip;
-        audioSource.volume = sound.volume;
-        audioSource.Play();
+        musicAudioSource.clip = sound.audioClip;
+        musicAudioSource.volume = sound.volume;
+        musicAudioSource.Play();
     }
 
     private Sound GetSound(string name, List<Sound> soundList)
