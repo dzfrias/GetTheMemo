@@ -18,7 +18,7 @@ public class ExplosiveEnemy : Enemy
 
     public override void AddEnemyStateTransitions()
     {
-        base.AddEnemyStateTransitions();
+        enemyFSM.AddTriggerTransitionFromAny(StateEvent.Death, EnemyState.Death, forceInstantly: true);
         enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Attack, IsInExplosionRange));
     }
 
@@ -29,12 +29,14 @@ public class ExplosiveEnemy : Enemy
 
     protected override void PrimaryAttack()
     {
+        Debug.Log("SHOULD EXPLODE");
         base.PrimaryAttack();
         Explode();
     }
 
     private void Explode()
     {
+        Debug.Log("EXPLODE!!!");
         Instantiate(explosion, transform.position, Quaternion.identity);
         StopAllCoroutines();
         health.TakeDamage(Mathf.Infinity, transform.position);
