@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: Wave 1
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2, type: 3}
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
-  - {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2, type: 3}
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
-  - {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2, type: 3}
-  - {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2, type: 3}
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
+  - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
+      type: 3}
+    delay: 0
+  - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
+      type: 3}
+    delay: 0
+  - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
+      type: 3}
+    delay: 10
+  - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
+      type: 3}
+    delay: 0
   prepTime: 0
   spawnDelay: 4
   lengthHours: 1

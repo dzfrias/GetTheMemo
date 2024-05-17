@@ -12,20 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bfce56a2fa8824f8e4c785e6d179cb, type: 3}
   m_Name: Wave 3
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
-  - {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e, type: 3}
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
-  - {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e, type: 3}
-  - {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e, type: 3}
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
-  - {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e, type: 3}
-  - {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e, type: 3}
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
-  - {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5, type: 3}
-  - {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e, type: 3}
-  - {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e, type: 3}
+  enemies: []
   prepTime: 0
   spawnDelay: 1
   lengthHours: 1

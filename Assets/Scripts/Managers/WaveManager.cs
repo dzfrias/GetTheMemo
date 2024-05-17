@@ -12,11 +12,12 @@ public class WaveManager : MonoBehaviour
     public static event Action<WaveSO> OnNewWave;
     public static event Action OnWavesCompleted;
 
-    private List<GameObject> enemiesToSpawn;
+    private List<EnemySpawn> enemiesToSpawn;
     private int enemiesRemaining;
     private int waveIndex = 0;
     private Transform player;
     private PlayerBalance playerBalance;
+    private float timeSinceLastEnemy;
 
     private void Start()
     {
@@ -25,24 +26,25 @@ public class WaveManager : MonoBehaviour
         enemiesToSpawn = new();
     }
 
+    private void Update()
+    {
+        if (enemiesToSpawn.Count > 0 && timeSinceLastEnemy < Time.time - enemiesToSpawn[0].delay)
+        {
+            SpawnEnemy();
+        }
+    }
+
     private void SpawnWave()
     {
         OnNewWave?.Invoke(waves[waveIndex]);
-        foreach (GameObject gameObject in waves[waveIndex].enemies)
+        foreach (EnemySpawn enemySpawn in waves[waveIndex].enemies)
         {
-            enemiesToSpawn.Add(gameObject);
+            enemiesToSpawn.Add(enemySpawn);
         }
-        InvokeRepeating(nameof(SpawnEnemy), waves[waveIndex].prepTime, waves[waveIndex].spawnDelay);
     }
 
     private void SpawnEnemy()
     {
-        if (enemiesToSpawn.Count == 0)
-        {
-            CancelInvoke(nameof(SpawnEnemy));
-            return;
-        }
-
         Transform randomSpawnPoint;
         // This loop runs until we find a spawn point that is out of range of
         // noSpawnRadius from player
@@ -60,11 +62,12 @@ public class WaveManager : MonoBehaviour
                 break;
             }
         }
-        GameObject enemy = Instantiate(enemiesToSpawn[0], randomSpawnPoint.position, Quaternion.identity);
+        GameObject enemy = Instantiate(enemiesToSpawn[0].enemyType, randomSpawnPoint.position, Quaternion.identity);
         enemy.GetComponent<Health>().OnDeath += Enemy_OnDeath;
 
         enemiesRemaining++;
         enemiesToSpawn.RemoveAt(0);
+        timeSinceLastEnemy = Time.time;
     }
 
     private void Enemy_OnDeath()
