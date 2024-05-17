@@ -7530,6 +7530,7 @@ MonoBehaviour:
   playOnStart: 0
   tutorialText: {fileID: 1972906493152552051}
   beats: []
+  perLevelBeats: []
   dialogueBox: {fileID: 1972906493152552050}
   speaker: {fileID: 1435179805}
 --- !u!4 &1748320144
@@ -8781,6 +8782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140869022299641580, guid: 80c669382956c4155b7fca511ae38358,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8053920941815660964, guid: 80c669382956c4155b7fca511ae38358,
         type: 3}
