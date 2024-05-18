@@ -39,9 +39,6 @@ public class Settings : MonoBehaviour
         resolutionsDropdown.AddOptions(options);
         resolutionsDropdown.value = current;
         resolutionsDropdown.RefreshShownValue();
-
-        GameObject playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
-        playerCameraSettings = playerCamera.GetComponent<CinemachinePOVExtension>();
     }
 
     private void Start()

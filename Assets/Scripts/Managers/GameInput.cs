@@ -16,6 +16,8 @@ public enum ActionMap
 
 public class GameInput : MonoBehaviour
 {
+    [SerializeField] private ActionMap startActionMap = ActionMap.Player;
+
     public static GameInput Instance;
 
     // Player action map
@@ -62,9 +64,7 @@ public class GameInput : MonoBehaviour
         }
 
         playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
-        currentActionMap = ActionMap.Player;
-        LockCursor();
+        SwitchActionMaps(startActionMap);
     }
 
     public void SwitchActionMaps(ActionMap actionMap)
