@@ -43,5 +43,5 @@ MonoBehaviour:
   - enemyType: {fileID: 6065262269642896141, guid: 55dbf0786165f4fe7b597d836aa66802,
       type: 3}
     delay: 0
-  prepTime: 0
+  prepTime: 3
   waveNumber: 3

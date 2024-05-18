@@ -1013,7 +1013,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 95a1d7ebcf2c2c44881aaa8454651849, type: 2}
   - {fileID: 11400000, guid: 479f30992d682be4f99bdf5933264127, type: 2}
   - {fileID: 11400000, guid: b52709cf758a1fe4db25e0dc9c900566, type: 2}
-  - {fileID: 11400000, guid: 5ebc39e64f1e1734a877b4d3425d22c3, type: 2}
   wavesCompleteteRewardAmount: 8
 --- !u!4 &393909481
 Transform:
