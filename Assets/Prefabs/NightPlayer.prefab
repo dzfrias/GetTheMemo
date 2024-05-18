@@ -3699,6 +3699,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7210463330073506235}
+    - targetCorrespondingSourceObject: {fileID: 4879248015924518829, guid: 783792e4c7a7d4b96a219598286ea572,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6945256533428218434}
   m_SourcePrefab: {fileID: 100100000, guid: 783792e4c7a7d4b96a219598286ea572, type: 3}
 --- !u!4 &5461608399961791763 stripped
 Transform:
@@ -3799,6 +3803,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panicThreshold: 0.2
+--- !u!114 &6945256533428218434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8652800593928421208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25862eebf3780c842bcad9144dc121bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  damageIndicatorObject: {fileID: 8314126713058665775, guid: fae6c20f0f2166c4b866f87e49a18de7,
+    type: 3}
+  deathScreenUI: {fileID: 0}
+  mainCamera: {fileID: 0}
+  playerCamera: {fileID: 0}
 --- !u!4 &9101590024903976125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5038729275557168200, guid: 783792e4c7a7d4b96a219598286ea572,

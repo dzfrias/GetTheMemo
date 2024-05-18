@@ -2309,30 +2309,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2138565839}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &936959898 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652800593928421208, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3258936569047570646}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &936959911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936959898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25862eebf3780c842bcad9144dc121bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 1664379633}
-  damageIndicatorObject: {fileID: 8314126713058665775, guid: fae6c20f0f2166c4b866f87e49a18de7,
-    type: 3}
-  deathScreenUI: {fileID: 523516120}
-  mainCamera: {fileID: 1409326632}
-  playerCamera: {fileID: 912079725}
 --- !u!20 &983630018 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7140869022299641580, guid: 80c669382956c4155b7fca511ae38358,
@@ -6056,6 +6032,26 @@ PrefabInstance:
       propertyPath: attackPoint
       value: 
       objectReference: {fileID: 2036246833}
+    - target: {fileID: 6945256533428218434, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1664379633}
+    - target: {fileID: 6945256533428218434, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1409326632}
+    - target: {fileID: 6945256533428218434, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 912079725}
+    - target: {fileID: 6945256533428218434, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
+        type: 3}
+      propertyPath: deathScreenUI
+      value: 
+      objectReference: {fileID: 523516120}
     - target: {fileID: 8652800593928421208, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
         type: 3}
       propertyPath: m_Name
@@ -6659,11 +6655,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8652800593928421208, guid: d5e7c338c0e62428c8a1304f51fe4a9a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 936959911}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e7c338c0e62428c8a1304f51fe4a9a, type: 3}
 --- !u!1001 &4458312411181232568
 PrefabInstance:
