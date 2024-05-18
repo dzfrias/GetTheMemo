@@ -29,11 +29,12 @@ public class HeadBob : MonoBehaviour
             return;
         }
 
-        var pos = Mathf.Sin(Time.time * bobbingSpeed);
-        if (pos > 0.99 && footstep != null)
+        var soundPos = Mathf.Sin(Time.time * bobbingSpeed * 1.5f);
+        if (soundPos > 0.99 && footstep != null)
         {
             footstep.Play();
         }
+        var pos = Mathf.Sin(Time.time * bobbingSpeed);
         transform.localPosition = new Vector3(
             transform.localPosition.x,
             startY - pos * bobbingAmount,

@@ -8,6 +8,8 @@ public class HitSound : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Tiny collisions shouldn't count
+        if (collision.relativeVelocity.magnitude < 1.5) return;
         ContactPoint contact = collision.contacts[0];
         Instantiate(sound, contact.point, Quaternion.identity);
     }
