@@ -5,17 +5,16 @@ using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class VendingMachineUI : MonoBehaviour {
-    [SerializeField] private MMF_Player openFeedbacks;
-    [SerializeField] private MMF_Player closeFeedbacks;
+
+    private float showDelay = 0.8f;
 
     public void Show()
     {
-        gameObject.SetActive(true);
-        openFeedbacks.PlayFeedbacks();
+        Invoke(nameof(_Show), showDelay);
     }
 
-    public void Hide()
+    private void _Show()
     {
-        closeFeedbacks.PlayFeedbacks();
+        gameObject.SetActive(true);
     }
 }
