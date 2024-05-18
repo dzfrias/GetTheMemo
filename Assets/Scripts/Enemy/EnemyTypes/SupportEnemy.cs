@@ -24,6 +24,8 @@ public class SupportEnemy : Enemy
     {
         base.Awake();
 
+        lastAttackTime = Time.time;
+
         stimulatedEnemies = new();
         stimulationLineVisuals = new();
     }
