@@ -29824,7 +29824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3bd6929b7eb46cbac1396d47818965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  devMode: 1
+  devMode: 0
   startOn: 0
   playOnStart: 1
   tutorialText: {fileID: 320130161}

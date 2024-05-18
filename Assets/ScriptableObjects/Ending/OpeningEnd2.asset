@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95e9d53675c94c9b82aeb7a4d004270, type: 3}
+  m_Name: OpeningEnd2
+  m_EditorClassIdentifier: 
+  preDelay: 0
+  clip: {fileID: 8300000, guid: ca624ff88d29b4acb947f5a768f6e626, type: 3}
+  dialogues:
+  - text: It's difficult to admit, but you've surpassed me.
+    timestamp: 0
+  - text: Are you ready to take on the role of boss?
+    timestamp: 6.5
+  autoContinue: 0
+  volume: 1
