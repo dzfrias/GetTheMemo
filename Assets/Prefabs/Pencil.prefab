@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1573640541941460675}
+  - component: {fileID: 1162785140395194546}
   m_Layer: 0
   m_Name: Pencil
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 8318661074111753551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1162785140395194546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2673516886422515756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8914692e02d24b58b9daec95c3d841f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 103018290317489624, guid: b2d5b3b79b02f4fb5b5d820ef67acc29, type: 3}
 --- !u!1001 &8429449124397550244
 PrefabInstance:
   m_ObjectHideFlags: 0

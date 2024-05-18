@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4471434259607016046}
   - component: {fileID: 5785826734611551876}
   - component: {fileID: 7199737199321437415}
+  - component: {fileID: 7563158975749185310}
   m_Layer: 0
   m_Name: Paper
   m_TagString: Untagged
@@ -147,3 +148,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwMultiplier: 2
+--- !u!114 &7563158975749185310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118790440581999610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8914692e02d24b58b9daec95c3d841f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 103018290317489624, guid: b2d5b3b79b02f4fb5b5d820ef67acc29, type: 3}

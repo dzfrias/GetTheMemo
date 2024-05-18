@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected Transform attackPoint;
     [SerializeField] protected Transform stimulationEffectPoint;
     [SerializeField] protected float initialAttackWaitTimeMax = 1;
+    [SerializeField] protected MMF_Player attackEffect;
     protected float initialAttackWaitTime;
 
     [Header("Death Spawn")]
@@ -213,6 +214,10 @@ public class Enemy : MonoBehaviour
             {
                 player.GetComponent<Health>().TakeDamage(enemySO.attackDamage, transform.position);
             }
+        }
+        if (attackEffect != null)
+        {
+            attackEffect.PlayFeedbacks();
         }
     }
 
