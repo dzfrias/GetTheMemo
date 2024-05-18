@@ -815,10 +815,12 @@ MonoBehaviour:
   - {fileID: 36015254}
   - {fileID: 1399046786}
   waves:
-  - {fileID: 11400000, guid: 1af558a891c4a4837b4cbcfc00b6ea29, type: 2}
-  - {fileID: 11400000, guid: 2e3513ad8f3184125b845e13372aefe0, type: 2}
-  - {fileID: 11400000, guid: 74737d4e4620a435b98af85fb4bf1a0f, type: 2}
-  wavesCompleteteRewardAmount: 10
+  - {fileID: 11400000, guid: 74938e5db7c554a4993cd055c6a24646, type: 2}
+  - {fileID: 11400000, guid: eb45c18e9b2de4a7f883dc947fdad064, type: 2}
+  - {fileID: 11400000, guid: 303fc684045c7491f9bd39636e1c2f2e, type: 2}
+  - {fileID: 11400000, guid: 7d48e9b2e1f3d46679859151c597e197, type: 2}
+  - {fileID: 11400000, guid: 09c57d8090b7fa74683af7ccc5a57a8f, type: 2}
+  wavesCompleteteRewardAmount: 15
 --- !u!4 &393909481
 Transform:
   m_ObjectHideFlags: 0
@@ -1710,18 +1712,6 @@ MonoBehaviour:
   triggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 393909480}
-        m_TargetAssemblyTypeName: WaveManager, Assembly-CSharp
-        m_MethodName: StartWaves
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 936645557}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -1743,6 +1733,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 393909480}
+        m_TargetAssemblyTypeName: WaveManager, Assembly-CSharp
+        m_MethodName: StartWaves
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 4
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2

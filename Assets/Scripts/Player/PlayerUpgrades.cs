@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerUpgrades : MonoBehaviour, IInteractable
 {
+    public static event Action<float, string, int> onBuy;
+
     [SerializeField] private VendingMachineUI vendingMachineUI;
     [SerializeField] private GameObject vendingMachineCamera;
 
@@ -11,9 +14,23 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
     private Health playerHealth;
     private PlayerMovement playerMovement;
 
-    private int maxHealthIncreaseAmount = 2;
-    private int movementSpeedIncreaseAmount = 1;
-    private float attackSpeedIncreaseAmount = 0.1f;
+    public float healthCost = 1.50f;
+    public float movementSpeedCost = 2.00f;
+    public float attackSpeedCost = 2.50f;
+
+
+    private int maxHealthUpgrades = 8;
+    private int maxMovementSpeedUpgrades = 5;
+    private int maxAttackSpeedUpgrades = 4;
+
+
+    private int healthUpgradesBought = 0;
+    private int movementSpeedUpgradesBought = 0;
+    private int attackSpeedUpgradesBought = 0;
+
+    private float maxHealthIncreaseAmount = 2;
+    private float movementSpeedIncreaseAmount = 0.5f;
+    private float attackSpeedIncreaseAmount = 0.05f;
     private float decreaseAttackDelayAmount = 0.05f;
 
     private void Start()
@@ -50,21 +67,51 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
 
     public void UpgradeHealth()
     {
-        Debug.Log("Increase Health");
-        SaveData.Instance.data.extraMaxHealth += maxHealthIncreaseAmount;
+        if (SaveData.Instance.data.playerBalance > healthCost && healthUpgradesBought < maxHealthUpgrades)
+        {
+            Debug.Log("Increase Health");
+            SaveData.Instance.data.extraMaxHealth += maxHealthIncreaseAmount;
+            healthUpgradesBought += 1;
+            onBuy?.Invoke(healthCost, "Health", maxHealthUpgrades - healthUpgradesBought);
+        }
     }
 
     public void UpgradeMovementSpeed()
     {
-        Debug.Log("Increase Movement Speed");
-        playerMovement.IncreaseMaxSpeed(movementSpeedIncreaseAmount);
-        SaveData.Instance.data.extraMovementSpeed += movementSpeedIncreaseAmount;
+        if (SaveData.Instance.data.playerBalance > movementSpeedCost && movementSpeedUpgradesBought < maxMovementSpeedUpgrades)
+        {
+            Debug.Log("Increase Movement Speed");
+            playerMovement.IncreaseMaxSpeed(movementSpeedIncreaseAmount);
+            SaveData.Instance.data.extraMovementSpeed += movementSpeedIncreaseAmount;
+            movementSpeedUpgradesBought += 1;
+            onBuy?.Invoke(movementSpeedCost, "MovementSpeed", maxMovementSpeedUpgrades - movementSpeedUpgradesBought);
+        }
     }
 
     public void UpgradeAttackSpeed()
     {
-        Debug.Log("Increase Attack Speed");
-        SaveData.Instance.data.extraAttackSpeed += attackSpeedIncreaseAmount;
-        SaveData.Instance.data.decreasedAttackDelayAmount += decreaseAttackDelayAmount;
+        if (SaveData.Instance.data.playerBalance > attackSpeedCost && attackSpeedUpgradesBought < maxAttackSpeedUpgrades)
+        {
+            Debug.Log("Increase Attack Speed");
+            SaveData.Instance.data.extraAttackSpeed += attackSpeedIncreaseAmount;
+            SaveData.Instance.data.decreasedAttackDelayAmount += decreaseAttackDelayAmount;
+            attackSpeedUpgradesBought += 1;
+            onBuy?.Invoke(attackSpeedCost, "AttackSpeed", maxAttackSpeedUpgrades - attackSpeedUpgradesBought);
+        }
+    }
+
+    public int RemainingUpgradeAmount(string type)
+    {
+        switch (type)
+        {
+            case "Health":
+                return maxHealthUpgrades - healthUpgradesBought;
+            case "MovementSpeed":
+                return maxMovementSpeedUpgrades - movementSpeedUpgradesBought;
+            case "AttackSpeed":
+                return maxAttackSpeedUpgrades - attackSpeedUpgradesBought;
+        }
+        Debug.LogError("Upgrade Type Doesn't Exist");
+        return -1;
     }
 }

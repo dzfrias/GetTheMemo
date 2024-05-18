@@ -1120,7 +1120,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e3513ad8f3184125b845e13372aefe0, type: 2}
   - {fileID: 11400000, guid: 74737d4e4620a435b98af85fb4bf1a0f, type: 2}
   - {fileID: 11400000, guid: ff38223ba7274455e96af82f22656283, type: 2}
-  wavesCompleteteRewardAmount: 10
+  - {fileID: 11400000, guid: 07d314bb4dc942c46be42bb6ed76b3b9, type: 2}
+  wavesCompleteteRewardAmount: 12
 --- !u!4 &393909481
 Transform:
   m_ObjectHideFlags: 0
