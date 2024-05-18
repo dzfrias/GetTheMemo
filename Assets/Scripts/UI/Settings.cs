@@ -39,6 +39,12 @@ public class Settings : MonoBehaviour
         resolutionsDropdown.AddOptions(options);
         resolutionsDropdown.value = current;
         resolutionsDropdown.RefreshShownValue();
+
+        GameObject playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
+        if (playerCamera != null)
+        {
+            playerCameraSettings = playerCamera.GetComponent<CinemachinePOVExtension>();
+        }
     }
 
     private void Start()
@@ -80,6 +86,7 @@ public class Settings : MonoBehaviour
 
     public void SetSensitivity(float sensitivity)
     {
+        if (playerCameraSettings == null) return;
         playerCameraSettings.SetSensitivity(sensitivity);
     }
 
