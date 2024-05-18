@@ -85,6 +85,7 @@ public class WaveManager : MonoBehaviour
                 OnWavesCompleted?.Invoke();
                 Debug.Log("ADD TO PLAYER MONEY: " + wavesCompleteteRewardAmount);
                 SaveData.Instance.data.playerBalance += wavesCompleteteRewardAmount;
+                OfficeManager.Instance.CompleteLevel();
             }
             else
             {

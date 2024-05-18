@@ -5344,6 +5344,12 @@ PrefabInstance:
       propertyPath: dialogueBox
       value: 
       objectReference: {fileID: 1972906493152552050}
+    - target: {fileID: 435221696164852034, guid: d2dc08fc857e14cce8103a2bacb66da8,
+        type: 3}
+      propertyPath: downDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: bc3258b11a73843aa88661a6ec2e8bf9,
+        type: 2}
     - target: {fileID: 1376920528974572114, guid: d2dc08fc857e14cce8103a2bacb66da8,
         type: 3}
       propertyPath: m_Name

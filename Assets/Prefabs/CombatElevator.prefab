@@ -745,7 +745,7 @@ PrefabInstance:
         type: 3}
       propertyPath: downDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 4f3bbf9704c6d44f4a1be99914ebe88a,
+      objectReference: {fileID: 11400000, guid: bc3258b11a73843aa88661a6ec2e8bf9,
         type: 2}
     - target: {fileID: 4036656850885422042, guid: 5e5a7fa0527a22e4298a88f8138e77c1,
         type: 3}
