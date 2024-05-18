@@ -29,12 +29,10 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
         }
         else
         {
             Debug.LogError("There is more than 1 sound manager in the scene!");
-            Destroy(gameObject);
         }
 
         musicAudioSource = GetComponent<AudioSource>();
