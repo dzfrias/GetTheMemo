@@ -1734,6 +1734,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2061416428}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayCombatMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   stopTriggered:
     m_PersistentCalls:
       m_Calls: []
@@ -2895,10 +2907,8 @@ MonoBehaviour:
   m_VersionIndex: 1939
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges:
-  - a: 32
-    b: 33
-  m_SelectedVertices: 2000000021000000
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!4 &1229591205
 Transform:
   m_ObjectHideFlags: 0
@@ -4958,6 +4968,86 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3192586474056894054}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2061416427
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600333924817143740, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6055818820529280486, guid: 0713921f408436b4c9f9cc22df42123f,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0713921f408436b4c9f9cc22df42123f, type: 3}
+--- !u!114 &2061416428 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2298147428084556823, guid: 0713921f408436b4c9f9cc22df42123f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2061416427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d37392c9a568647ad67ca8bf6acee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2109848059
 GameObject:
   m_ObjectHideFlags: 0
@@ -5803,3 +5893,4 @@ SceneRoots:
   - {fileID: 2023930699}
   - {fileID: 717749732}
   - {fileID: 1229591205}
+  - {fileID: 2061416427}
