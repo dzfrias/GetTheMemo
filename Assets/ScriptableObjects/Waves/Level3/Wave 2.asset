@@ -10,13 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8bfce56a2fa8824f8e4c785e6d179cb, type: 3}
-  m_Name: Wave 3
+  m_Name: Wave 2
   m_EditorClassIdentifier: 
   enemies:
   - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
       type: 3}
     delay: 0
-  - enemyType: {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5,
+  - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
+      type: 3}
+    delay: 0
+  - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
+      type: 3}
+    delay: 0
+  - enemyType: {fileID: 2376546243936686640, guid: a6e753de8c44b4c6cb9423be0b338ead,
+      type: 3}
+    delay: 0
+  - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
+      type: 3}
+    delay: 8
+  - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
+      type: 3}
+    delay: 0
+  - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
       type: 3}
     delay: 0
   - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
@@ -24,21 +39,12 @@ MonoBehaviour:
     delay: 0
   - enemyType: {fileID: 9060915683836128050, guid: 292019a465c29874fa0139c1c1c7f0f2,
       type: 3}
-    delay: 4
-  - enemyType: {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e,
+    delay: 0
+  - enemyType: {fileID: 2376546243936686640, guid: a6e753de8c44b4c6cb9423be0b338ead,
       type: 3}
     delay: 0
-  - enemyType: {fileID: 5478204931018756992, guid: 5d3a4d6bfaeba354ebd440da8478795e,
+  - enemyType: {fileID: 2376546243936686640, guid: a6e753de8c44b4c6cb9423be0b338ead,
       type: 3}
     delay: 0
-  - enemyType: {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5,
-      type: 3}
-    delay: 4
-  - enemyType: {fileID: 6268618228294736525, guid: 50a1ec7cdaae14c8590c49d87e09aff5,
-      type: 3}
-    delay: 0
-  - enemyType: {fileID: 6065262269642896141, guid: 55dbf0786165f4fe7b597d836aa66802,
-      type: 3}
-    delay: 0
-  prepTime: 0
-  waveNumber: 3
+  prepTime: 4
+  waveNumber: 2
