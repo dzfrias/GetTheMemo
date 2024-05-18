@@ -1875,18 +1875,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1748320143}
-        m_TargetAssemblyTypeName: OfficeManager, Assembly-CSharp
-        m_MethodName: NextBeat
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 4
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   stopTriggered:
     m_PersistentCalls:
       m_Calls: []
@@ -4551,27 +4539,7 @@ MonoBehaviour:
   startOn: 0
   playOnStart: 0
   tutorialText: {fileID: 1972906493152552051}
-  beats:
-  - autoContinue: 0
-    onStart:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1748320143}
-          m_TargetAssemblyTypeName: OfficeManager, Assembly-CSharp
-          m_MethodName: PlayDialogueSequence
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 1348f7ea172f74a25ad66c8651fd52d7,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueSO, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    onEnd:
-      m_PersistentCalls:
-        m_Calls: []
+  beats: []
   perLevelBeats: []
   dialogueBox: {fileID: 1972906493152552050}
   speaker: {fileID: 1435179805}
