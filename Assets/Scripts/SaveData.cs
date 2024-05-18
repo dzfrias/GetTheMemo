@@ -14,6 +14,9 @@ public class GameData
     public float decreasedAttackDelayAmount;
     public float playerBalance;
     public bool lightsMode = true;
+    public float remainingHealthUpgrades;
+    public float remainingMovementSpeedUpgrades;
+    public float remainingAttackSpeedUpgrades;
 }
 
 public class SaveData : MonoBehaviour

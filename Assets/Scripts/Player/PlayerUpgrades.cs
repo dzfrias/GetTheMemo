@@ -73,6 +73,7 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
             SaveData.Instance.data.extraMaxHealth += maxHealthIncreaseAmount;
             healthUpgradesBought += 1;
             onBuy?.Invoke(healthCost, "Health", maxHealthUpgrades - healthUpgradesBought);
+            SaveData.Instance.data.remainingHealthUpgrades = maxHealthUpgrades - healthUpgradesBought;
         }
     }
 
@@ -85,6 +86,7 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
             SaveData.Instance.data.extraMovementSpeed += movementSpeedIncreaseAmount;
             movementSpeedUpgradesBought += 1;
             onBuy?.Invoke(movementSpeedCost, "MovementSpeed", maxMovementSpeedUpgrades - movementSpeedUpgradesBought);
+            SaveData.Instance.data.remainingMovementSpeedUpgrades = maxMovementSpeedUpgrades - movementSpeedUpgradesBought;
         }
     }
 
@@ -97,6 +99,7 @@ public class PlayerUpgrades : MonoBehaviour, IInteractable
             SaveData.Instance.data.decreasedAttackDelayAmount += decreaseAttackDelayAmount;
             attackSpeedUpgradesBought += 1;
             onBuy?.Invoke(attackSpeedCost, "AttackSpeed", maxAttackSpeedUpgrades - attackSpeedUpgradesBought);
+            SaveData.Instance.data.remainingAttackSpeedUpgrades = maxAttackSpeedUpgrades - attackSpeedUpgradesBought;
         }
     }
 
