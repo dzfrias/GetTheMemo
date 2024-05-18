@@ -83,6 +83,7 @@ public class WaveManager : MonoBehaviour
             if (AreWavesCompleted())
             {
                 OnWavesCompleted?.Invoke();
+                Debug.Log("ADD TO PLAYER MONEY: " + wavesCompleteteRewardAmount);
                 SaveData.Instance.data.playerBalance += wavesCompleteteRewardAmount;
             }
             else

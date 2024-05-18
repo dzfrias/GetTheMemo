@@ -212,7 +212,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    internal void IncreaseMaxSpeed(int amount)
+    internal void IncreaseMaxSpeed(float amount)
     {
         movementSpeed += amount;
     }
