@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource musicAudioSource;
 
     private bool isPlayingCombatMusic = false;
+    private bool isMusicPaused = false;
 
     [Serializable]
     public struct Sound
@@ -43,7 +44,7 @@ public class AudioManager : MonoBehaviour
     {
         if (isPlayingCombatMusic)
         {
-            if (!musicAudioSource.isPlaying)
+            if (!musicAudioSource.isPlaying && !isMusicPaused)
             {
                 SetMusic("Upstairs Loop");
             }
@@ -59,6 +60,18 @@ public class AudioManager : MonoBehaviour
         audioSource.volume = sound.volume;
         audioSource.Play();
         StartCoroutine(DestroySound(audioSource));
+    }
+
+    public void PauseMusic()
+    {
+        musicAudioSource.Pause();
+        isMusicPaused = true;
+    }
+
+    public void UnPauseMusic()
+    {
+        musicAudioSource.UnPause();
+        isMusicPaused = false;
     }
 
     public void PlayCombatMusic()

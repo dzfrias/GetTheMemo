@@ -121,12 +121,14 @@ public class OfficeManager : MonoBehaviour, IRecordMode
 
     public void Pause()
     {
+        AudioManager.Instance.PauseMusic();
         Time.timeScale = 0f;
         OnPause?.Invoke();
     }
 
     public void UnPause()
     {
+        AudioManager.Instance.UnPauseMusic();
         Time.timeScale = 1f;
         OnUnPause?.Invoke();
     }
