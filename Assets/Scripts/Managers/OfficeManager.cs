@@ -58,7 +58,7 @@ public class OfficeManager : MonoBehaviour, IRecordMode
         }
         else
         {
-            currentBeats = perLevelBeats[level - 1].content;
+            currentBeats = new();
         }
         currentBeat = startOn;
         if (playOnStart)
