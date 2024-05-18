@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     private bool isPlayingCombatMusic = false;
     private bool isMusicPaused = false;
+    private bool isPlayingOfficeMusic = false;
 
     [Serializable]
     public struct Sound
@@ -47,6 +48,14 @@ public class AudioManager : MonoBehaviour
                 SetMusic("Upstairs Loop");
             }
         }
+
+        if (isPlayingOfficeMusic)
+        {
+            if (!musicAudioSource.isPlaying && !isMusicPaused)
+            {
+                SetMusic("Office Loop");
+            }
+        }
     }
 
     public void PlaySound(string name)
@@ -76,6 +85,12 @@ public class AudioManager : MonoBehaviour
     {
         SetMusic("Unknown Upstairs");
         isPlayingCombatMusic = true;
+    }
+
+    public void PlayOfficeMusic()
+    {
+        SetMusic("Office");
+        isPlayingOfficeMusic = true;
     }
 
     public void SetMusic(string name)
