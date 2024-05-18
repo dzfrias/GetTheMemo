@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     private bool isPlayingCombatMusic = false;
     private bool isMusicPaused = false;
+    private bool isPlayingOfficeMusic = false;
 
     [Serializable]
     public struct Sound
@@ -29,12 +30,10 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
         }
         else
         {
             Debug.LogError("There is more than 1 sound manager in the scene!");
-            Destroy(gameObject);
         }
 
         musicAudioSource = GetComponent<AudioSource>();
@@ -47,6 +46,14 @@ public class AudioManager : MonoBehaviour
             if (!musicAudioSource.isPlaying && !isMusicPaused)
             {
                 SetMusic("Upstairs Loop");
+            }
+        }
+
+        if (isPlayingOfficeMusic)
+        {
+            if (!musicAudioSource.isPlaying && !isMusicPaused)
+            {
+                SetMusic("Office Loop");
             }
         }
     }
@@ -78,6 +85,12 @@ public class AudioManager : MonoBehaviour
     {
         SetMusic("Unknown Upstairs");
         isPlayingCombatMusic = true;
+    }
+
+    public void PlayOfficeMusic()
+    {
+        SetMusic("Office");
+        isPlayingOfficeMusic = true;
     }
 
     public void SetMusic(string name)
