@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5326193000323245771}
   - component: {fileID: 9046163029979486262}
   - component: {fileID: 4954059992391494461}
+  - component: {fileID: 3855688317805430834}
   m_Layer: 0
   m_Name: CrumpledPaper
   m_TagString: Untagged
@@ -96,6 +97,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwMultiplier: 2
+--- !u!114 &3855688317805430834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576649385607512683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8914692e02d24b58b9daec95c3d841f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 103018290317489624, guid: b2d5b3b79b02f4fb5b5d820ef67acc29, type: 3}
 --- !u!1001 &7479606806911668606
 PrefabInstance:
   m_ObjectHideFlags: 0
