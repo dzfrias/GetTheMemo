@@ -8,6 +8,9 @@ public class OfficeMusic : MonoBehaviour
 
     private void Start()
     {
-        audioManager.PlayOfficeMusic();
+        if (SaveData.Instance.data.currentLevel > 0)
+        {
+            audioManager.PlayOfficeMusic();
+        }
     }
 }
