@@ -30051,6 +30051,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 320130161}
+          m_TargetAssemblyTypeName: TutorialText, Assembly-CSharp
+          m_MethodName: Display
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Find the red button
+            m_BoolArgument: 1
+          m_CallState: 2
     onEnd:
       m_PersistentCalls:
         m_Calls: []
@@ -30066,6 +30078,18 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 11400000, guid: 69864f6c2a4e74c3e9708f08ca486fb7,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: DialogueSO, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 320130161}
+          m_TargetAssemblyTypeName: TutorialText, Assembly-CSharp
+          m_MethodName: Hide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
