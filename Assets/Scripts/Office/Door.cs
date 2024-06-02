@@ -31,8 +31,6 @@ public class Door : MonoBehaviour, IInteractable, IRecordMode
 
     public void Interact(Vector3 playerPosition)
     {
-        if (player.HasFeedbackStillPlaying()) return;
-
         if (isOpen)
         {
             Close();
