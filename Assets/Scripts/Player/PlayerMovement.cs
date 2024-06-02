@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 movementVectorNormalized = GameInput.Instance.GetMovementVectorNormalized();
         Vector3 movement = new Vector3(movementVectorNormalized.x, 0f, movementVectorNormalized.y);
-        movement = camTransform.forward * movement.z + camTransform.right * movement.x;
+        movement = transform.forward * movement.z + transform.right * movement.x;
         playerVelocity.x = movement.x * movementSpeed;
         playerVelocity.z = movement.z * movementSpeed;
         if (melee != null && melee.IsAttacking())
